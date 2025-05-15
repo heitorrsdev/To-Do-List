@@ -9,8 +9,9 @@
     "sourceType": "module"
   },
   "rules": {
-    "semi": ["error", "always"],
+    "no-trailing-spaces": "error",
+    "no-unused-vars": "warn",
     "quotes": ["error", "double"],
-    "no-unused-vars": "warn"
+    "semi": ["error", "always"]
   }
 }
