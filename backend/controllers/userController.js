@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import isValidEmail from "../utils/validation.js";
 import jwt from "jsonwebtoken";
 
-const JWT_SECRET = "segredo123"; // em produção, usar uma variável de ambiente
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export const register = async (req, res) => {
   const { email, password } = req.body;
