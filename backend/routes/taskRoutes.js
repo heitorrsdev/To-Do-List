@@ -1,3 +1,4 @@
+import authMiddleware from "../middleware/authMiddleware.js";
 import express from "express";
 import {
   createTask,
@@ -8,7 +9,7 @@ import {
 
 const router = express.Router();
 
-// Adicionar o middleware de autenticação
+router.use(authMiddleware);
 
 router.post("/tasks", createTask);
 router.get("/tasks", getTasks);
