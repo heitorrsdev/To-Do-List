@@ -1,9 +1,8 @@
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
-import { isValidEmail } from "../utils/validation.js";
 import jwt from "jsonwebtoken";
-
-const JWT_SECRET = process.env.JWT_SECRET;
+import { JWT_SECRET } from "../config.js";
+import { isValidEmail } from "../utils/validation.js";
 
 export const register = async (req, res) => {
   const { email, password } = req.body;
