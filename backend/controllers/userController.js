@@ -1,6 +1,6 @@
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
-import isValidEmail from "../utils/validation.js";
+import { isValidEmail } from "../utils/validation.js";
 import jwt from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -10,7 +10,7 @@ export const register = async (req, res) => {
 
   try {
     if (!email || !password) return res.status(400).json({ message: "Preencha todos os campos" });
-    if (isValidEmail(email)) return res.status(400).json({ message: "Email inválido" });
+    if (!isValidEmail(email)) return res.status(400).json({ message: "Email inválido" });
 
     const userAlreadyExists = await User.findOne({ email });
     if (userAlreadyExists) return res.status(400).json({ message: "Usuário já existe" });
