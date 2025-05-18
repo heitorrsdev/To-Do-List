@@ -1,4 +1,4 @@
-import authMiddleware from "../middleware/authMiddleware.js";
+import authMiddleware from "../middlewares/authMiddleaWare.js";
 import express from "express";
 import {
   createTask,
