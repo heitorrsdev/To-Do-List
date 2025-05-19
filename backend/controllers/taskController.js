@@ -34,12 +34,12 @@ export const getTasks = async (req, res) => {
 // Update a task
 export const updateTask = async (req, res) => {
     try {
-        const { taskId } = req.params;
+        const { id } = req.params;
         const { title, description, status } = req.body;
         const userId = req.user.id;
 
         // Busca a tarefa e verifica se pertence ao usuário
-        const task = await Task.findOne({ _id: taskId, user: userId });
+        const task = await Task.findOne({ _id: id, user: userId });
         if (!task) {
             return res.status(404).json({ message: "Task not found or unauthorized" });
         }
@@ -59,10 +59,10 @@ export const updateTask = async (req, res) => {
 // Delete a task
 export const deleteTask = async (req, res) => {
     try {
-        const { taskId } = req.params;
+        const { id } = req.params;
         const userId = req.user.id;
 
-        const deletedTask = await Task.findOneAndDelete({ _id: taskId, user: userId });
+        const deletedTask = await Task.findOneAndDelete({ _id: id, user: userId });
 
         if (!deletedTask) {
             return res.status(404).json({ message: "Task not found or unauthorized" });
