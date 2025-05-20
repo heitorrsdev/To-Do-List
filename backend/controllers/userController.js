@@ -29,7 +29,7 @@ export const login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }) || { password: "" };
     const match = await bcrypt.compare(password, user.password);
 
     if (!user || !match) return res.status(400).json({ message: "Credenciais inválidas" });
