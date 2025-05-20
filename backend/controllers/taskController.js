@@ -4,7 +4,7 @@ import Task from "../models/Task.js";
 export const createTask = async (req, res) => {
     try {
         const { title, description, status } = req.body;
-        const userId = req.user.id; // pegar o user id do middleware de autenticação
+        const userId = req.user.id; // definido no middleware de autenticação
 
         const newTask = new Task({
             title,
@@ -23,7 +23,7 @@ export const createTask = async (req, res) => {
 // Get all tasks for a user
 export const getTasks = async (req, res) => {
     try {
-        const userId = req.user.id; // pegar o user id do middleware de autenticação
+        const userId = req.user.id;
         const tasks = await Task.find({ user: userId });
         res.status(200).json(tasks);
     } catch (error) {
