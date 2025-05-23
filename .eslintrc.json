@@ -12,7 +12,7 @@
   "rules": {
     "no-trailing-spaces": "error",
     "no-unused-vars": "warn",
-    "quotes": ["error", "double"],
+    "quotes": ["error", "single"],
     "semi": ["error", "always"]
   }
 }

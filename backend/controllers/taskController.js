@@ -1,4 +1,4 @@
-import Task from "../models/Task.js";
+import Task from '../models/Task.js';
 
 // Create a new task
 export const createTask = async (req, res) => {
@@ -16,7 +16,7 @@ export const createTask = async (req, res) => {
         await newTask.save();
         res.status(201).json(newTask);
     } catch (error) {
-        res.status(500).json({ message: "Error creating task", error });
+        res.status(500).json({ message: 'Error creating task', error });
     }
 };
 
@@ -27,7 +27,7 @@ export const getTasks = async (req, res) => {
         const tasks = await Task.find({ user: userId });
         res.status(200).json(tasks);
     } catch (error) {
-        res.status(500).json({ message: "Error fetching tasks", error });
+        res.status(500).json({ message: 'Error fetching tasks', error });
     }
 };
 
@@ -41,7 +41,7 @@ export const updateTask = async (req, res) => {
         // Busca a tarefa e verifica se pertence ao usuário
         const task = await Task.findOne({ _id: id, user: userId });
         if (!task) {
-            return res.status(404).json({ message: "Task not found or unauthorized" });
+            return res.status(404).json({ message: 'Task not found or unauthorized' });
         }
 
         // Atualiza apenas os campos enviados
@@ -52,7 +52,7 @@ export const updateTask = async (req, res) => {
         await task.save();
         res.status(200).json(task);
     } catch (error) {
-        res.status(500).json({ message: "Error updating task" });
+        res.status(500).json({ message: 'Error updating task' });
     }
 };
 
@@ -65,11 +65,11 @@ export const deleteTask = async (req, res) => {
         const deletedTask = await Task.findOneAndDelete({ _id: id, user: userId });
 
         if (!deletedTask) {
-            return res.status(404).json({ message: "Task not found or unauthorized" });
+            return res.status(404).json({ message: 'Task not found or unauthorized' });
         }
 
-        res.status(200).json({ message: "Task deleted successfully" });
+        res.status(200).json({ message: 'Task deleted successfully' });
     } catch (error) {
-        res.status(500).json({ message: "Error deleting task" });
+        res.status(500).json({ message: 'Error deleting task' });
     }
 };
