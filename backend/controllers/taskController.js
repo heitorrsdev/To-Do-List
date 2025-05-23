@@ -15,8 +15,9 @@ export const createTask = async (req, res) => {
 
         await newTask.save();
         res.status(201).json(newTask);
-    } catch (error) {
-        res.status(500).json({ message: 'Error creating task', error });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Error creating task' });
     }
 };
 
@@ -26,8 +27,9 @@ export const getTasks = async (req, res) => {
         const userId = req.user.id;
         const tasks = await Task.find({ user: userId });
         res.status(200).json(tasks);
-    } catch (error) {
-        res.status(500).json({ message: 'Error fetching tasks', error });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Error fetching tasks' });
     }
 };
 
@@ -51,7 +53,8 @@ export const updateTask = async (req, res) => {
 
         await task.save();
         res.status(200).json(task);
-    } catch (error) {
+    } catch (err) {
+        console.error(err);
         res.status(500).json({ message: 'Error updating task' });
     }
 };
@@ -69,7 +72,8 @@ export const deleteTask = async (req, res) => {
         }
 
         res.status(200).json({ message: 'Task deleted successfully' });
-    } catch (error) {
+    } catch (err) {
+        console.error(err);
         res.status(500).json({ message: 'Error deleting task' });
     }
 };
