@@ -31,14 +31,15 @@ input[type="password"] {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Inclui o padding na largura total do input */
 }
 
 input.is-invalid {
-  border-color: #dc3545;}
+  border-color: #dc3545; /* Borda vermelha para campos inválidos */
+}
 
 .error-message {
-  color: #dc3545;
+  color: #dc3545; /* Vermelho para mensagens de erro */
   font-size: 0.875em;
   margin-top: 5px;
 }
