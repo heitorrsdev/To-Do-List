@@ -1,1 +1,44 @@
-<p>login works!</p>
+<div class="login-container">
+  <h2>Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        placeholder="Digite seu email"
+        [ngClass]="{ 'is-invalid': loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched) }"
+      >
+      <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)" class="error-message">
+        <small *ngIf="loginForm.get('email')?.errors?.['required']">Email é obrigatório.</small>
+        <small *ngIf="loginForm.get('email')?.errors?.['email']">Formato de email inválido.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Senha:</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        placeholder="Digite sua senha"
+        [ngClass]="{ 'is-invalid': loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched) }"
+      >
+       <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="error-message">
+        <small *ngIf="loginForm.get('password')?.errors?.['required']">Senha é obrigatória.</small>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message api-error">
+      {{ errorMessage }}
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
+  </form>
+
+  <p class="register-link">
+    Não tem uma conta? <a routerLink="/register">Registre-se</a>
+  </p>
+</div>
+
