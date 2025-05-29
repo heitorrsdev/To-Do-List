@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Credentials } from '../models/credentials.model';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -10,7 +11,8 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(email: string, password: string) {
+  login(credentials: Credentials) {
+    const { email, password } = credentials;
     return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { email, password });
   }
 
