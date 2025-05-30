@@ -11,7 +11,7 @@ import { Router, RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule // Necessário para routerLink
+    RouterModule // Necessário para routerLink - navegação entre rotas sem recarregar a página
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
