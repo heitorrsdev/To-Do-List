@@ -30,10 +30,11 @@ export const login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email }) || { password: '' };
-    const match = await bcrypt.compare(password, user.password);
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ message: 'Credenciais inválidas' });
 
-    if (!user || !match) return res.status(400).json({ message: 'Credenciais inválidas' });
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) return res.status(400).json({ message: 'Credenciais inválidas' });
 
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' });
 
