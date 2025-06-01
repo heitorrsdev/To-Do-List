@@ -3,6 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
+
+interface RegisterResponse {
+  message?: string;
+  error?: string;
+}
+interface LoginResponse {
+  token?: string;
+  error?: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -12,22 +22,22 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(credentials: Credentials) {
+  login(credentials: Credentials): Observable<LoginResponse> {
     const { email, password } = credentials;
-    return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { email, password });
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password });
   }
 
-  register(credentials: Credentials) {
+  register(credentials: Credentials): Observable<RegisterResponse> {
     const { email, password } = credentials;
-    return this.http.post(`${this.apiUrl}/register`, { email, password });
+    return this.http.post<RegisterResponse>(`${this.apiUrl}/register`, { email, password });
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
 
-  saveToken(token: string) {
+  saveToken(token: string): void {
     localStorage.setItem('token', token);
   }
 
