@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 interface RegisterResponse {
   message?: string;
@@ -20,11 +21,19 @@ interface LoginResponse {
 export class AuthService {
   private readonly apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(credentials: Credentials): Observable<LoginResponse> {
     const { email, password } = credentials;
-    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password });
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password }).pipe(
+      tap(response => { // tap é usado para executar efeitos colaterais
+        if (response.token) {
+          this.saveToken(response.token);
+          /* response.token && this.saveToken(response.token);
+           isso poderia ser usado ao invés do if, mas o ESLint reclama */
+        }
+      })
+    );
   }
 
   register(credentials: Credentials): Observable<RegisterResponse> {
