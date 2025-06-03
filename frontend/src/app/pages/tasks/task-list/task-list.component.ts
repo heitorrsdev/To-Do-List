@@ -77,28 +77,33 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  updateTaskStatus(task: Task, event: Event): void {
-    const checkbox = event.target as HTMLInputElement;
-    const newStatus = checkbox.checked ? 'completed' : 'pending';
+  getStatusLabel(status: 'pending' | 'in-progress' | 'completed'): string {
+    switch (status) {
+      case 'pending': return 'Pendente';
+      case 'in-progress': return 'Em progresso';
+      case 'completed': return 'Concluída';
+      default: return status;
+    }
+  }
 
-    // Atualização otimista (opcional): Atualiza a UI imediatamente
-    // const originalStatus = task.status;
-    // task.status = newStatus;
-
-    this.taskService.updateTask(task._id, { status: newStatus }).subscribe({
+  cycleTaskStatus(task: Task): void {
+    const statusOrder: Array<'pending' | 'in-progress' | 'completed'> = ['pending', 'in-progress', 'completed'];
+    const currentIdx = statusOrder.indexOf(task.status);
+    const nextStatus = statusOrder[(currentIdx + 1) % statusOrder.length];
+    this.isLoading = true;
+    this.errorMessage = null;
+    this.taskService.updateTask(task._id, { status: nextStatus }).subscribe({
       next: (updatedTask) => {
-        // Atualiza a tarefa no array local com a resposta do servidor
         const index = this.tasks.findIndex(t => t._id === updatedTask._id);
         if (index !== -1) {
           this.tasks[index] = updatedTask;
         }
+        this.isLoading = false;
       },
       error: (err) => {
         this.errorMessage = 'Erro ao atualizar status da tarefa.';
         console.error('Failed to update task status:', err);
-        // Reverte atualização otimista se falhar
-        // task.status = originalStatus;
-        // checkbox.checked = !checkbox.checked;
+        this.isLoading = false;
       }
     });
   }

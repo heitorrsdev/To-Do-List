@@ -212,3 +212,40 @@ textarea.is-invalid {
 .delete-button:hover {
   color: #a51826;
 }
+
+.status-circle {
+  /* Só é aplicado quando as duas classes forem usadas */
+  width: 18px;
+  height: 18px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 15px;
+  border: 2px solid #e0e0e0;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.status-circle:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
+}
+
+.status-circle.pending {
+  background: #ffe5e5;
+  /* vermelho suave */
+  border-color: #ffc1c1;
+}
+
+.status-circle.in-progress {
+  background: #fff7cc;
+  /* amarelo pastel */
+  border-color: #ffe9a7;
+}
+
+.status-circle.completed {
+  background: #c8f7c5;
+  /* verde suave */
+  border-color: #8be28b;
+}
