@@ -1,4 +1,4 @@
-/* General container styling */
+/* Estilização geral do container */
 .task-list-container {
   max-width: 800px;
   margin: 30px auto;
@@ -8,7 +8,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Header styling */
+/* Estilização do cabeçalho */
 .task-header {
   display: flex;
   justify-content: space-between;
@@ -38,7 +38,7 @@
   background-color: #c82333;
 }
 
-/* Add Task Section */
+/* Seção de adicionar tarefa */
 .add-task-section {
   margin-bottom: 30px;
   padding: 20px;
@@ -76,7 +76,8 @@ textarea {
 }
 
 textarea {
-  resize: vertical; /* Allow vertical resizing */
+  resize: vertical;
+  /* Permitir redimensionamento vertical */
 }
 
 input.is-invalid,
@@ -120,7 +121,7 @@ textarea.is-invalid {
   background-color: #0056b3;
 }
 
-/* Task Items Section */
+/* Seção de itens de tarefa */
 .task-items-section h3 {
   margin-bottom: 15px;
   color: #444;
@@ -128,6 +129,7 @@ textarea.is-invalid {
 
 .loading-message,
 .no-tasks-message {
+  /* Centralizar texto para mensagens de carregamento e ausência de tarefas */
   text-align: center;
   color: #777;
   padding: 20px;
@@ -159,8 +161,10 @@ textarea.is-invalid {
 }
 
 .task-item.completed {
-  background-color: #e9f5e9; /* Light green background for completed */
-  border-left: 4px solid #28a745; /* Green left border */
+  background-color: #e9f5e9;
+  /* Fundo verde claro para tarefas concluídas */
+  border-left: 4px solid #28a745;
+  /* Borda esquerda verde */
 }
 
 .task-item.completed .task-title {
@@ -177,20 +181,21 @@ textarea.is-invalid {
 .task-checkbox {
   margin-right: 15px;
   cursor: pointer;
-  transform: scale(1.2); /* Make checkbox slightly larger */
+  transform: scale(1.2);
+  /* Deixar o checkbox um pouco maior */
 }
 
 .task-title {
   font-weight: 500;
   color: #333;
   margin: 0;
-  cursor: pointer; /* Make label clickable for checkbox */
 }
 
 .task-description {
   font-size: 0.9em;
   color: #666;
-  margin: 5px 0 0 30px; /* Indent description slightly */
+  margin: 5px 0 0 30px;
+  /* Indentar levemente a descrição */
 }
 
 .delete-button {
