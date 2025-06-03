@@ -9,24 +9,18 @@
     <form [formGroup]="addTaskForm" (ngSubmit)="addTask()" novalidate>
       <div class="form-group">
         <label for="title">Título:</label>
-        <input
-          type="text"
-          id="title"
-          formControlName="title"
-          placeholder="O que precisa ser feito?"
-          [ngClass]="{ 'is-invalid': addTaskForm.get('title')?.invalid && (addTaskForm.get('title')?.dirty || addTaskForm.get('title')?.touched) }"
-        >
-        <div *ngIf="addTaskForm.get('title')?.invalid && (addTaskForm.get('title')?.dirty || addTaskForm.get('title')?.touched)" class="error-message">
+        <input type="text" id="title" formControlName="title" placeholder="O que precisa ser feito?"
+          [ngClass]="{ 'is-invalid': addTaskForm.get('title')?.invalid && (addTaskForm.get('title')?.dirty || addTaskForm.get('title')?.touched) }">
+        <div
+          *ngIf="addTaskForm.get('title')?.invalid && (addTaskForm.get('title')?.dirty || addTaskForm.get('title')?.touched)"
+          class="error-message">
           <small *ngIf="addTaskForm.get('title')?.errors?.['required']">Título é obrigatório.</small>
         </div>
       </div>
       <div class="form-group">
         <label for="description">Descrição (Opcional):</label>
-        <textarea
-          id="description"
-          formControlName="description"
-          rows="3"
-          placeholder="Adicione mais detalhes..."></textarea>
+        <textarea id="description" formControlName="description" rows="3" placeholder="Adicione mais detalhes...">
+        </textarea>
       </div>
       <button type="submit" [disabled]="addTaskForm.invalid || isLoading">Adicionar Tarefa</button>
     </form>
