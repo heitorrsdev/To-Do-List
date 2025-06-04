@@ -1,4 +1,3 @@
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,7 +7,6 @@ import { environment } from '../../../environments/environment';
 export interface Task {
   _id: string;
   title: string;
-  description?: string; // Descrição opcional
   status: 'pending' | 'in-progress' | 'completed';
   userId: string; // ID do usuário que possui a tarefa
   createdAt: Date;
@@ -18,13 +16,11 @@ export interface Task {
 // Definindo a estrutura para criar uma tarefa (excluindo campos gerados pelo backend)
 export interface CreateTaskDto {
   title: string;
-  description?: string;
 }
 
 // Definindo a estrutura para atualizar uma tarefa (permitindo atualizações parciais)
 export interface UpdateTaskDto {
   title?: string;
-  description?: string;
   status?: 'pending' | 'in-progress' | 'completed';
 }
 

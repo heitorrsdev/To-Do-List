@@ -191,13 +191,6 @@ textarea.is-invalid {
   margin: 0;
 }
 
-.task-description {
-  font-size: 0.9em;
-  color: #666;
-  margin: 5px 0 0 30px;
-  /* Indentar levemente a descrição */
-}
-
 .delete-button {
   background: none;
   border: none;

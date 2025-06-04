@@ -3,12 +3,11 @@ import Task from '../models/Task.js';
 // Create a new task
 export const createTask = async (req, res) => {
   try {
-    const { title, description, status } = req.body;
+    const { title, status } = req.body;
     const userId = req.user.id; // definido no middleware de autenticação
 
     const newTask = new Task({
       title,
-      description,
       status,
       user: userId
     });
@@ -37,7 +36,7 @@ export const getTasks = async (req, res) => {
 export const updateTask = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, status } = req.body;
+    const { title, status } = req.body;
     const userId = req.user.id;
 
     // Busca a tarefa e verifica se pertence ao usuário
@@ -48,7 +47,6 @@ export const updateTask = async (req, res) => {
 
     // Atualiza apenas os campos enviados
     if (title) task.title = title;
-    if (description) task.description = description;
     if (status) task.status = status;
 
     await task.save();

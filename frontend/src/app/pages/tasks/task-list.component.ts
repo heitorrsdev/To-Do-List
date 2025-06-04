@@ -26,8 +26,7 @@ export class TaskListComponent implements OnInit {
 
   ngOnInit(): void {
     this.addTaskForm = this.fb.group({
-      title: ['', Validators.required],
-      description: [''] // Descrição opcional
+      title: ['', Validators.required]
     });
     this.loadTasks();
   }
