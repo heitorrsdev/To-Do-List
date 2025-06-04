@@ -214,7 +214,6 @@ textarea.is-invalid {
 }
 
 .status-circle {
-  /* Só é aplicado quando as duas classes forem usadas */
   width: 18px;
   height: 18px;
   aspect-ratio: 1 / 1;
@@ -233,6 +232,7 @@ textarea.is-invalid {
 }
 
 .status-circle.pending {
+  /* Só é aplicado quando as duas classes forem usadas */
   background: #ffe5e5;
   /* vermelho suave */
   border-color: #ffc1c1;
