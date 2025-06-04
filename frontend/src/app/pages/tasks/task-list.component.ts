@@ -1,8 +1,8 @@
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Task, TaskService, CreateTaskDto } from '../../../core/services/task.service';
+import { Task, TaskService, CreateTaskDto } from '../../core/services/task.service';
 
 @Component({
   selector: 'app-task-list',
