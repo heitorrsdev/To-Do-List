@@ -191,6 +191,17 @@ textarea.is-invalid {
   margin: 0;
 }
 
+.edit-button {
+  background: none;
+  border: none;
+  color: #124238;
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 0 5px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
 .delete-button {
   background: none;
   border: none;

@@ -1,7 +1,9 @@
 import { AuthService } from '../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
+import { DialogComponent } from '../../components/dialog/dialog.component';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Task, TaskService, CreateTaskDto } from '../../core/services/task.service';
 
 @Component({
@@ -9,20 +11,25 @@ import { Task, TaskService, CreateTaskDto } from '../../core/services/task.servi
   standalone: true,
   imports: [
     CommonModule,
+    DialogComponent,
+    FormsModule,
     ReactiveFormsModule,
   ],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  tasks: Task[] = [];
-  isLoading = false;
-  errorMessage: string | null = null;
   addTaskForm!: FormGroup;
+  isEditDialogOpen = false;
+  editTaskTitle: string = '';
+  errorMessage: string | null = null;
+  isLoading = false;
+  selectedTask: Task | null = null;
+  tasks: Task[] = [];
 
-  private taskService = inject(TaskService);
   private authService = inject(AuthService);
   private fb = inject(FormBuilder);
+  private taskService = inject(TaskService);
 
   ngOnInit(): void {
     this.addTaskForm = this.fb.group({
@@ -121,6 +128,36 @@ export class TaskListComponent implements OnInit {
       error: (err) => {
         this.errorMessage = 'Erro ao excluir tarefa.';
         console.error('Failed to delete task:', err);
+      }
+    });
+  }
+
+  openEditDialog(task: Task): void {
+    this.selectedTask = { ...task };
+    this.editTaskTitle = task.title;
+    this.isEditDialogOpen = true;
+  }
+
+  saveEdit(): void {
+    if (!this.selectedTask || !this.editTaskTitle.trim()) {
+      return;
+    }
+    this.isLoading = true;
+    this.errorMessage = null;
+    this.taskService.updateTask(this.selectedTask._id, { title: this.editTaskTitle }).subscribe({
+      next: (updatedTask) => {
+        const index = this.tasks.findIndex(t => t._id === updatedTask._id);
+        if (index !== -1) {
+          this.tasks[index] = updatedTask;
+        }
+        this.isEditDialogOpen = false;
+        this.selectedTask = null;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.errorMessage = 'Erro ao editar tarefa.';
+        console.error('Failed to edit task:', err);
+        this.isLoading = false;
       }
     });
   }

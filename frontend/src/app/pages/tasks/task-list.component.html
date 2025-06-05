@@ -35,11 +35,33 @@
           <button class="status-circle" [ngClass]="task.status" (click)="cycleTaskStatus(task)" type="button"></button>
           <label class="task-title">{{ task.title }}</label>
         </div>
-        <button (click)="deleteTask(task._id)" class="delete-button" title="Excluir Tarefa">
-          &times;
-        </button>
+
+        <div>
+          <button (click)="openEditDialog(task)" class="edit-button" title="Editar Tarefa">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z" fill="currentColor" />
+              <path
+                d="M20.71 7.04a1.003 1.003 0 0 0 0-1.42l-2.34-2.34a1.003 1.003 0 0 0-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.82z"
+                fill="currentColor" />
+            </svg>
+          </button>
+
+          <button (click)="deleteTask(task._id)" class="delete-button" title="Excluir Tarefa">
+            &times;
+          </button>
+        </div>
       </li>
     </ul>
   </div>
+
+  <!-- Diálogo de edição de tarefa -->
+  <app-dialog [open]="isEditDialogOpen" (closed)="isEditDialogOpen = false">
+    <h3>Editar Tarefa</h3>
+    <form (ngSubmit)="saveEdit()">
+      <input type="text" [(ngModel)]="editTaskTitle" name="editTaskTitle" placeholder="Novo título da tarefa" required>
+      <button type="button" (click)="isEditDialogOpen = false">Cancelar</button>
+      <button type="submit" [disabled]="!editTaskTitle.trim()">Salvar</button>
+    </form>
+  </app-dialog>
 
 </div>
