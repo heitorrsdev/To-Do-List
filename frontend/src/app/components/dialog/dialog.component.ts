@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.css'],
   standalone: true,
+  imports: [CommonModule]
 })
 export class DialogComponent {
   @Input() open = false;
