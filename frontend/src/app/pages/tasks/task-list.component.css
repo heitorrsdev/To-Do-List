@@ -23,19 +23,32 @@
   color: #333;
 }
 
-.danger-button {
-  padding: 8px 15px;
-  background-color: #dc3545;
+.danger-button,
+.confirm-button{
+  padding: 7px 15px;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius:15px;
   cursor: pointer;
   font-size: 0.9em;
   transition: background-color 0.3s ease;
 }
 
+
+.danger-button {
+  background-color: #dc3545;
+}
+
 .danger-button:hover {
   background-color: #c82333;
+}
+
+.confirm-button {
+  background-color: #28a745;
+}
+
+.confirm-button:hover {
+  background-color: #218838;
 }
 
 /* Seção de adicionar tarefa */
@@ -55,6 +68,17 @@
 
 .form-group {
   margin-bottom: 15px;
+}
+
+.form-button-area {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.form-button-area button {
+  margin-left: 20px;
 }
 
 label {
