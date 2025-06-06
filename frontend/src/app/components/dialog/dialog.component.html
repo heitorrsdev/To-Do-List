@@ -1,4 +1,4 @@
-<div class="dialog-backdrop" *ngIf="open">
+<div class="dialog-backdrop" *ngIf="open" (click)="onBackdropClick($event)">
   <div class="dialog-modal">
     <button class="dialog-close" (click)="close()" aria-label="Fechar">
       &times;

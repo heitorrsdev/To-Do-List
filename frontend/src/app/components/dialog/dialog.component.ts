@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-dialog',
@@ -10,9 +10,17 @@ import { CommonModule } from '@angular/common';
 })
 export class DialogComponent {
   @Input() open = false;
+  @Input() closeOnBackdropClick = true;
   @Output() closed = new EventEmitter<void>();
 
-  close() {
+  close(): void {
     this.closed.emit();
+  }
+
+  onBackdropClick(event: MouseEvent): void {
+    // Verifica se o evento é um clique no backdrop e se o backdrop deve fechar o diálogo
+    if (this.closeOnBackdropClick && event.target === event.currentTarget) {
+      this.close();
+    }
   }
 }
