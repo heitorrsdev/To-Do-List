@@ -23,7 +23,7 @@
   color: #333;
 }
 
-.logout-button {
+.danger-button {
   padding: 8px 15px;
   background-color: #dc3545;
   color: white;
@@ -34,7 +34,7 @@
   transition: background-color 0.3s ease;
 }
 
-.logout-button:hover {
+.danger-button:hover {
   background-color: #c82333;
 }
 
