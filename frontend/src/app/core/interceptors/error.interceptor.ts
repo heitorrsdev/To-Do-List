@@ -10,7 +10,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
     catchError(error => {
       if (error.status === 401) {
         localStorage.removeItem('token');
-        if (router.url !== '/login') {
+        if (router.url !== '/login') { // router.url !== '/login' && router.navigate(['/login']) poderia ser usado, mas o ESLint não permite
           router.navigate(['/login']);
         }
       } else {

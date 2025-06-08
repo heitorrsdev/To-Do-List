@@ -30,7 +30,7 @@ export class AuthService {
         if (response.token) {
           this.saveToken(response.token);
           /* response.token && this.saveToken(response.token);
-           isso poderia ser usado ao invés do if, mas o ESLint reclama */
+          isso poderia ser usado ao invés do if, mas o ESLint não permite */
         }
       })
     );
