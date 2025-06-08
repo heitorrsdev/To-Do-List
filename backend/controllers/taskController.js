@@ -45,6 +45,10 @@ export const updateTask = async (req, res) => {
       return res.status(404).json({ message: 'Task not found or unauthorized' });
     }
 
+    if (task.title === title || task.status === status) {
+      return res.status(400).json({ message: 'No changes detected' });
+    }
+
     // Atualiza apenas os campos enviados
     if (title) task.title = title;
     if (status) task.status = status;

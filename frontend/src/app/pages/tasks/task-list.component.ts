@@ -139,7 +139,7 @@ export class TaskListComponent implements OnInit {
   }
 
   saveEdit(): void {
-    if (!this.selectedTask || !this.editTaskTitle.trim()) {
+    if (!this.selectedTask || !this.editTaskTitle.trim() || this.editTaskTitle.trim() === this.selectedTask.title) {
       return;
     }
     this.isLoading = true;
