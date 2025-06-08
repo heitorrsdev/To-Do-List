@@ -140,7 +140,7 @@ export class TaskListComponent implements OnInit {
     }
     this.isLoading = true;
     this.errorMessage = null;
-    this.taskService.updateTask(this.selectedTask._id, { title: this.editTaskTitle }).subscribe({
+    this.taskService.updateTask(this.selectedTask._id, { title: this.editTaskTitle.trim() }).subscribe({
       next: (updatedTask) => {
         const index = this.tasks.findIndex(t => t._id === updatedTask._id);
         if (index !== -1) {
@@ -154,8 +154,16 @@ export class TaskListComponent implements OnInit {
         this.errorMessage = 'Erro ao editar tarefa.';
         console.error('Failed to edit task:', err);
         this.isLoading = false;
+        this.closeEditDialog();
       }
     });
+  }
+
+  private closeEditDialog(): void {
+    this.isEditDialogOpen = false;
+    this.selectedTask = null;
+    this.editTaskTitle = '';
+    this.addTaskForm.reset();
   }
 
   logout(): void {

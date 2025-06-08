@@ -59,8 +59,13 @@
     <h3>Editar Tarefa</h3>
     <form (ngSubmit)="saveEdit()">
       <input type="text" [(ngModel)]="editTaskTitle" name="editTaskTitle" placeholder="Novo título da tarefa" required>
-      <button type="button" (click)="isEditDialogOpen = false">Cancelar</button>
-      <button type="submit" [disabled]="!editTaskTitle.trim()">Salvar</button>
+      <div class="form-button-area">
+        <button type="button" (click)="isEditDialogOpen = false" class="danger-button">Cancelar</button>
+        <button type="submit" class="confirm-button"
+          [disabled]="!editTaskTitle.trim() || editTaskTitle.trim() === selectedTask?.title || isLoading">
+          Salvar
+        </button>
+      </div>
     </form>
   </app-dialog>
 
