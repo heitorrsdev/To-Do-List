@@ -50,10 +50,6 @@ export class TaskListComponent implements OnInit {
         this.errorMessage = 'Erro ao carregar tarefas.';
         console.error('Failed to load tasks:', err);
         this.isLoading = false;
-        // Lida com erros específicos, por exemplo, não autorizado
-        if (err.status === 401) {
-          this.logout(); // Faz logout se não autorizado
-        }
       }
     });
   }
