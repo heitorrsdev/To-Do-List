@@ -38,16 +38,15 @@ button:disabled:hover {
 }
 
 .danger-button,
-.confirm-button{
+.confirm-button {
   padding: 7px 15px;
   color: white;
   border: none;
-  border-radius:15px;
+  border-radius: 15px;
   cursor: pointer;
   font-size: 0.9em;
   transition: background-color 0.3s ease;
 }
-
 
 .danger-button {
   background-color: #dc3545;
