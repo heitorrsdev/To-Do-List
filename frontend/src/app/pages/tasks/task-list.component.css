@@ -234,6 +234,10 @@ textarea.is-invalid:focus {
   margin: 0;
 }
 
+.task-actions {
+  display: flex;
+}
+
 .edit-button {
   background: none;
   border: none;
