@@ -117,7 +117,7 @@ export class TaskListComponent implements OnInit {
     this.isDeleteDialogOpen = true;
   }
 
-  deleteTask(): void {
+  confirmDelete(): void {
     if (!this.taskIdToDelete) return;
     this.taskService.deleteTask(this.taskIdToDelete).subscribe({
       next: () => {
