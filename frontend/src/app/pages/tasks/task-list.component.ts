@@ -121,14 +121,20 @@ export class TaskListComponent implements OnInit {
     if (!this.taskIdToDelete) return;
     this.taskService.deleteTask(this.taskIdToDelete).subscribe({
       next: () => {
-        // Remove a tarefa do array local
-        this.tasks = this.tasks.filter(task => task._id !== taskId);
+        this.tasks = this.tasks.filter(task => task._id !== this.taskIdToDelete);
+        this.closeDeleteDialog();
       },
       error: (err) => {
         this.errorMessage = 'Erro ao excluir tarefa.';
+        this.closeDeleteDialog();
         console.error('Failed to delete task:', err);
       }
     });
+  }
+
+  closeDeleteDialog(): void {
+    this.isDeleteDialogOpen = false;
+    this.taskIdToDelete = null;
   }
 
   openEditDialog(task: Task): void {
