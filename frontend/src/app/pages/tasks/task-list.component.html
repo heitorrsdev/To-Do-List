@@ -70,4 +70,14 @@
     </form>
   </app-dialog>
 
+  <!-- Diálogo de confirmação de exclusão -->
+  <app-dialog [open]="isDeleteDialogOpen" (closed)="closeDeleteDialog()">
+    <h3>Confirmar Exclusão</h3>
+    <p>Tem certeza que deseja excluir esta tarefa?</p>
+    <div class="form-button-area">
+      <button type="button" (click)="closeDeleteDialog()" class="default-button">Cancelar</button>
+      <button type="button" (click)="deleteTask()" class="danger-button">Excluir</button>
+    </div>
+  </app-dialog>
+
 </div>

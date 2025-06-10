@@ -20,11 +20,13 @@ import { Task, TaskService, CreateTaskDto } from '../../core/services/task.servi
 })
 export class TaskListComponent implements OnInit {
   addTaskForm!: FormGroup;
-  isEditDialogOpen = false;
   editTaskTitle: string = '';
   errorMessage: string | null = null;
+  isDeleteDialogOpen = false;
+  isEditDialogOpen = false;
   isLoading = false;
   selectedTask: Task | null = null;
+  taskIdToDelete: string | null = null;
   tasks: Task[] = [];
 
   private authService = inject(AuthService);
@@ -110,13 +112,14 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  deleteTask(taskId: string): void {
-    // Opcional: Adiciona diálogo de confirmação
-    if (!confirm('Tem certeza que deseja excluir esta tarefa?')) {
-      return;
-    }
+  openDeleteDialog(taskId: string): void {
+    this.taskIdToDelete = taskId;
+    this.isDeleteDialogOpen = true;
+  }
 
-    this.taskService.deleteTask(taskId).subscribe({
+  deleteTask(): void {
+    if (!this.taskIdToDelete) return;
+    this.taskService.deleteTask(this.taskIdToDelete).subscribe({
       next: () => {
         // Remove a tarefa do array local
         this.tasks = this.tasks.filter(task => task._id !== taskId);
