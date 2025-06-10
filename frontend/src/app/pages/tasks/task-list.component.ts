@@ -162,7 +162,7 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  private closeEditDialog(): void {
+  closeEditDialog(): void {
     this.isEditDialogOpen = false;
     this.selectedTask = null;
     this.editTaskTitle = '';

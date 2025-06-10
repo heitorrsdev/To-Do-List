@@ -56,12 +56,12 @@
   </div>
 
   <!-- Diálogo de edição de tarefa -->
-  <app-dialog [open]="isEditDialogOpen" (closed)="isEditDialogOpen = false">
+  <app-dialog [open]="isEditDialogOpen" (closed)="closeEditDialog()">
     <h3>Editar Tarefa</h3>
     <form (ngSubmit)="saveEdit()">
       <input type="text" [(ngModel)]="editTaskTitle" name="editTaskTitle" placeholder="Novo título da tarefa" required>
       <div class="form-button-area">
-        <button type="button" (click)="isEditDialogOpen = false" class="danger-button">Cancelar</button>
+        <button type="button" (click)="closeEditDialog()" class="danger-button">Cancelar</button>
         <button type="submit" class="confirm-button"
           [disabled]="!editTaskTitle.trim() || editTaskTitle.trim() === selectedTask?.title || isLoading">
           Salvar
