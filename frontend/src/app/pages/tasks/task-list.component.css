@@ -37,6 +37,21 @@ button:disabled:hover {
   opacity: 1;
 }
 
+.default-button {
+  padding: 7px 15px;
+  color: white;
+  background-color: #6c757d;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease;
+}
+
+.default-button:hover {
+  background-color: #5a6268;
+}
+
 .danger-button,
 .confirm-button {
   padding: 7px 15px;
@@ -206,8 +221,6 @@ textarea.is-invalid:focus {
 .task-item.completed {
   background-color: #e9f5e9;
   /* Fundo verde claro para tarefas concluídas */
-  border-left: 4px solid #28a745;
-  /* Borda esquerda verde */
 }
 
 .task-item.completed .task-title {
