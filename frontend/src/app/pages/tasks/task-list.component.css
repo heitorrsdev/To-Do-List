@@ -128,8 +128,9 @@ textarea {
 }
 
 textarea {
-  resize: vertical;
-  /* Permitir redimensionamento vertical */
+  transition: height 0.2s ease;
+  resize: none;
+  /* Não permitir redimensionamento */
 }
 
 input.is-invalid,
