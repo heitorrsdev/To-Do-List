@@ -10,7 +10,7 @@
       <div class="form-group">
         <textarea type="text" id="title" formControlName="title" placeholder="O que precisa ser feito?"
           [ngClass]="{ 'is-invalid': addTaskForm.get('title')?.invalid && (addTaskForm.get('title')?.dirty || addTaskForm.get('title')?.touched) }"
-          required></textarea>
+          #autoresizeTitle (input)="reziseTextarea(autoresizeTitle)" required></textarea>
         <div
           *ngIf="addTaskForm.get('title')?.invalid && (addTaskForm.get('title')?.dirty || addTaskForm.get('title')?.touched)"
           class="error-message">
@@ -61,7 +61,8 @@
     <h3>Editar Tarefa</h3>
     <form (ngSubmit)="saveEdit()">
      <textarea name="editTaskTitle" [(ngModel)]="editTaskTitle" placeholder="Novo título da tarefa" rows="3"
-        class="editTitleText" required>
+        #autoresizeEditTitle class="editTitleText" (input)="reziseTextarea(autoresizeEditTitle, 170)"
+        (click)="reziseTextarea(autoresizeEditTitle, 170)" required>
       </textarea>
       <div class="form-button-area">
         <button type="button" (click)="closeEditDialog()" class="danger-button">Cancelar</button>

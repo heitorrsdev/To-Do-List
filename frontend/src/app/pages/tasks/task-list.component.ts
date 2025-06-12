@@ -188,6 +188,14 @@ export class TaskListComponent implements OnInit {
     return this.truncateText(task?.title || '', 10);
   }
 
+  reziseTextarea(textarea: HTMLTextAreaElement, maxHeight?: number): void {
+    maxHeight = maxHeight || 150; // px
+
+    textarea.style.height = 'auto'; // reseta para recalcular
+    const newHeight = Math.min(textarea.scrollHeight, maxHeight);
+    textarea.style.height = `${newHeight}px`;
+    textarea.style.overflowY = textarea.scrollHeight > maxHeight ? 'auto' : 'hidden';
+  }
   logout(): void {
     this.authService.logout();
   }
