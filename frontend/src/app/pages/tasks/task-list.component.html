@@ -8,8 +8,9 @@
     <h3>Adicionar Nova Tarefa</h3>
     <form [formGroup]="addTaskForm" (ngSubmit)="addTask()" novalidate>
       <div class="form-group">
-        <input type="text" id="title" formControlName="title" placeholder="O que precisa ser feito?"
-          [ngClass]="{ 'is-invalid': addTaskForm.get('title')?.invalid && (addTaskForm.get('title')?.dirty || addTaskForm.get('title')?.touched) }">
+        <textarea type="text" id="title" formControlName="title" placeholder="O que precisa ser feito?"
+          [ngClass]="{ 'is-invalid': addTaskForm.get('title')?.invalid && (addTaskForm.get('title')?.dirty || addTaskForm.get('title')?.touched) }"
+          required></textarea>
         <div
           *ngIf="addTaskForm.get('title')?.invalid && (addTaskForm.get('title')?.dirty || addTaskForm.get('title')?.touched)"
           class="error-message">
@@ -59,7 +60,9 @@
   <app-dialog [open]="isEditDialogOpen" (closed)="closeEditDialog()">
     <h3>Editar Tarefa</h3>
     <form (ngSubmit)="saveEdit()">
-      <input type="text" [(ngModel)]="editTaskTitle" name="editTaskTitle" placeholder="Novo título da tarefa" required>
+     <textarea name="editTaskTitle" [(ngModel)]="editTaskTitle" placeholder="Novo título da tarefa" rows="3"
+        class="editTitleText" required>
+      </textarea>
       <div class="form-button-area">
         <button type="button" (click)="closeEditDialog()" class="danger-button">Cancelar</button>
         <button type="submit" class="confirm-button"
