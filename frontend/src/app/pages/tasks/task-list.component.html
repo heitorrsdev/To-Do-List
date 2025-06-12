@@ -73,7 +73,10 @@
   <!-- Diálogo de confirmação de exclusão -->
   <app-dialog [open]="isDeleteDialogOpen" (closed)="closeDeleteDialog()">
     <h3>Confirmar Exclusão</h3>
-    <p>Tem certeza que deseja excluir esta tarefa?</p>
+    <p>Tem certeza que deseja excluir a seguinte tarefa?</p>
+    <p class="task-title">
+      {{ getTruncatedDeleteTaskTitle() }}
+    </p>
     <div class="form-button-area">
       <button type="button" (click)="closeDeleteDialog()" class="default-button">Cancelar</button>
       <button type="button" (click)="confirmDelete()" class="danger-button">Excluir</button>

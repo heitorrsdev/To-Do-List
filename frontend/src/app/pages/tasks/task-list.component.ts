@@ -175,6 +175,19 @@ export class TaskListComponent implements OnInit {
     this.addTaskForm.reset();
   }
 
+  truncateText(text: string, maxWords: number = 20): string {
+    const words = text.trim().split(/\s+/); // Divide o texto em palavras
+    if (words.length > maxWords) {
+      return words.slice(0, maxWords).join(' ') + ' [...]';
+    }
+    return text.trim();
+  }
+
+  getTruncatedDeleteTaskTitle(): string {
+    const task = this.tasks.find(task => task._id === this.taskIdToDelete);
+    return this.truncateText(task?.title || '', 10);
+  }
+
   logout(): void {
     this.authService.logout();
   }
