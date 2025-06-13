@@ -219,6 +219,11 @@ textarea.is-invalid:focus {
   background-color: #f5f5f5;
 }
 
+.task-item.in-progress {
+  background-color: #fffff5;
+  /* Fundo amarelo claro para tarefas em progresso */
+}
+
 .task-item.completed {
   background-color: #e9f5e9;
   /* Fundo verde claro para tarefas concluídas */
@@ -274,6 +279,7 @@ textarea.is-invalid:focus {
   padding: 0 5px;
   line-height: 1;
   transition: color 0.2s ease;
+  margin-left: 10px;
 }
 
 .delete-button:hover {
