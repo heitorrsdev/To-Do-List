@@ -172,7 +172,6 @@ export class TaskListComponent implements OnInit {
     this.isEditDialogOpen = false;
     this.selectedTask = null;
     this.editTaskTitle = '';
-    this.addTaskForm.reset();
   }
 
   truncateText(text: string, maxWords: number = 20): string {
