@@ -8,21 +8,21 @@ export const register = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    if (!email || !password) return res.status(400).json({ message: 'Preencha todos os campos' });
-    if (!isValidEmail(email)) return res.status(400).json({ message: 'Email inválido' });
+    if (!email || !password) return res.status(400).json({ message: 'Please fill in all fields' });
+    if (!isValidEmail(email)) return res.status(400).json({ message: 'Invalid email' });
 
     const userAlreadyExists = await User.findOne({ email });
-    if (userAlreadyExists) return res.status(400).json({ message: 'Usuário já existe' });
+    if (userAlreadyExists) return res.status(400).json({ message: 'User already exists' });
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new User({ email, password: hashedPassword });
     await user.save();
 
-    res.status(201).json({ message: 'Usuário criado com sucesso' });
+    res.status(201).json({ message: 'User created successfully' });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Erro no registro' });
+    res.status(500).json({ error: 'Registration error' });
   }
 };
 
@@ -31,17 +31,17 @@ export const login = async (req, res) => {
 
   try {
     const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ message: 'Credenciais inválidas' });
+    if (!user) return res.status(400).json({ message: 'Invalid credentials' });
 
     const match = await bcrypt.compare(password, user.password);
-    if (!match) return res.status(400).json({ message: 'Credenciais inválidas' });
+    if (!match) return res.status(400).json({ message: 'Invalid credentials' });
 
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' });
 
     res.json({ token });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Erro no login' });
+    res.status(500).json({ error: 'Login error' });
   }
 };
 
