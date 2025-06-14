@@ -183,8 +183,9 @@ export class TaskListComponent implements OnInit {
   }
 
   getTruncatedDeleteTaskTitle(): string {
-    const task = this.tasks.find(task => task._id === this.taskIdToDelete);
-    return this.truncateText(task?.title || '', 10);
+    if (!this.taskIdToDelete) return '';
+    const task = this.tasks.find(t => t._id === this.taskIdToDelete);
+    return this.truncateText(task?.title ?? '', 10);
   }
 
   reziseTextarea(textarea: HTMLTextAreaElement, maxHeight?: number): void {
