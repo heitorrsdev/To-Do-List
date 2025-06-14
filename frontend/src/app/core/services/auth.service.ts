@@ -50,11 +50,11 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
-  getToken(): string | null {
+  get token(): string | null {
     return localStorage.getItem('token');
   }
 
   isLoggedIn(): boolean {
-    return !!this.getToken();
+    return !!this.token;
   }
 }

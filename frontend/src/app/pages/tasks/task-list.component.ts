@@ -182,7 +182,7 @@ export class TaskListComponent implements OnInit {
     return text.trim();
   }
 
-  getTruncatedDeleteTaskTitle(): string {
+  get deleteDialogTaskTitle(): string {
     if (!this.taskIdToDelete) return '';
     const task = this.tasks.find(t => t._id === this.taskIdToDelete);
     return this.truncateText(task?.title ?? '', 10);
