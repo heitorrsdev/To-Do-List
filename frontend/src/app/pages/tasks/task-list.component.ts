@@ -40,6 +40,7 @@ export class TaskListComponent implements OnInit {
     this.loadTasks();
   }
 
+  // ===== CRUD de tarefas =====
   loadTasks(): void {
     this.isLoading = true;
     this.errorMessage = null;
@@ -62,16 +63,15 @@ export class TaskListComponent implements OnInit {
       return;
     }
 
-    this.isLoading = true; // Indica carregamento para operação de adicionar
+    this.isLoading = true;
     this.errorMessage = null;
     const newTaskData: CreateTaskDto = this.addTaskForm.value;
 
     this.taskService.createTask(newTaskData).subscribe({
       next: (newTask) => {
-        this.tasks.push(newTask); // Adiciona à lista localmente
-        this.addTaskForm.reset(); // Reseta o formulário
+        this.tasks.push(newTask);
+        this.addTaskForm.reset();
         this.isLoading = false;
-        // Opcionalmente exibe uma mensagem de sucesso
       },
       error: (err) => {
         this.errorMessage = 'Erro ao adicionar tarefa.';
@@ -79,68 +79,6 @@ export class TaskListComponent implements OnInit {
         this.isLoading = false;
       }
     });
-  }
-
-  getStatusLabel(status: 'pending' | 'in-progress' | 'completed'): string {
-    switch (status) {
-      case 'pending': return 'Pendente';
-      case 'in-progress': return 'Em progresso';
-      case 'completed': return 'Concluída';
-      default: return status;
-    }
-  }
-
-  cycleTaskStatus(task: Task): void {
-    const statusOrder: Array<'pending' | 'in-progress' | 'completed'> = ['pending', 'in-progress', 'completed'];
-    const currentIdx = statusOrder.indexOf(task.status);
-    const nextStatus = statusOrder[(currentIdx + 1) % statusOrder.length];
-    this.isLoading = true;
-    this.errorMessage = null;
-    this.taskService.updateTask(task._id, { status: nextStatus }).subscribe({
-      next: (updatedTask) => {
-        const index = this.tasks.findIndex(t => t._id === updatedTask._id);
-        if (index !== -1) {
-          this.tasks[index] = updatedTask;
-        }
-        this.isLoading = false;
-      },
-      error: (err) => {
-        this.errorMessage = 'Erro ao atualizar status da tarefa.';
-        console.error('Failed to update task status:', err);
-        this.isLoading = false;
-      }
-    });
-  }
-
-  openDeleteDialog(taskId: string): void {
-    this.taskIdToDelete = taskId;
-    this.isDeleteDialogOpen = true;
-  }
-
-  confirmDelete(): void {
-    if (!this.taskIdToDelete) return;
-    this.taskService.deleteTask(this.taskIdToDelete).subscribe({
-      next: () => {
-        this.tasks = this.tasks.filter(task => task._id !== this.taskIdToDelete);
-        this.closeDeleteDialog();
-      },
-      error: (err) => {
-        this.errorMessage = 'Erro ao excluir tarefa.';
-        this.closeDeleteDialog();
-        console.error('Failed to delete task:', err);
-      }
-    });
-  }
-
-  closeDeleteDialog(): void {
-    this.isDeleteDialogOpen = false;
-    this.taskIdToDelete = null;
-  }
-
-  openEditDialog(task: Task): void {
-    this.selectedTask = { ...task };
-    this.editTaskTitle = task.title;
-    this.isEditDialogOpen = true;
   }
 
   saveEdit(): void {
@@ -168,34 +106,100 @@ export class TaskListComponent implements OnInit {
     });
   }
 
+  confirmDelete(): void {
+    if (!this.taskIdToDelete) return;
+    this.taskService.deleteTask(this.taskIdToDelete).subscribe({
+      next: () => {
+        this.tasks = this.tasks.filter(task => task._id !== this.taskIdToDelete);
+        this.closeDeleteDialog();
+      },
+      error: (err) => {
+        this.errorMessage = 'Erro ao excluir tarefa.';
+        this.closeDeleteDialog();
+        console.error('Failed to delete task:', err);
+      }
+    });
+  }
+
+  cycleTaskStatus(task: Task): void {
+    const statusOrder: Array<'pending' | 'in-progress' | 'completed'> = ['pending', 'in-progress', 'completed'];
+    const currentIdx = statusOrder.indexOf(task.status);
+    const nextStatus = statusOrder[(currentIdx + 1) % statusOrder.length];
+    this.isLoading = true;
+    this.errorMessage = null;
+    this.taskService.updateTask(task._id, { status: nextStatus }).subscribe({
+      next: (updatedTask) => {
+        const index = this.tasks.findIndex(t => t._id === updatedTask._id);
+        if (index !== -1) {
+          this.tasks[index] = updatedTask;
+        }
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.errorMessage = 'Erro ao atualizar status da tarefa.';
+        console.error('Failed to update task status:', err);
+        this.isLoading = false;
+      }
+    });
+  }
+
+  // ===== Métodos de diálogo =====
+  openDeleteDialog(taskId: string): void {
+    this.taskIdToDelete = taskId;
+    this.isDeleteDialogOpen = true;
+  }
+
+  closeDeleteDialog(): void {
+    this.isDeleteDialogOpen = false;
+    this.taskIdToDelete = null;
+  }
+
+  openEditDialog(task: Task): void {
+    this.selectedTask = { ...task };
+    this.editTaskTitle = task.title;
+    this.isEditDialogOpen = true;
+  }
+
   closeEditDialog(): void {
     this.isEditDialogOpen = false;
     this.selectedTask = null;
     this.editTaskTitle = '';
   }
 
+  // ===== Métodos auxiliares =====
+  getStatusLabel(status: 'pending' | 'in-progress' | 'completed'): string {
+    switch (status) {
+      case 'pending': return 'Pendente';
+      case 'in-progress': return 'Em progresso';
+      case 'completed': return 'Concluída';
+      default: return status;
+    }
+  }
+
   truncateText(text: string, maxWords: number = 20): string {
-    const words = text.trim().split(/\s+/); // Divide o texto em palavras
+    const words = text.trim().split(/\s+/);
     if (words.length > maxWords) {
       return words.slice(0, maxWords).join(' ') + ' [...]';
     }
     return text.trim();
   }
 
+  reziseTextarea(textarea: HTMLTextAreaElement, maxHeight?: number): void {
+    maxHeight = maxHeight || 170;
+    textarea.style.height = 'auto';
+    const newHeight = Math.min(textarea.scrollHeight, maxHeight);
+    textarea.style.height = `${newHeight}px`;
+    textarea.style.overflowY = textarea.scrollHeight > maxHeight ? 'auto' : 'hidden';
+  }
+
+  // ===== Getters =====
   get deleteDialogTaskTitle(): string {
     if (!this.taskIdToDelete) return '';
     const task = this.tasks.find(t => t._id === this.taskIdToDelete);
     return this.truncateText(task?.title ?? '', 10);
   }
 
-  reziseTextarea(textarea: HTMLTextAreaElement, maxHeight?: number): void {
-    maxHeight = maxHeight || 170; // px
-
-    textarea.style.height = 'auto'; // reseta para recalcular
-    const newHeight = Math.min(textarea.scrollHeight, maxHeight);
-    textarea.style.height = `${newHeight}px`;
-    textarea.style.overflowY = textarea.scrollHeight > maxHeight ? 'auto' : 'hidden';
-  }
+  // ===== Logout =====
   logout(): void {
     this.authService.logout();
   }
