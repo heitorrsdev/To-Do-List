@@ -188,7 +188,7 @@ export class TaskListComponent implements OnInit {
   }
 
   reziseTextarea(textarea: HTMLTextAreaElement, maxHeight?: number): void {
-    maxHeight = maxHeight || 150; // px
+    maxHeight = maxHeight || 170; // px
 
     textarea.style.height = 'auto'; // reseta para recalcular
     const newHeight = Math.min(textarea.scrollHeight, maxHeight);
