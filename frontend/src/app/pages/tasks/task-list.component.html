@@ -16,6 +16,7 @@
           [ngClass]="{ 'is-invalid': addTaskForm.get('title')?.invalid && (addTaskForm.get('title')?.dirty || addTaskForm.get('title')?.touched) }"
           #titleInput
           (input)="reziseTextarea(titleInput)"
+          (click)="reziseTextarea(titleInput)"
           required
         ></textarea>
         <div
