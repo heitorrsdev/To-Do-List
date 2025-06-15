@@ -192,6 +192,11 @@ export class TaskListComponent implements OnInit {
     textarea.style.overflowY = textarea.scrollHeight > maxHeight ? 'auto' : 'hidden';
   }
 
+  trackByTaskId(index: number, task: Task): string {
+    // Os parâmetros são passados automaticamente pelo Angular em uma trackByFn
+    return task._id;
+  }
+
   // ===== Getters =====
   get deleteDialogTaskTitle(): string {
     if (!this.taskIdToDelete) return '';

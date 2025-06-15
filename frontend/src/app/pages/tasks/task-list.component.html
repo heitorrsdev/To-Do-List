@@ -31,7 +31,10 @@
       <li *ngIf="!isLoading && tasks.length === 0" class="no-tasks-message">
         Nenhuma tarefa encontrada. Adicione uma nova tarefa acima!
       </li>
-      <li *ngFor="let task of tasks" class="task-item" [class.completed]="task.status === 'completed'"
+      <li
+        *ngFor="let task of tasks; trackBy: trackByTaskId"
+        class="task-item"
+        [class.completed]="task.status === 'completed'"
         [class.in-progress]="task.status === 'in-progress'">
         <div class="task-content">
           <button class="status-circle" [ngClass]="task.status" (click)="cycleTaskStatus(task)" type="button"></button>
