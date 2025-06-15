@@ -8,17 +8,9 @@
     <h3>Adicionar Nova Tarefa</h3>
     <form [formGroup]="addTaskForm" (ngSubmit)="addTask()" novalidate>
       <div class="form-group">
-        <textarea
-          type="text"
-          id="title"
-          formControlName="title"
-          placeholder="O que precisa ser feito?"
+        <textarea type="text" id="title" formControlName="title" placeholder="O que precisa ser feito?"
           [ngClass]="{ 'is-invalid': addTaskForm.get('title')?.invalid && (addTaskForm.get('title')?.dirty || addTaskForm.get('title')?.touched) }"
-          #titleInput
-          (input)="reziseTextarea(titleInput)"
-          (click)="reziseTextarea(titleInput)"
-          required
-        ></textarea>
+          #titleInput (input)="resizeTextarea(titleInput)" (click)="resizeTextarea(titleInput)" required></textarea>
         <div
           *ngIf="addTaskForm.get('title')?.invalid && (addTaskForm.get('title')?.dirty || addTaskForm.get('title')?.touched)"
           class="error-message">
@@ -39,12 +31,8 @@
       <li *ngIf="!isLoading && tasks.length === 0" class="no-tasks-message">
         Nenhuma tarefa encontrada. Adicione uma nova tarefa acima!
       </li>
-      <li
-        *ngFor="let task of tasks"
-        class="task-item"
-        [class.completed]="task.status === 'completed'"
-        [class.in-progress]="task.status === 'in-progress'"
-      >
+      <li *ngFor="let task of tasks" class="task-item" [class.completed]="task.status === 'completed'"
+        [class.in-progress]="task.status === 'in-progress'">
         <div class="task-content">
           <button class="status-circle" [ngClass]="task.status" (click)="cycleTaskStatus(task)" type="button"></button>
           <label class="task-title">{{ task.title }}</label>
@@ -73,24 +61,13 @@
   <app-dialog [open]="isEditDialogOpen" (closed)="closeEditDialog()">
     <h3>Editar Tarefa</h3>
     <form (ngSubmit)="saveEdit()">
-      <textarea
-        name="editTaskTitle"
-        [(ngModel)]="editTaskTitle"
-        placeholder="Novo título da tarefa"
-        rows="3"
-        #editTitleInput
-        class="editTitleText"
-        (input)="reziseTextarea(editTitleInput)"
-        (click)="reziseTextarea(editTitleInput)"
-        required
-      ></textarea>
+      <textarea name="editTaskTitle" [(ngModel)]="editTaskTitle" placeholder="Novo título da tarefa" rows="3"
+        #editTitleInput class="editTitleText" (input)="resizeTextarea(editTitleInput)"
+        (click)="resizeTextarea(editTitleInput)" required></textarea>
       <div class="form-button-area">
         <button type="button" (click)="closeEditDialog()" class="danger-button">Cancelar</button>
-        <button
-          type="submit"
-          class="confirm-button"
-          [disabled]="!editTaskTitle.trim() || editTaskTitle.trim() === selectedTask?.title || isLoading"
-        >
+        <button type="submit" class="confirm-button"
+          [disabled]="!editTaskTitle.trim() || editTaskTitle.trim() === selectedTask?.title || isLoading">
           Salvar
         </button>
       </div>
