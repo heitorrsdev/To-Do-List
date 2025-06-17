@@ -33,14 +33,13 @@
 
 .dialog-close {
   position: absolute;
-  top: 12px;
-  right: 16px;
   background: none;
   border: none;
-  font-size: 2rem;
+  font-size: 35px;
   color: #888;
   cursor: pointer;
   transition: color 0.2s;
+  padding-bottom: 12px;
 }
 
 .dialog-close:hover {
