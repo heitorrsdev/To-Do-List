@@ -245,6 +245,7 @@ textarea.is-invalid:focus {
   font-weight: 500;
   color: #333;
   margin: 0;
+  font-size: 0.9em;
   word-break: break-all;
   /* Quebrar palavras longas, para evitar overflow, protegendo o layout */
 }
