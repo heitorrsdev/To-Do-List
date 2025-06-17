@@ -109,14 +109,6 @@ button:disabled:hover {
   margin-left: 20px;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #555;
-  font-size: 0.9em;
-}
-
 input[type="text"],
 textarea {
   width: 100%;
@@ -129,6 +121,8 @@ textarea {
 
 textarea {
   transition: height 0.2s ease;
+  outline: none;
+  /* Remover contorno padrão */
   resize: none;
   /* Não permitir redimensionamento */
 }
