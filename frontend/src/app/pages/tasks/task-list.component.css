@@ -279,7 +279,6 @@ textarea.is-invalid:focus {
   padding: 0 5px;
   line-height: 1;
   transition: color 0.2s ease;
-  margin-left: 10px;
 }
 
 .delete-button:hover {

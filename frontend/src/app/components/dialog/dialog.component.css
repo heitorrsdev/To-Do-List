@@ -35,18 +35,16 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 16px 0 0 0;
+  padding: 16px 0;
 }
 
 .dialog-close {
-  position: absolute;
   background: none;
   border: none;
-  font-size: 35px;
+  font-size: 20px;
   color: #888;
   cursor: pointer;
   transition: color 0.2s;
-  padding-bottom: 16px;
 }
 
 .dialog-close:hover {
