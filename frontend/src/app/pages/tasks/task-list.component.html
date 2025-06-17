@@ -9,12 +9,21 @@
     <h3>Adicionar Nova Tarefa</h3>
     <form [formGroup]="addTaskForm" (ngSubmit)="addTask()" novalidate>
       <div class="form-group">
-        <textarea type="text" id="title" formControlName="title" placeholder="O que precisa ser feito?"
+        <textarea
+          type="text"
+          id="title"
+          formControlName="title"
+          placeholder="O que precisa ser feito?"
           [ngClass]="{ 'is-invalid': addTaskForm.get('title')?.invalid && (addTaskForm.get('title')?.dirty || addTaskForm.get('title')?.touched) }"
-          #titleInput (input)="resizeTextarea(titleInput)" (click)="resizeTextarea(titleInput)" required></textarea>
+          #titleInput
+          (input)="resizeTextarea(titleInput)"
+          (click)="resizeTextarea(titleInput)"
+          required>
+        </textarea>
         <div
           *ngIf="addTaskForm.get('title')?.invalid && (addTaskForm.get('title')?.dirty || addTaskForm.get('title')?.touched)"
-          class="error-message">
+          class="error-message"
+        >
           <small *ngIf="addTaskForm.get('title')?.errors?.['required']">Campo obrigatório.</small>
         </div>
       </div>
@@ -37,9 +46,15 @@
         *ngFor="let task of tasks; trackBy: trackByTaskId"
         class="task-item"
         [class.completed]="task.status === 'completed'"
-        [class.in-progress]="task.status === 'in-progress'">
+        [class.in-progress]="task.status === 'in-progress'"
+      >
         <div class="task-content">
-          <button class="status-circle" [ngClass]="task.status" (click)="cycleTaskStatus(task)" type="button"></button>
+          <button
+            class="status-circle"
+            [ngClass]="task.status"
+            (click)="cycleTaskStatus(task); $event.stopPropagation();"
+            type="button">
+          </button>
           <label class="task-title">{{ task.title }}</label>
         </div>
 
