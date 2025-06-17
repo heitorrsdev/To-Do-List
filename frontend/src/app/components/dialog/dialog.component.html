@@ -1,12 +1,13 @@
 <div class="dialog-backdrop" *ngIf="open" (click)="onBackdropClick($event)">
   <div class="dialog-modal">
     <!-- Conteúdo do cabeçalho -->
-     <div class="dialog-inner-header">
-       <ng-content select="[header]"></ng-content>
-       <button class="dialog-close" (click)="close()" aria-label="Fechar" title="Fechar">
-         &times;
-       </button>
-     </div>
+    <div class="dialog-inner-header">
+      <ng-content select="[header]"></ng-content>
+      <div class="dialog-close" (click)="close()" aria-label="Fechar" title="Fechar">
+        &times;
+      </div>
+    </div>
+
     <div class="dialog-content">
       <!-- Conteúdo principal do diálogo -->
       <ng-content select="[content]"></ng-content>
