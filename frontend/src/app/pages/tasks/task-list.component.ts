@@ -82,28 +82,26 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  openTaskDialog(task: Task): void {
-    this.selectedTask = { ...task };
-    this.editTaskTitle = task.title;
-    this.isTaskDialogOpen = true;
-    this.isEditingTask = false;
-  }
-
-  closeTaskDialog(): void {
-    this.isTaskDialogOpen = false;
-    this.selectedTask = null;
-    this.editTaskTitle = '';
-    this.isEditingTask = false;
-  }
-
-  enableEditTask(): void {
-    this.isEditingTask = true;
-    this.editTaskTitle = this.selectedTask?.title || '';
-  }
-
-  cancelEditTask(): void {
-    this.isEditingTask = false;
-    this.editTaskTitle = this.selectedTask?.title || '';
+  cycleTaskStatus(task: Task): void {
+    const statusOrder: Array<'pending' | 'in-progress' | 'completed'> = ['pending', 'in-progress', 'completed'];
+    const currentIdx = statusOrder.indexOf(task.status);
+    const nextStatus = statusOrder[(currentIdx + 1) % statusOrder.length];
+    this.isLoading = true;
+    this.errorMessage = null;
+    this.taskService.updateTask(task._id, { status: nextStatus }).subscribe({
+      next: (updatedTask) => {
+        const index = this.tasks.findIndex(t => t._id === updatedTask._id);
+        if (index !== -1) {
+          this.tasks[index] = updatedTask;
+        }
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.errorMessage = 'Erro ao atualizar status da tarefa.';
+        console.error('Failed to update task status:', err);
+        this.isLoading = false;
+      }
+    });
   }
 
   saveEditTask(): void {
@@ -146,26 +144,29 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  cycleTaskStatus(task: Task): void {
-    const statusOrder: Array<'pending' | 'in-progress' | 'completed'> = ['pending', 'in-progress', 'completed'];
-    const currentIdx = statusOrder.indexOf(task.status);
-    const nextStatus = statusOrder[(currentIdx + 1) % statusOrder.length];
-    this.isLoading = true;
-    this.errorMessage = null;
-    this.taskService.updateTask(task._id, { status: nextStatus }).subscribe({
-      next: (updatedTask) => {
-        const index = this.tasks.findIndex(t => t._id === updatedTask._id);
-        if (index !== -1) {
-          this.tasks[index] = updatedTask;
-        }
-        this.isLoading = false;
-      },
-      error: (err) => {
-        this.errorMessage = 'Erro ao atualizar status da tarefa.';
-        console.error('Failed to update task status:', err);
-        this.isLoading = false;
-      }
-    });
+  // ===== Diálogo de tarefas =====
+  openTaskDialog(task: Task): void {
+    this.selectedTask = { ...task };
+    this.editTaskTitle = task.title;
+    this.isTaskDialogOpen = true;
+    this.isEditingTask = false;
+  }
+
+  closeTaskDialog(): void {
+    this.isTaskDialogOpen = false;
+    this.selectedTask = null;
+    this.editTaskTitle = '';
+    this.isEditingTask = false;
+  }
+
+  enableEditTask(): void {
+    this.isEditingTask = true;
+    this.editTaskTitle = this.selectedTask?.title || '';
+  }
+
+  cancelEditTask(): void {
+    this.isEditingTask = false;
+    this.editTaskTitle = this.selectedTask?.title || '';
   }
 
   // ===== Métodos auxiliares =====
