@@ -285,6 +285,15 @@ label.task-title {
   color: #a51826;
 }
 
+.dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 18px;
+  border-top: 1px solid #eee;
+  padding-top: 12px;
+}
+
 .status-circle {
   width: 18px;
   height: 18px;

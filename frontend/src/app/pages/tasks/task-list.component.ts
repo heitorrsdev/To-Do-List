@@ -22,10 +22,11 @@ export class TaskListComponent implements OnInit {
   addTaskForm!: FormGroup;
   editTaskTitle: string = '';
   errorMessage: string | null = null;
-  isDeleteDialogOpen = false;
-  isEditDialogOpen = false;
+  isEditingTask = false;
   isLoading = false;
+  isTaskDialogOpen = false;
   selectedTask: Task | null = null;
+  showDeleteConfirmation = false;
   taskIdToDelete: string | null = null;
   tasks: Task[] = [];
 
@@ -81,7 +82,31 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  saveEdit(): void {
+  openTaskDialog(task: Task): void {
+    this.selectedTask = { ...task };
+    this.editTaskTitle = task.title;
+    this.isTaskDialogOpen = true;
+    this.isEditingTask = false;
+  }
+
+  closeTaskDialog(): void {
+    this.isTaskDialogOpen = false;
+    this.selectedTask = null;
+    this.editTaskTitle = '';
+    this.isEditingTask = false;
+  }
+
+  enableEditTask(): void {
+    this.isEditingTask = true;
+    this.editTaskTitle = this.selectedTask?.title || '';
+  }
+
+  cancelEditTask(): void {
+    this.isEditingTask = false;
+    this.editTaskTitle = this.selectedTask?.title || '';
+  }
+
+  saveEditTask(): void {
     if (!this.selectedTask || !this.editTaskTitle.trim() || this.editTaskTitle.trim() === this.selectedTask.title) {
       return;
     }
@@ -93,29 +118,29 @@ export class TaskListComponent implements OnInit {
         if (index !== -1) {
           this.tasks[index] = updatedTask;
         }
-        this.isEditDialogOpen = false;
-        this.selectedTask = null;
+        this.closeTaskDialog();
         this.isLoading = false;
       },
       error: (err) => {
         this.errorMessage = 'Erro ao editar tarefa.';
-        console.error('Failed to edit task:', err);
         this.isLoading = false;
-        this.closeEditDialog();
+        console.error('Failed to edit task:', err);
       }
     });
   }
 
-  confirmDelete(): void {
-    if (!this.taskIdToDelete) return;
-    this.taskService.deleteTask(this.taskIdToDelete).subscribe({
+  deleteTask(taskId: string | undefined): void {
+    if (!taskId) return;
+    this.isLoading = true;
+    this.taskService.deleteTask(taskId).subscribe({
       next: () => {
-        this.tasks = this.tasks.filter(task => task._id !== this.taskIdToDelete);
-        this.closeDeleteDialog();
+        this.tasks = this.tasks.filter(task => task._id !== taskId);
+        this.closeTaskDialog();
+        this.isLoading = false;
       },
       error: (err) => {
         this.errorMessage = 'Erro ao excluir tarefa.';
-        this.closeDeleteDialog();
+        this.isLoading = false;
         console.error('Failed to delete task:', err);
       }
     });
@@ -141,29 +166,6 @@ export class TaskListComponent implements OnInit {
         this.isLoading = false;
       }
     });
-  }
-
-  // ===== Métodos de diálogo =====
-  openDeleteDialog(taskId: string): void {
-    this.taskIdToDelete = taskId;
-    this.isDeleteDialogOpen = true;
-  }
-
-  closeDeleteDialog(): void {
-    this.isDeleteDialogOpen = false;
-    this.taskIdToDelete = null;
-  }
-
-  openEditDialog(task: Task): void {
-    this.selectedTask = { ...task };
-    this.editTaskTitle = task.title;
-    this.isEditDialogOpen = true;
-  }
-
-  closeEditDialog(): void {
-    this.isEditDialogOpen = false;
-    this.selectedTask = null;
-    this.editTaskTitle = '';
   }
 
   // ===== Métodos auxiliares =====
