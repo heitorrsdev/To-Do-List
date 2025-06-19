@@ -250,8 +250,9 @@ textarea.is-invalid:focus {
   /* Quebrar palavras longas, para evitar overflow, protegendo o layout */
 }
 
-.task-actions {
-  display: flex;
+label.task-title {
+  cursor: pointer;
+  /* Sinalizar que o usuário pode clicar no texto para abrir o diálogo */
 }
 
 .edit-button {
