@@ -265,6 +265,10 @@ textarea.is-invalid:focus {
   transition: color 0.2s ease;
 }
 
+.edit-button:hover {
+  color: #0b2e1d;
+}
+
 .delete-button {
   background: none;
   border: none;
