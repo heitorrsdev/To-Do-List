@@ -129,7 +129,7 @@ export class TaskListComponent implements OnInit {
     if (!this.taskIdToDelete) return;
     this.isLoading = true;
     this.taskService.deleteTask(this.taskIdToDelete).subscribe({
-      next: () => {
+      next: () => { // atualização pessimista (só atualiza a lista após a exclusão bem-sucedida)
         this.tasks = this.tasks.filter(task => task._id !== this.taskIdToDelete);
         this.closeTaskDialog();
         this.isLoading = false;
