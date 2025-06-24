@@ -45,6 +45,7 @@
   color: #888;
   cursor: pointer;
   transition: color 0.2s;
+  margin-left: 10px;
 }
 
 .dialog-close:hover {
