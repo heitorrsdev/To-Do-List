@@ -126,7 +126,7 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  deleteTask(taskId: string): void {
+  deleteTask(taskId: string | undefined): void {
     if (!taskId) return;
     this.isLoading = true;
     this.taskService.deleteTask(taskId).subscribe({
