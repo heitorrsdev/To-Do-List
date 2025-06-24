@@ -63,7 +63,7 @@
 
   <!-- ===== MODAL DE TAREFAS ==== -->
   <app-dialog [open]="isTaskDialogOpen && !!selectedTask" (closed)="closeTaskDialog()">
-    <div class="dialog-header" *ngIf="!isEditingTask" header>
+    <div *ngIf="!isEditingTask" header>
 
       <button (click)="enableEditTask()" class="edit-button" title="Editar Tarefa">
         <!-- Icone de lapis -->
