@@ -62,10 +62,10 @@
   </div>
 
   <!-- Diálogo principal de tarefa -->
-  <app-dialog [open]="isTaskDialogOpen" (closed)="closeTaskDialog()">
-    <div class="dialog-header" header>
+  <app-dialog [open]="isTaskDialogOpen && !!selectedTask" (closed)="closeTaskDialog()">
+    <div class="dialog-header" *ngIf="!isEditingTask" header>
 
-      <button *ngIf="!isEditingTask" (click)="enableEditTask()" class="edit-button" title="Editar Tarefa">
+      <button (click)="enableEditTask()" class="edit-button" title="Editar Tarefa">
         <!-- Icone de lapis -->
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z" fill="currentColor" />
@@ -76,8 +76,7 @@
       </button>
 
       <button
-        *ngIf="!isEditingTask"
-        (click)="deleteTask(selectedTask?._id)"
+        (click)="showDeleteTaskConfirmation(selectedTask?._id)"
         class="delete-button"
         title="Excluir Tarefa"
       >
@@ -95,7 +94,7 @@
 
     <div content>
       <div class="dialog-content">
-        <span *ngIf="!isEditingTask" class="task-title">{{ selectedTask?.title }}</span>
+        <span *ngIf="!isEditingTask && !taskIdToDelete" class="task-title">{{ selectedTask?.title }}</span>
 
         <textarea
           *ngIf="isEditingTask"
@@ -118,6 +117,19 @@
         >
           Salvar
         </button>
+      </div>
+
+      <div *ngIf="taskIdToDelete">
+        <span>Tem certeza de que deseja excluir essa tarefa? Isso não pode ser desfeito.</span>
+        <div class="dialog-footer">
+          <button type="button" (click)="cancelDeleteTask()" class="default-button">
+            Cancelar
+          </button>
+
+          <button type="button" (click)="deleteTask()" class="danger-button">
+            Excluir
+          </button>
+        </div>
       </div>
     </div>
   </app-dialog>

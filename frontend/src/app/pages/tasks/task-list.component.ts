@@ -25,7 +25,6 @@ export class TaskListComponent implements OnInit {
   isLoading = false;
   isTaskDialogOpen = false;
   selectedTask: Task | null = null;
-  showDeleteConfirmation = false;
   taskIdToDelete: string | null = null;
   tasks: Task[] = [];
 
@@ -126,12 +125,12 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  deleteTask(taskId: string | undefined): void {
-    if (!taskId) return;
+  deleteTask(): void {
+    if (!this.taskIdToDelete) return;
     this.isLoading = true;
-    this.taskService.deleteTask(taskId).subscribe({
+    this.taskService.deleteTask(this.taskIdToDelete).subscribe({
       next: () => {
-        this.tasks = this.tasks.filter(task => task._id !== taskId);
+        this.tasks = this.tasks.filter(task => task._id !== this.taskIdToDelete);
         this.closeTaskDialog();
         this.isLoading = false;
       },
@@ -166,6 +165,16 @@ export class TaskListComponent implements OnInit {
   cancelEditTask(): void {
     this.isEditingTask = false;
     this.editTaskTitle = this.selectedTask?.title || '';
+  }
+
+  showDeleteTaskConfirmation(taskId: string | undefined): void {
+    if (!taskId) return;
+    this.taskIdToDelete = taskId;
+  }
+
+  cancelDeleteTask(): void {
+    if (!this.taskIdToDelete) return;
+    this.taskIdToDelete = null;
   }
 
   // ===== Métodos auxiliares =====
