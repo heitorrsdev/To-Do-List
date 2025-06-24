@@ -4,6 +4,10 @@ import Task from '../models/Task.js';
 export const createTask = async (req, res) => {
   try {
     const { title, status } = req.body;
+    if (!title || !status) {
+      return res.status(400).json({ message: 'Title and status are required' });
+    }
+
     const userId = req.user.id; // definido no middleware de autenticação
 
     const newTask = new Task({
