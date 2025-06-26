@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { DialogComponent } from '../../components/dialog/dialog.component';
 import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
+import { TASK_TITLE_MAX_LENGTH } from '../../core/constants';
 import { Task, TaskService, CreateTaskDto } from '../../core/services/task.service';
 
 @Component({
@@ -18,6 +19,7 @@ import { Task, TaskService, CreateTaskDto } from '../../core/services/task.servi
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
+  TASK_TITLE_MAX_LENGTH = TASK_TITLE_MAX_LENGTH; // usado no template
   addTaskForm!: FormGroup;
   editTaskTitle: string = '';
   errorMessage: string | null = null;
