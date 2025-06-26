@@ -329,3 +329,10 @@ label.task-title {
   /* verde suave */
   border-color: #8be28b;
 }
+
+.char-counter {
+  font-size: 0.85em;
+  color: #555;
+  margin-top: 2px;
+  text-align: right;
+}

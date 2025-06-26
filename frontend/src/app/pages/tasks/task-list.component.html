@@ -27,6 +27,10 @@
         >
           <small *ngIf="addTaskForm.get('title')?.errors?.['required']">Campo obrigatório.</small>
         </div>
+
+        <div class="char-counter">
+          {{ titleInput.value.length }}
+        </div>
       </div>
 
       <button type="submit" [disabled]="addTaskForm.invalid || isLoading">
@@ -100,15 +104,20 @@
       <div class="dialog-content">
         <span *ngIf="!isEditingTask && !taskIdToDelete" class="task-title">{{ selectedTask?.title }}</span>
 
-        <textarea
-          *ngIf="isEditingTask"
-          [(ngModel)]="editTaskTitle"
-          rows="2"
-          class="editTitleText"
-          #editTaskInput
-          (input)="resizeTextarea(editTaskInput)"
-          (click)="resizeTextarea(editTaskInput)">
-        </textarea>
+        <div *ngIf="isEditingTask">
+          <textarea
+            [(ngModel)]="editTaskTitle"
+            rows="2"
+            class="editTitleText"
+            #editTaskInput
+            (input)="resizeTextarea(editTaskInput)"
+            (click)="resizeTextarea(editTaskInput)">
+          </textarea>
+
+          <div class="char-counter">
+            {{ editTaskInput.value.length }}
+          </div>
+        </div>
       </div>
 
       <div class="dialog-footer" *ngIf="isEditingTask">
