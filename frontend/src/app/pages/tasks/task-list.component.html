@@ -20,6 +20,7 @@
           (click)="resizeTextarea(titleInput)"
           required>
         </textarea>
+
         <div
           *ngIf="addTaskForm.get('title')?.invalid && (addTaskForm.get('title')?.dirty || addTaskForm.get('title')?.touched)"
           class="error-message"
@@ -27,7 +28,10 @@
           <small *ngIf="addTaskForm.get('title')?.errors?.['required']">Campo obrigatório.</small>
         </div>
       </div>
-      <button type="submit" [disabled]="addTaskForm.invalid || isLoading">Adicionar Tarefa</button>
+
+      <button type="submit" [disabled]="addTaskForm.invalid || isLoading">
+        Adicionar Tarefa
+      </button>
     </form>
   </div>
 
