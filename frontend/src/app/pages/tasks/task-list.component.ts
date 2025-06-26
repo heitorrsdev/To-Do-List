@@ -59,7 +59,7 @@ export class TaskListComponent implements OnInit {
   }
 
   addTask(): void {
-    if (this.addTaskForm.invalid) {
+    if (this.addTaskForm.invalid || this.addTaskForm.value.title.trim().length > TASK_TITLE_MAX_LENGTH) {
       this.addTaskForm.markAllAsTouched();
       return;
     }
@@ -108,9 +108,14 @@ export class TaskListComponent implements OnInit {
   }
 
   saveEditTask(): void {
-    if (!this.selectedTask || !this.editTaskTitle.trim() || this.editTaskTitle.trim() === this.selectedTask.title) {
+    if (!this.selectedTask ||
+      !this.editTaskTitle.trim() ||
+      this.editTaskTitle.trim() === this.selectedTask.title ||
+      this.editTaskTitle.length > TASK_TITLE_MAX_LENGTH
+    ) {
       return;
     }
+
     this.isLoading = true;
     this.errorMessage = null;
     this.taskService.updateTask(this.selectedTask._id, { title: this.editTaskTitle.trim() }).subscribe({
