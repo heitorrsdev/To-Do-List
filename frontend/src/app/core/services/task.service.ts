@@ -16,6 +16,7 @@ export interface Task {
 // Definindo a estrutura para criar uma tarefa (excluindo campos gerados pelo backend)
 export interface CreateTaskDto {
   title: string;
+  status: 'pending'; // Novas tarefas sempre começam como pendentes
 }
 
 // Definindo a estrutura para atualizar uma tarefa (permitindo atualizações parciais)

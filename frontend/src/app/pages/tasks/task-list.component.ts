@@ -64,7 +64,10 @@ export class TaskListComponent implements OnInit {
 
     this.isLoading = true;
     this.errorMessage = null;
-    const newTaskData: CreateTaskDto = this.addTaskForm.value;
+    const newTaskData: CreateTaskDto = {
+      title: this.addTaskForm.value.title.trim(),
+      status: 'pending'
+    };
 
     this.taskService.createTask(newTaskData).subscribe({
       next: (newTask) => {
