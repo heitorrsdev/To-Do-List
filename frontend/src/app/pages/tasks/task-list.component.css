@@ -336,3 +336,8 @@ label.task-title {
   margin-top: 2px;
   text-align: right;
 }
+
+.char-limit-exceeded {
+  color: #dc3545;
+  font-weight: bold;
+}

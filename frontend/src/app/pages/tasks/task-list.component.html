@@ -28,12 +28,12 @@
           <small *ngIf="addTaskForm.get('title')?.errors?.['required']">Campo obrigatório.</small>
         </div>
 
-        <div class="char-counter">
-          {{ titleInput.value.length }}
+        <div class="char-counter" [ngClass]="{'char-limit-exceeded': titleInput.value.length > 255}">
+          {{ titleInput.value.length }}/255
         </div>
       </div>
 
-      <button type="submit" [disabled]="addTaskForm.invalid || isLoading">
+      <button type="submit" [disabled]="addTaskForm.invalid || isLoading || titleInput.value.length > 255">
         Adicionar Tarefa
       </button>
     </form>
@@ -114,8 +114,8 @@
             (click)="resizeTextarea(editTaskInput)">
           </textarea>
 
-          <div class="char-counter">
-            {{ editTaskInput.value.length }}
+          <div class="char-counter" [ngClass]="{'char-limit-exceeded': editTaskInput.value.length > 255}">
+            {{ editTaskInput.value.length }}/255
           </div>
         </div>
       </div>
@@ -126,7 +126,7 @@
           type="button"
           (click)="saveEditTask()"
           class="confirm-button"
-          [disabled]="!editTaskTitle.trim() || editTaskTitle.trim() === selectedTask?.title || isLoading"
+          [disabled]="!editTaskTitle.trim() || editTaskTitle.trim() === selectedTask?.title || isLoading || editTaskTitle.length > 255"
         >
           Salvar
         </button>
