@@ -19,12 +19,12 @@ import { Task, TaskService, CreateTaskDto } from '../../core/services/task.servi
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  TASK_TITLE_MAX_LENGTH = TASK_TITLE_MAX_LENGTH; // usado no template
+  TASK_TITLE_MAX_LENGTH: number = TASK_TITLE_MAX_LENGTH; // usado no template
   addTaskForm!: FormGroup;
   editTaskTitle: string = '';
   errorMessage: string | null = null;
-  isEditingTask = false;
-  isLoading = false;
+  isEditingTask: boolean = false;
+  isLoading: boolean = false;
   isTaskDialogOpen = false;
   selectedTask: Task | null = null;
   taskIdToDelete: string | null = null;
