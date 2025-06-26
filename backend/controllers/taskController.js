@@ -7,6 +7,9 @@ export const createTask = async (req, res) => {
     if (!title || !status) {
       return res.status(400).json({ message: 'Title and status are required' });
     }
+    if(title.length > 255) {
+      return res.status(400).json({ message: 'Title must be less than 255 characters' });
+    }
 
     const userId = req.user.id; // definido no middleware de autenticação
 

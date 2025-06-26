@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 const taskSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        maxlength: 255
     },
     status: {
         type: String,
