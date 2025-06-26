@@ -1,4 +1,5 @@
 import Task from '../models/Task.js';
+import { TASK_TITLE_MAX_LENGTH } from '../constants.js';
 
 // Create a new task
 export const createTask = async (req, res) => {
@@ -7,8 +8,8 @@ export const createTask = async (req, res) => {
     if (!title || !status) {
       return res.status(400).json({ message: 'Title and status are required' });
     }
-    if(title.length > 255) {
-      return res.status(400).json({ message: 'Title must be less than 255 characters' });
+    if (title.length > TASK_TITLE_MAX_LENGTH) {
+      return res.status(400).json({ message: `Title must be less than ${TASK_TITLE_MAX_LENGTH} characters` });
     }
 
     const userId = req.user.id; // definido no middleware de autenticação

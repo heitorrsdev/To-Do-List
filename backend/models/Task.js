@@ -1,10 +1,11 @@
 import mongoose from 'mongoose';
+import { TASK_TITLE_MAX_LENGTH } from '../constants.js';
 
 const taskSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        maxlength: 255
+        maxlength: TASK_TITLE_MAX_LENGTH
     },
     status: {
         type: String,
