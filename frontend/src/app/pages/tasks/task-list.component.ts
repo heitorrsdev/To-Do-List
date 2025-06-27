@@ -197,13 +197,6 @@ export class TaskListComponent implements OnInit {
     }
   }
 
-  truncateText(text: string, maxWords: number = 20): string {
-    const words = text.trim().split(/\s+/);
-    if (words.length > maxWords) {
-      return words.slice(0, maxWords).join(' ') + ' [...]';
-    }
-    return text.trim();
-  }
 
   resizeTextarea(textarea: HTMLTextAreaElement, maxHeight?: number): void {
     maxHeight = maxHeight || 170;
@@ -216,13 +209,6 @@ export class TaskListComponent implements OnInit {
   trackByTaskId(index: number, task: Task): string {
     // Os parâmetros são passados automaticamente pelo Angular em uma trackByFn
     return task._id;
-  }
-
-  // ===== Getters =====
-  get deleteDialogTaskTitle(): string {
-    if (!this.taskIdToDelete) return '';
-    const task = this.tasks.find(t => t._id === this.taskIdToDelete);
-    return this.truncateText(task?.title ?? '', 10);
   }
 
   // ===== Logout =====
