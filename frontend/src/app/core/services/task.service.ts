@@ -56,5 +56,11 @@ export class TaskService {
     const url = `${this.apiUrl}/${taskId}`;
     return this.http.delete<{ message: string }>(url);
   }
+
+  //Deletar todas as tarefas concluídas
+  deleteCompletedTasks(): Observable<{ message: string }> {
+    const url = `${this.apiUrl}/completed`;
+    return this.http.delete<{ message: string }>(url);
+  }
 }
 

@@ -152,6 +152,22 @@ export class TaskListComponent implements OnInit {
     });
   }
 
+  deleteCompletedTasks(): void {
+    this.isLoading = true;
+    this.errorMessage = null;
+    this.taskService.deleteCompletedTasks().subscribe({
+      next: () => {
+        this.tasks = this.tasks.filter(task => task.status !== 'completed');
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.errorMessage = 'Erro ao excluir tarefas concluídas.';
+        console.error('Failed to delete completed tasks:', err);
+        this.isLoading = false;
+      }
+    });
+  }
+
   // ===== Diálogo de tarefas =====
   openTaskDialog(task: Task): void {
     this.selectedTask = { ...task };
