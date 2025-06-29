@@ -59,7 +59,7 @@ export class TaskListComponent implements OnInit {
   }
 
   addTask(): void {
-    if (this.addTaskForm.invalid || this.addTaskForm.value.title.trim().length > TASK_TITLE_MAX_LENGTH) {
+    if (this.addTaskForm.invalid || this.addTaskForm.value.title.trim().length > this.TASK_TITLE_MAX_LENGTH) {
       this.addTaskForm.markAllAsTouched();
       return;
     }
@@ -111,7 +111,7 @@ export class TaskListComponent implements OnInit {
     if (!this.selectedTask ||
       !this.editTaskTitle.trim() ||
       this.editTaskTitle.trim() === this.selectedTask.title ||
-      this.editTaskTitle.length > TASK_TITLE_MAX_LENGTH
+      this.editTaskTitle.length > this.TASK_TITLE_MAX_LENGTH
     ) {
       return;
     }
