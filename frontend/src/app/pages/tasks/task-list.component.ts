@@ -19,7 +19,7 @@ import { Task, TaskService, CreateTaskDto } from '../../core/services/task.servi
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  TASK_TITLE_MAX_LENGTH: number = TASK_TITLE_MAX_LENGTH; // usado no template
+  TASK_TITLE_MAX_LENGTH: number = TASK_TITLE_MAX_LENGTH;
   addTaskForm!: FormGroup;
   editTaskTitle: string = '';
   errorMessage: string | null = null;
