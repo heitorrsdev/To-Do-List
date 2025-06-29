@@ -197,7 +197,6 @@ export class TaskListComponent implements OnInit {
     }
   }
 
-
   resizeTextarea(textarea: HTMLTextAreaElement, maxHeight: number = 170): void {
     textarea.style.height = 'auto';
     const newHeight = Math.min(textarea.scrollHeight, maxHeight);
