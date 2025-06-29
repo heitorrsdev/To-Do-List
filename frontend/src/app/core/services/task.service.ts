@@ -30,7 +30,7 @@ export interface UpdateTaskDto {
 })
 export class TaskService {
   private http = inject(HttpClient);
-  // URL base para os endpoints da API de tarefas - Ajuste se seu backend rodar em outro lugar
+  // URL base para os endpoints da API de tarefas
   private apiUrl = `${environment.apiUrl}/tasks`;
 
   constructor() { }
