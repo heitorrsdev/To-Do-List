@@ -9,5 +9,5 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./empty-state.component.css']
 })
 export class EmptyStateComponent {
-  @Input() message = 'Nenhuma tarefa encontrada. Adicione uma nova tarefa acima!';
+  @Input() message = 'Nenhuma tarefa encontrada. Adicione uma nova tarefa acima.';
 }
