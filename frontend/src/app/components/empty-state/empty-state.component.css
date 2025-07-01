@@ -1,0 +1,18 @@
+.no-tasks-message {
+  background-color: #f8f9fa;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  color: #6c757d;
+  font-size: 1rem;
+  list-style-type: none;
+  margin: 20px 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.no-tasks-message::before {
+  content: "📋";
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
