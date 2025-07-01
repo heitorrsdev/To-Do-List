@@ -1,0 +1,29 @@
+.status-circle {
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 20px;
+  margin-right: 12px;
+  min-width: 20px;
+  position: relative;
+  transition: background-color 0.2s;
+  width: 20px;
+}
+
+.status-circle.pending {
+  background-color: #e0e0e0;
+}
+
+.status-circle.in-progress {
+  background-color: #4a90e2;
+}
+
+.status-circle.completed {
+  background-color: #5cb85c;
+}
+
+.status-circle:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
