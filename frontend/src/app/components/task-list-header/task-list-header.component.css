@@ -1,0 +1,28 @@
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+h2 {
+  margin: 0;
+  color: #333;
+}
+
+.danger-button {
+  padding: 7px 15px;
+  color: white;
+  background-color: #dc3545;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease;
+}
+
+.danger-button:hover {
+  background-color: #c82333;
+}
