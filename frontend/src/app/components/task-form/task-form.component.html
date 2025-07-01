@@ -1,0 +1,33 @@
+<div class="add-task-section">
+  <h3>Adicionar Nova Tarefa</h3>
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-group">
+      <textarea 
+        type="text" 
+        id="title" 
+        formControlName="title" 
+        placeholder="O que precisa ser feito?" 
+        [ngClass]="{ 'is-invalid': taskForm.get('title')?.invalid && (taskForm.get('title')?.dirty || taskForm.get('title')?.touched) }" 
+        #titleInput 
+        (input)="resizeTextarea(titleInput)" 
+        (click)="resizeTextarea(titleInput)" 
+        required>
+      </textarea>
+      <div 
+        *ngIf="taskForm.get('title')?.invalid && (taskForm.get('title')?.dirty || taskForm.get('title')?.touched)" 
+        class="error-message">
+        <small *ngIf="taskForm.get('title')?.errors?.['required']">Campo obrigatório.</small>
+      </div>
+      <div 
+        class="char-counter" 
+        [ngClass]="{'char-limit-exceeded': titleInput.value.length > TASK_TITLE_MAX_LENGTH}">
+        {{ titleInput.value.length }}/{{ TASK_TITLE_MAX_LENGTH }}
+      </div>
+    </div>
+    <button 
+      type="submit" 
+      [disabled]="taskForm.invalid || isLoading || titleInput.value.length > TASK_TITLE_MAX_LENGTH">
+      Adicionar Tarefa
+    </button>
+  </form>
+</div>
