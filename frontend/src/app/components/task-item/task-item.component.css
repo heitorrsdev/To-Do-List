@@ -1,0 +1,83 @@
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.task-item:hover {
+  background-color: #f5f5f5;
+}
+
+.task-item.in-progress {
+  background-color: #fffff5; /* Fundo amarelo claro para tarefas em progresso */
+}
+
+.task-item.completed {
+  background-color: #e9f5e9; /* Fundo verde claro para tarefas concluídas */
+}
+
+.task-item.completed .task-title {
+  text-decoration: line-through;
+  color: #6c757d;
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.task-title {
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+  font-size: 0.9em;
+  word-break: break-all; /* Quebrar palavras longas, para evitar overflow, protegendo o layout */
+}
+
+label.task-title {
+  cursor: pointer; /* Sinalizar que o usuário pode clicar no texto para abrir o diálogo */
+}
+
+.status-circle {
+  width: 18px;
+  height: 18px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 15px;
+  border: 2px solid #e0e0e0;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.status-circle:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
+}
+
+.status-circle.pending {
+  /* Só é aplicado quando as duas classes forem usadas */
+  background: #ffe5e5;
+  /* vermelho suave */
+  border-color: #ffc1c1;
+}
+
+.status-circle.in-progress {
+  background: #fff7cc;
+  /* amarelo pastel */
+  border-color: #ffe9a7;
+}
+
+.status-circle.completed {
+  background: #c8f7c5;
+  /* verde suave */
+  border-color: #8be28b;
+}

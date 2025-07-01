@@ -1,0 +1,14 @@
+<li
+  class="task-item"
+  [class.completed]="task.status === 'completed'"
+  [class.in-progress]="task.status === 'in-progress'">
+  <div class="task-content">
+    <button
+      class="status-circle"
+      [ngClass]="task.status"
+      (click)="cycleStatus(); $event.stopPropagation();"
+      type="button">
+    </button>
+    <label class="task-title" (click)="openTaskDetails()">{{ task.title }}</label>
+  </div>
+</li>
