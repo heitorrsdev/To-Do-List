@@ -1,0 +1,108 @@
+.dialog-content {
+  margin-bottom: 20px;
+}
+
+.task-title {
+  color: #333;
+  display: block;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  word-break: break-word;
+}
+
+.editTitleText {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 1rem;
+  min-height: 60px;
+  overflow: hidden;
+  padding: 12px;
+  resize: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.editTitleText:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+.char-counter {
+  color: #666;
+  font-size: 0.75rem;
+  margin-top: 5px;
+  text-align: right;
+}
+
+.char-limit-exceeded {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+.dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.edit-button,
+.delete-button {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  margin-left: 10px;
+  padding: 5px;
+  transition: color 0.2s;
+}
+
+.edit-button:hover {
+  color: #4a90e2;
+}
+
+.danger-button, .confirm-button, .default-button {
+  padding: 7px 15px;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  color: #dc3545;
+}
+
+.danger-button {
+  background-color: #dc3545;
+}
+
+.danger-button:hover {
+  background-color: #c82333;
+}
+
+.default-button {
+  background-color: #b7b7b7;
+}
+
+.default-button:hover {
+  background-color: #909090;
+}
+
+.confirm-button {
+  background-color: #28a745;
+}
+
+.confirm-button:hover {
+  background-color: #218838;
+}
+
+.confirm-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
