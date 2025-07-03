@@ -11,19 +11,22 @@
   width: 20px;
 }
 
-.status-circle.pending {
-  background-color: #e0e0e0;
-}
-
-.status-circle.in-progress {
-  background-color: #4a90e2;
-}
-
-.status-circle.completed {
-  background-color: #5cb85c;
-}
-
 .status-circle:hover {
   opacity: 0.8;
   transform: scale(1.1);
+}
+
+.status-circle.pending { /* Só é aplicado quando as duas classes forem usadas */
+  background: #ffe5e5; /* vermelho suave */
+  border-color: #ffc1c1;
+}
+
+.status-circle.in-progress {
+  background: #fff7cc; /* amarelo pastel */
+  border-color: #ffe9a7;
+}
+
+.status-circle.completed {
+  background: #c8f7c5; /* verde suave */
+  border-color: #8be28b;
 }
