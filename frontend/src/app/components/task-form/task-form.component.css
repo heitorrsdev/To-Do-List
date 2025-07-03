@@ -1,81 +1,87 @@
 .add-task-section {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   padding: 20px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
 }
 
 h3 {
-  color: #333;
-  font-size: 1.2rem;
   margin-top: 0;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  color: #444;
 }
 
 .form-group {
   margin-bottom: 15px;
-  position: relative;
+}
+
+.form-button-area {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.form-button-area button {
+  margin-left: 20px;
 }
 
 textarea {
-  border: 1px solid #ddd;
   border-radius: 4px;
+  border: 1px solid #ccc;
   box-sizing: border-box;
-  font-family: inherit;
-  font-size: 1rem;
-  min-height: 60px;
-  overflow: hidden;
-  padding: 12px;
-  resize: none;
-  transition: border-color 0.2s;
+  font-size: 1em;
+  outline: none; /* Remover contorno padrão */
+  padding: 10px;
+  resize: none; /* Não permitir redimensionamento */
+  transition: height 0.2s ease;
   width: 100%;
 }
 
-textarea:focus {
-  border-color: #4a90e2;
-  outline: none;
+input.is-invalid, textarea.is-invalid {
+  border-color: #dc3545;
 }
 
-textarea.is-invalid {
-  border-color: #dc3545;
+input.is-invalid:focus, textarea.is-invalid:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
 }
 
 .error-message {
   color: #dc3545;
-  font-size: 0.875rem;
+  font-size: 0.875em;
   margin-top: 5px;
 }
 
+.add-task-section button[type="submit"] {
+  background-color: #007bff;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.add-task-section button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.add-task-section button:not(:disabled):hover {
+  background-color: #0056b3;
+}
+
 .char-counter {
-  color: #666;
-  font-size: 0.75rem;
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
+  font-size: 0.85em;
+  color: #555;
+  margin-top: 2px;
+  text-align: right;
 }
 
 .char-limit-exceeded {
   color: #dc3545;
   font-weight: bold;
-}
-
-button {
-  background-color: #4a90e2;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  cursor: pointer;
-  font-size: 1rem;
-  padding: 10px 15px;
-  transition: background-color 0.2s;
-}
-
-button:hover:not(:disabled) {
-  background-color: #357ae8;
-}
-
-button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
 }
