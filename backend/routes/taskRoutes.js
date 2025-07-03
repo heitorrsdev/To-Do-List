@@ -14,8 +14,9 @@ router.use(authMiddleware);
 
 router.post('/tasks', createTask);
 router.get('/tasks', getTasks);
+router.delete('/tasks/completed', deleteCompletedTask);
+// Rotas com parametro dinâmicos devem ser definidas após as rotas estáticas
 router.put('/tasks/:id', updateTask);
 router.delete('/tasks/:id', deleteTask);
-router.delete('/tasks/completed', deleteCompletedTask);
 
 export default router;
