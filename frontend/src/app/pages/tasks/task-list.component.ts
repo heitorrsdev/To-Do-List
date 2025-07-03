@@ -1,26 +1,35 @@
 import { AuthService } from '../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
-import { DialogComponent } from '../../components/dialog/dialog.component';
-import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TASK_TITLE_MAX_LENGTH } from '../../core/constants';
 import { Task, TaskService, CreateTaskDto } from '../../core/services/task.service';
+
+// Componentes modulares
+import { EmptyStateComponent } from '../../components/empty-state/empty-state.component';
+import { TaskActionsComponent } from '../../components/task-actions/task-actions.component';
+import { TaskDialogComponent } from '../../components/task-dialog/task-dialog.component';
+import { TaskFormComponent } from '../../components/task-form/task-form.component';
+import { TaskItemComponent } from '../../components/task-item/task-item.component';
+import { TaskListHeaderComponent } from '../../components/task-list-header/task-list-header.component';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
   imports: [
     CommonModule,
-    DialogComponent,
-    FormsModule,
     ReactiveFormsModule,
+    EmptyStateComponent,
+    TaskActionsComponent,
+    TaskDialogComponent,
+    TaskFormComponent,
+    TaskItemComponent,
+    TaskListHeaderComponent
   ],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  TASK_TITLE_MAX_LENGTH: number = TASK_TITLE_MAX_LENGTH;
-  addTaskForm!: FormGroup;
   editTaskTitle: string = '';
   errorMessage: string | null = null;
   isEditingTask: boolean = false;
@@ -31,13 +40,9 @@ export class TaskListComponent implements OnInit {
   tasks: Task[] = [];
 
   private authService = inject(AuthService);
-  private fb = inject(FormBuilder);
   private taskService = inject(TaskService);
 
   ngOnInit(): void {
-    this.addTaskForm = this.fb.group({
-      title: ['', Validators.required]
-    });
     this.loadTasks();
   }
 
@@ -45,6 +50,7 @@ export class TaskListComponent implements OnInit {
   loadTasks(): void {
     this.isLoading = true;
     this.errorMessage = null;
+
     this.taskService.getTasks().subscribe({
       next: (tasks) => {
         this.tasks = tasks;
@@ -58,23 +64,13 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  addTask(): void {
-    if (this.addTaskForm.invalid || this.addTaskForm.value.title.trim().length > this.TASK_TITLE_MAX_LENGTH) {
-      this.addTaskForm.markAllAsTouched();
-      return;
-    }
-
+  onTaskSubmitted(newTaskData: CreateTaskDto): void {
     this.isLoading = true;
     this.errorMessage = null;
-    const newTaskData: CreateTaskDto = {
-      title: this.addTaskForm.value.title.trim(),
-      status: 'pending'
-    };
 
     this.taskService.createTask(newTaskData).subscribe({
       next: (newTask) => {
         this.tasks.push(newTask);
-        this.addTaskForm.reset();
         this.isLoading = false;
       },
       error: (err) => {
@@ -85,12 +81,14 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  cycleTaskStatus(task: Task): void {
+  onTaskStatusChange(task: Task): void {
     const statusOrder: Array<'pending' | 'in-progress' | 'completed'> = ['pending', 'in-progress', 'completed'];
     const currentIdx = statusOrder.indexOf(task.status);
     const nextStatus = statusOrder[(currentIdx + 1) % statusOrder.length];
+
     this.isLoading = true;
     this.errorMessage = null;
+
     this.taskService.updateTask(task._id, { status: nextStatus }).subscribe({
       next: (updatedTask) => {
         const index = this.tasks.findIndex(t => t._id === updatedTask._id);
@@ -107,18 +105,32 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  saveEditTask(): void {
-    if (!this.selectedTask ||
-      !this.editTaskTitle.trim() ||
-      this.editTaskTitle.trim() === this.selectedTask.title ||
-      this.editTaskTitle.length > this.TASK_TITLE_MAX_LENGTH
-    ) {
+  onTaskSelected(task: Task): void {
+    this.selectedTask = { ...task };
+    this.editTaskTitle = task.title;
+    this.isTaskDialogOpen = true;
+    this.isEditingTask = false;
+  }
+
+  onEditEnabled(): void {
+    this.isEditingTask = true;
+    this.editTaskTitle = this.selectedTask?.title || '';
+  }
+
+  onEditCancelled(): void {
+    this.isEditingTask = false;
+    this.editTaskTitle = this.selectedTask?.title || '';
+  }
+
+  onEditSaved(newTitle: string): void {
+    if (!this.selectedTask || !newTitle.trim() || newTitle.trim() === this.selectedTask.title || newTitle.length > TASK_TITLE_MAX_LENGTH) {
       return;
     }
 
     this.isLoading = true;
     this.errorMessage = null;
-    this.taskService.updateTask(this.selectedTask._id, { title: this.editTaskTitle.trim() }).subscribe({
+
+    this.taskService.updateTask(this.selectedTask._id, { title: newTitle.trim() }).subscribe({
       next: (updatedTask) => {
         const index = this.tasks.findIndex(t => t._id === updatedTask._id);
         if (index !== -1) {
@@ -135,11 +147,18 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  deleteTask(): void {
+  onDeleteRequested(taskId: string): void {
+    if (!taskId) return;
+    this.taskIdToDelete = taskId;
+  }
+
+  onDeleteConfirmed(): void {
     if (!this.taskIdToDelete) return;
+
     this.isLoading = true;
+
     this.taskService.deleteTask(this.taskIdToDelete).subscribe({
-      next: () => { // atualização pessimista (só atualiza a lista após a exclusão bem-sucedida)
+      next: () => {
         this.tasks = this.tasks.filter(task => task._id !== this.taskIdToDelete);
         this.closeTaskDialog();
         this.isLoading = false;
@@ -152,9 +171,14 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  deleteCompletedTasks(): void {
+  onDeleteCancelled(): void {
+    this.taskIdToDelete = null;
+  }
+
+  onDeleteCompletedTasks(): void {
     this.isLoading = true;
     this.errorMessage = null;
+
     this.taskService.deleteCompletedTasks().subscribe({
       next: () => {
         this.tasks = this.tasks.filter(task => task.status !== 'completed');
@@ -168,64 +192,22 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  // ===== Diálogo de tarefas =====
-  openTaskDialog(task: Task): void {
-    this.selectedTask = { ...task };
-    this.editTaskTitle = task.title;
-    this.isTaskDialogOpen = true;
-    this.isEditingTask = false;
-  }
-
   closeTaskDialog(): void {
     this.isTaskDialogOpen = false;
     this.selectedTask = null;
     this.editTaskTitle = '';
     this.isEditingTask = false;
-  }
-
-  enableEditTask(): void {
-    this.isEditingTask = true;
-    this.editTaskTitle = this.selectedTask?.title || '';
-  }
-
-  cancelEditTask(): void {
-    this.isEditingTask = false;
-    this.editTaskTitle = this.selectedTask?.title || '';
-  }
-
-  showDeleteTaskConfirmation(taskId: string | undefined): void {
-    if (!taskId) return;
-    this.taskIdToDelete = taskId;
-  }
-
-  cancelDeleteTask(): void {
-    if (!this.taskIdToDelete) return;
     this.taskIdToDelete = null;
   }
 
-  // ===== Métodos auxiliares =====
-  getStatusLabel(status: 'pending' | 'in-progress' | 'completed'): string {
-    switch (status) {
-      case 'pending': return 'Pendente';
-      case 'in-progress': return 'Em progresso';
-      case 'completed': return 'Concluída';
-      default: return status;
-    }
-  }
-
-  resizeTextarea(textarea: HTMLTextAreaElement, maxHeight: number = 170): void {
-    textarea.style.height = 'auto';
-    const newHeight = Math.min(textarea.scrollHeight, maxHeight);
-    textarea.style.height = `${newHeight}px`;
-    textarea.style.overflowY = textarea.scrollHeight > maxHeight ? 'auto' : 'hidden';
+  hasCompletedTasks(): boolean {
+    return this.tasks.some(task => task.status === 'completed');
   }
 
   trackByTaskId(index: number, task: Task): string {
-    // Os parâmetros são passados automaticamente pelo Angular em uma trackByFn
     return task._id;
   }
 
-  // ===== Logout =====
   logout(): void {
     this.authService.logout();
   }

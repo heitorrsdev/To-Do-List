@@ -1,44 +1,21 @@
 <div class="task-list-container">
-  <header class="task-header">
-    <h2>Minhas Tarefas</h2>
-    <button (click)="logout()" class="danger-button">Logout</button>
-  </header>
+  <!-- Cabeçalho da lista de tarefas -->
+  <app-task-list-header (logoutClicked)="logout()"></app-task-list-header>
 
-  <!-- Seção de adição de nova tarefa -->
-  <div class="add-task-section">
-    <h3>Adicionar Nova Tarefa</h3>
-    <form [formGroup]="addTaskForm" (ngSubmit)="addTask()" novalidate>
-      <div class="form-group">
-        <textarea
-          type="text"
-          id="title"
-          formControlName="title"
-          placeholder="O que precisa ser feito?"
-          [ngClass]="{ 'is-invalid': addTaskForm.get('title')?.invalid && (addTaskForm.get('title')?.dirty || addTaskForm.get('title')?.touched) }"
-          #titleInput
-          (input)="resizeTextarea(titleInput)"
-          (click)="resizeTextarea(titleInput)"
-          required>
-        </textarea>
+  <!-- Formulário de adição de tarefas -->
+  <app-task-form
+    [isLoading]="isLoading"
+    (taskSubmitted)="onTaskSubmitted($event)">
+  </app-task-form>
 
-        <div
-          *ngIf="addTaskForm.get('title')?.invalid && (addTaskForm.get('title')?.dirty || addTaskForm.get('title')?.touched)"
-          class="error-message"
-        >
-          <small *ngIf="addTaskForm.get('title')?.errors?.['required']">Campo obrigatório.</small>
-        </div>
+  <!-- Ações em lote para tarefas -->
+  <app-task-actions
+    [hasCompletedTasks]="hasCompletedTasks()"
+    [isLoading]="isLoading"
+    (deleteCompletedTasks)="onDeleteCompletedTasks()">
+  </app-task-actions>
 
-        <div class="char-counter" [ngClass]="{'char-limit-exceeded': titleInput.value.length > TASK_TITLE_MAX_LENGTH}">
-          {{ titleInput.value.length }}/{{ TASK_TITLE_MAX_LENGTH }}
-        </div>
-      </div>
-
-      <button type="submit" [disabled]="addTaskForm.invalid || isLoading || titleInput.value.length > TASK_TITLE_MAX_LENGTH">
-        Adicionar Tarefa
-      </button>
-    </form>
-  </div>
-
+  <!-- Seção de lista de tarefas -->
   <div class="task-items-section">
     <h3>Lista de Tarefas</h3>
 
@@ -46,105 +23,35 @@
     <div *ngIf="errorMessage" class="error-message api-error">{{ errorMessage }}</div>
 
     <ul *ngIf="!isLoading || tasks.length > 0" class="task-list">
-      <li *ngIf="!isLoading && tasks.length === 0" class="no-tasks-message">
-        Nenhuma tarefa encontrada. Adicione uma nova tarefa acima!
-      </li>
-      <!-- Tarefas -->
-      <li
+      <!-- Estado vazio -->
+      <app-empty-state
+        *ngIf="!isLoading && tasks.length === 0">
+      </app-empty-state>
+
+      <!-- Lista de tarefas -->
+      <app-task-item
         *ngFor="let task of tasks; trackBy: trackByTaskId"
-        class="task-item"
-        [class.completed]="task.status === 'completed'"
-        [class.in-progress]="task.status === 'in-progress'"
-      >
-        <div class="task-content">
-          <button
-            class="status-circle"
-            [ngClass]="task.status"
-            (click)="cycleTaskStatus(task); $event.stopPropagation();"
-            type="button">
-          </button>
-          <label class="task-title" (click)="openTaskDialog(task)">{{ task.title }}</label>
-        </div>
-      </li>
+        [task]="task"
+        (statusChange)="onTaskStatusChange(task)"
+        (taskSelected)="onTaskSelected(task)">
+      </app-task-item>
     </ul>
   </div>
 
-  <!-- ===== MODAL DE TAREFAS ==== -->
-  <app-dialog [open]="isTaskDialogOpen && !!selectedTask" (closed)="closeTaskDialog()">
-    <div *ngIf="!isEditingTask && !taskIdToDelete" header>
-
-      <button (click)="enableEditTask()" class="edit-button" title="Editar Tarefa">
-        <!-- Icone de lapis -->
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z" fill="currentColor" />
-          <path
-            d="M20.71 7.04a1.003 1.003 0 0 0 0-1.42l-2.34-2.34a1.003 1.003 0 0 0-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.82z"
-            fill="currentColor" />
-        </svg>
-      </button>
-
-      <button
-        (click)="showDeleteTaskConfirmation(selectedTask?._id)"
-        class="delete-button"
-        title="Excluir Tarefa"
-      >
-        <!-- Icone de lixeira -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash">
-          <polyline points="3 6 5 6 21 6"></polyline>
-          <path d="M19 6L17.5 19a2 2 0 0 1-2 2H8.5a2 2 0 0 1-2-2L5 6"></path>
-          <path d="M10 11v6"></path>
-          <path d="M14 11v6"></path>
-          <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path>
-        </svg>
-      </button>
-    </div>
-
-    <div content>
-      <div class="dialog-content">
-        <span *ngIf="!isEditingTask && !taskIdToDelete" class="task-title">{{ selectedTask?.title }}</span>
-
-        <div *ngIf="isEditingTask">
-          <textarea
-            [(ngModel)]="editTaskTitle"
-            rows="2"
-            class="editTitleText"
-            #editTaskInput
-            (input)="resizeTextarea(editTaskInput)"
-            (click)="resizeTextarea(editTaskInput)">
-          </textarea>
-
-          <div class="char-counter" [ngClass]="{'char-limit-exceeded': editTaskInput.value.length > TASK_TITLE_MAX_LENGTH}">
-            {{ editTaskInput.value.length }}/{{ TASK_TITLE_MAX_LENGTH }}
-          </div>
-        </div>
-      </div>
-
-      <div class="dialog-footer" *ngIf="isEditingTask">
-        <button type="button" (click)="cancelEditTask()" class="danger-button">Cancelar</button>
-        <button
-          type="button"
-          (click)="saveEditTask()"
-          class="confirm-button"
-          [disabled]="!editTaskTitle.trim() || editTaskTitle.trim() === selectedTask?.title || isLoading || editTaskTitle.length > TASK_TITLE_MAX_LENGTH"
-        >
-          Salvar
-        </button>
-      </div>
-
-      <div *ngIf="taskIdToDelete">
-        <span>Tem certeza de que deseja excluir essa tarefa? Isso não pode ser desfeito.</span>
-        <div class="dialog-footer">
-          <button type="button" (click)="cancelDeleteTask()" class="default-button">
-            Cancelar
-          </button>
-
-          <button type="button" (click)="deleteTask()" class="danger-button">
-            Excluir
-          </button>
-        </div>
-      </div>
-    </div>
-  </app-dialog>
-
+  <!-- Diálogo de tarefas -->
+  <app-task-dialog
+    [isOpen]="isTaskDialogOpen"
+    [task]="selectedTask"
+    [isLoading]="isLoading"
+    [isEditing]="isEditingTask"
+    [taskIdToDelete]="taskIdToDelete"
+    [editTaskTitle]="editTaskTitle"
+    (closed)="closeTaskDialog()"
+    (editEnabled)="onEditEnabled()"
+    (editCancelled)="onEditCancelled()"
+    (editSaved)="onEditSaved($event)"
+    (deleteRequested)="onDeleteRequested($event)"
+    (deleteConfirmed)="onDeleteConfirmed()"
+    (deleteCancelled)="onDeleteCancelled()">
+  </app-task-dialog>
 </div>

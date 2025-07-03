@@ -8,21 +8,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilização do cabeçalho */
-.task-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #eee;
-}
-
-.task-header h2 {
-  margin: 0;
-  color: #333;
-}
-
+/* Estilos gerais de botões */
 button:disabled {
   background-color: #cccccc;
   color: #888888;
@@ -37,152 +23,14 @@ button:disabled:hover {
   opacity: 1;
 }
 
-.default-button {
-  padding: 7px 15px;
-  color: white;
-  background-color: #6c757d;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 0.9em;
-  transition: background-color 0.3s ease;
-}
-
-.default-button:hover {
-  background-color: #5a6268;
-}
-
-.danger-button,
-.confirm-button {
-  padding: 7px 15px;
-  color: white;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 0.9em;
-  transition: background-color 0.3s ease;
-}
-
-.danger-button {
-  background-color: #dc3545;
-}
-
-.danger-button:hover {
-  background-color: #c82333;
-}
-
-.confirm-button {
-  background-color: #28a745;
-}
-
-.confirm-button:hover {
-  background-color: #218838;
-}
-
-/* Seção de adicionar tarefa */
-.add-task-section {
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-}
-
-.add-task-section h3 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  color: #444;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-button-area {
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  margin-top: 18px;
-}
-
-.form-button-area button {
-  margin-left: 20px;
-}
-
-input[type="text"],
-textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-size: 1em;
-}
-
-textarea {
-  transition: height 0.2s ease;
-  outline: none;
-  /* Remover contorno padrão */
-  resize: none;
-  /* Não permitir redimensionamento */
-}
-
-input.is-invalid,
-textarea.is-invalid {
-  border-color: #dc3545;
-}
-
-input.is-invalid:focus,
-textarea.is-invalid:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
-}
-
-.error-message {
-  color: #dc3545;
-  font-size: 0.875em;
-  margin-top: 5px;
-}
-
-.api-error {
-  margin-top: 15px;
-  padding: 10px;
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
-  color: #721c24;
-  border-radius: 4px;
-  text-align: center;
-}
-
-.add-task-section button[type="submit"] {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s ease;
-}
-
-.add-task-section button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
-.add-task-section button:not(:disabled):hover {
-  background-color: #0056b3;
-}
-
 /* Seção de itens de tarefa */
 .task-items-section h3 {
   margin-bottom: 15px;
   color: #444;
 }
 
-.loading-message,
-.no-tasks-message {
-  /* Centralizar texto para mensagens de carregamento e ausência de tarefas */
+.loading-message {
+  /* Centralizar texto para mensagens de carregamento */
   text-align: center;
   color: #777;
   padding: 20px;
@@ -197,147 +45,12 @@ textarea.is-invalid:focus {
   margin: 0;
 }
 
-.task-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  margin-bottom: 10px;
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
+.api-error {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
   border-radius: 4px;
-  transition: background-color 0.2s ease;
-}
-
-.task-item:hover {
-  background-color: #f5f5f5;
-}
-
-.task-item.in-progress {
-  background-color: #fffff5;
-  /* Fundo amarelo claro para tarefas em progresso */
-}
-
-.task-item.completed {
-  background-color: #e9f5e9;
-  /* Fundo verde claro para tarefas concluídas */
-}
-
-.task-item.completed .task-title {
-  text-decoration: line-through;
-  color: #6c757d;
-}
-
-.task-content {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-}
-
-.task-checkbox {
-  margin-right: 15px;
-  cursor: pointer;
-  transform: scale(1.2);
-  /* Deixar o checkbox um pouco maior */
-}
-
-.task-title {
-  font-weight: 500;
-  color: #333;
-  margin: 0;
-  font-size: 0.9em;
-  word-break: break-all;
-  /* Quebrar palavras longas, para evitar overflow, protegendo o layout */
-}
-
-label.task-title {
-  cursor: pointer;
-  /* Sinalizar que o usuário pode clicar no texto para abrir o diálogo */
-}
-
-.edit-button {
-  background: none;
-  border: none;
-  color: #124238;
-  font-size: 1.2em;
-  cursor: pointer;
-  padding: 0 5px;
-  line-height: 1;
-  transition: color 0.2s ease;
-}
-
-.edit-button:hover {
-  color: #0b2e1d;
-}
-
-.delete-button {
-  background: none;
-  border: none;
-  color: #dc3545;
-  font-size: 1.5em;
-  cursor: pointer;
-  padding: 0 5px;
-  line-height: 1;
-  transition: color 0.2s ease;
-}
-
-.delete-button:hover {
-  color: #a51826;
-}
-
-.dialog-footer {
-  display: flex;
-  justify-content: flex-end;
-  gap: 16px;
-  margin-top: 18px;
-  padding-top: 12px;
-}
-
-.status-circle {
-  width: 18px;
-  height: 18px;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 15px;
-  border: 2px solid #e0e0e0;
-  cursor: pointer;
-  transition: box-shadow 0.2s;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-}
-
-.status-circle:hover {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transform: scale(1.1);
-}
-
-.status-circle.pending {
-  /* Só é aplicado quando as duas classes forem usadas */
-  background: #ffe5e5;
-  /* vermelho suave */
-  border-color: #ffc1c1;
-}
-
-.status-circle.in-progress {
-  background: #fff7cc;
-  /* amarelo pastel */
-  border-color: #ffe9a7;
-}
-
-.status-circle.completed {
-  background: #c8f7c5;
-  /* verde suave */
-  border-color: #8be28b;
-}
-
-.char-counter {
-  font-size: 0.85em;
-  color: #555;
-  margin-top: 2px;
-  text-align: right;
-}
-
-.char-limit-exceeded {
-  color: #dc3545;
-  font-weight: bold;
+  text-align: center;
 }
