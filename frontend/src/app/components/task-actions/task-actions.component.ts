@@ -17,4 +17,8 @@ export class TaskActionsComponent {
   onDeleteCompletedTasks(): void {
     this.deleteCompletedTasks.emit();
   }
+
+  onDeleteAllTasks(): void {
+    this.deleteAllTasks.emit();
+  }
 }
