@@ -13,6 +13,9 @@ export class TaskActionsComponent {
   @Input() isLoading = false;
 
   @Output() deleteCompletedTasks = new EventEmitter<void>();
+  @Output() deleteAllTasks = new EventEmitter<void>();
+
+  isMenuOpen = false;
 
   onDeleteCompletedTasks(): void {
     this.deleteCompletedTasks.emit();

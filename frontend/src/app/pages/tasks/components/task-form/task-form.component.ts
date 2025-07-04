@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CreateTaskDto } from '../../core/services/task.service';
-import { TASK_TITLE_MAX_LENGTH } from '../../core/constants';
+import { CreateTaskDto } from '../../../../core/services/task.service';
+import { TASK_TITLE_MAX_LENGTH } from '../../../../core/constants';
 
 @Component({
   selector: 'app-task-form',

@@ -6,12 +6,12 @@ import { TASK_TITLE_MAX_LENGTH } from '../../core/constants';
 import { Task, TaskService, CreateTaskDto } from '../../core/services/task.service';
 
 // Componentes modulares
-import { EmptyStateComponent } from '../../components/empty-state/empty-state.component';
-import { TaskActionsComponent } from '../../components/task-actions/task-actions.component';
-import { TaskDialogComponent } from '../../components/task-dialog/task-dialog.component';
-import { TaskFormComponent } from '../../components/task-form/task-form.component';
-import { TaskItemComponent } from '../../components/task-item/task-item.component';
-import { TaskListHeaderComponent } from '../../components/task-list-header/task-list-header.component';
+import { EmptyStateComponent } from './components/empty-state/empty-state.component';
+import { TaskActionsComponent } from './components/task-actions/task-actions.component';
+import { TaskDialogComponent } from './components/task-dialog/task-dialog.component';
+import { TaskFormComponent } from './components/task-form/task-form.component';
+import { TaskItemComponent } from './components/task-item/task-item.component';
+import { TaskListHeaderComponent } from './components/task-list-header/task-list-header.component';
 
 @Component({
   selector: 'app-task-list',

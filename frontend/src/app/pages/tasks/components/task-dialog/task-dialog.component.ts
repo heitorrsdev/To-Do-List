@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, ViewChild, ElementRef } from '@angular/core';
-import { DialogComponent } from '../../components/dialog/dialog.component';
+import { DialogComponent } from '../dialog/dialog.component';
 import { FormsModule } from '@angular/forms';
-import { TASK_TITLE_MAX_LENGTH } from '../../core/constants';
-import { Task } from '../../core/services/task.service';
+import { TASK_TITLE_MAX_LENGTH } from '../../../../core/constants';
+import { Task } from '../../../../core/services/task.service';
 
 @Component({
   selector: 'app-task-dialog',
