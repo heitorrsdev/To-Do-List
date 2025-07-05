@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -23,5 +23,14 @@ export class TaskActionsComponent {
 
   onDeleteAllTasks(): void {
     this.deleteAllTasks.emit();
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const clickedInside = target.closest('.dropdown');
+    if (!clickedInside) {
+      this.isMenuOpen = false;
+    }
   }
 }
