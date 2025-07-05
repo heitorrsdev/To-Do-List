@@ -7,9 +7,8 @@
     <ul class="dropdown-menu" *ngIf="isMenuOpen">
       <li>
         <button
-          *ngIf="hasCompletedTasks"
           (click)="onDeleteCompletedTasks()"
-          [disabled]="isLoading"
+          [disabled]="isLoading || !hasCompletedTasks"
           class="action-button">
           Excluir tarefas concluídas
         </button>
