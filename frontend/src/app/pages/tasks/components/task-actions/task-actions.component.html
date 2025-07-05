@@ -1,11 +1,15 @@
 <div class="task-actions">
   <div class="dropdown">
-    <p class="" (click)="isMenuOpen = !isMenuOpen" aria-label="Abrir menu de ações">
+    <div class="" (click)="isMenuOpen = !isMenuOpen" aria-label="Abrir menu de ações">
       <p>☰</p>
-    </button>
+    </div>
+
     <ul class="dropdown-menu" *ngIf="isMenuOpen">
       <li>
-        <button *ngIf="hasCompletedTasks" (click)="onDeleteCompletedTasks()" [disabled]="isLoading"
+        <button
+          *ngIf="hasCompletedTasks"
+          (click)="onDeleteCompletedTasks()"
+          [disabled]="isLoading"
           class="action-button">
           Excluir tarefas concluídas
         </button>
