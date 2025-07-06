@@ -89,7 +89,7 @@ export const deleteTask = async (req, res) => {
 };
 
 // Delete all completed tasks for a user
-export const deleteCompletedTask = async (req, res) => {
+export const deleteCompletedTasks = async (req, res) => {
   try {
     const userId = req.user.id;
 

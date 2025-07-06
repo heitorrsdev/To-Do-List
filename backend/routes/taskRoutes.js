@@ -2,7 +2,7 @@ import authMiddleware from '../middlewares/authMiddleaWare.js';
 import express from 'express';
 import {
   createTask,
-  deleteCompletedTask,
+  deleteCompletedTasks,
   deleteTask,
   getTasks,
   updateTask,
