@@ -105,3 +105,21 @@ export const deleteCompletedTasks = async (req, res) => {
     res.status(500).json({ message: 'Error deleting completed tasks' });
   }
 };
+
+// Delete all tasks for a user
+export const deleteAllTasks = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const result = await Task.deleteMany({ user: userId });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: 'No tasks found' });
+    }
+
+    res.status(200).json({ message: `${result.deletedCount} tasks deleted successfully` });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error deleting all tasks' });
+  }
+};
