@@ -1,6 +1,5 @@
-import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 @Component({
   selector: 'app-task-actions',
   standalone: true,
@@ -19,10 +18,12 @@ export class TaskActionsComponent {
 
   onDeleteCompletedTasks(): void {
     this.deleteCompletedTasks.emit();
+    this.isMenuOpen = false; // Fecha o menu após a ação
   }
 
   onDeleteAllTasks(): void {
     this.deleteAllTasks.emit();
+    this.isMenuOpen = false;
   }
 
   @HostListener('document:click', ['$event'])
