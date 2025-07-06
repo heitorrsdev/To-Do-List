@@ -1,34 +1,28 @@
 .task-actions {
   display: flex;
   justify-content: flex-end;
-  margin: 15px 0;
 }
 
 button {
-  padding: 7px 15px;
-  color: #dc3545;
+  align-items: center;
   background-color: transparent;
-  border: 1px solid #dc3545;
   border-radius: 15px;
   cursor: pointer;
-  font-size: 0.9em;
-  transition: all 0.3s ease;
   display: flex;
-  align-items: center;
+  font-size: 0.9em;
   gap: 5px;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #dc3545;
-  color: white;
+  background-color: #f4f4f4;
 }
 
 button:disabled {
-  background-color: #cccccc;
+  border-color: #cccccc;
   color: #888888;
   cursor: not-allowed;
   opacity: 0.7;
-  border-color: #cccccc;
 }
 
 .dropdown {
@@ -36,44 +30,41 @@ button:disabled {
 }
 
 .dropdown-menu {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  list-style: none;
+  min-width: 200px;
+  padding: 8px 0;
   position: absolute;
   right: 0;
   top: 45px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  min-width: 200px;
   z-index: 10;
-  padding: 8px 0;
-  list-style: none;
 }
 
 .dropdown-menu li {
   padding: 0 16px;
 }
 
-.action-button {
-  width: 100%;
-  justify-content: flex-start;
-  border: none;
-  background: none;
-  color: #dc3545;
-  padding: 10px 0;
-  font-size: 1em;
-  display: flex;
+.hamburger-btn {
   align-items: center;
-  gap: 8px;
+  border-radius: 50%;
   cursor: pointer;
+  display: flex;
+  font-size: 25px;
+  height: 60px;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  width: 60px;
+}
+
+.hamburger-btn:hover {
+  background-color: #efeeee;
+}
+
+.action-button {
   border-radius: 6px;
-  transition: background 0.2s;
-}
-
-.action-button:hover:not(:disabled) {
-  background: #f8d7da;
-}
-
-.action-button:disabled {
-  color: #cccccc;
-  cursor: not-allowed;
+  border: none;
+  font-size: 1em;
+  padding: 10px 5px;
 }
