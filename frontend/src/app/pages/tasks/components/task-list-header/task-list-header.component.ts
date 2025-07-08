@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { AuthService } from '../../../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-task-list-header',
@@ -9,9 +11,10 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./task-list-header.component.css']
 })
 export class TaskListHeaderComponent {
-  @Output() logoutClicked = new EventEmitter<void>();
+
+  private authService = inject(AuthService);
 
   logout(): void {
-    this.logoutClicked.emit();
+    this.authService.logout();
   }
 }

@@ -1,4 +1,3 @@
-import { AuthService } from '../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -223,9 +222,5 @@ export class TaskListComponent implements OnInit {
 
   trackByTaskId(index: number, task: Task): string {
     return task._id;
-  }
-
-  logout(): void {
-    this.authService.logout();
   }
 }
