@@ -1,0 +1,18 @@
+.footer {
+  border-radius: 20px 20px 0px 0px;
+  border-top: 1px solid #ddd;
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 3rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}

@@ -6,6 +6,7 @@ import { Task, TaskService, CreateTaskDto } from '../../core/services/task.servi
 
 // Componentes modulares
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { TaskActionsComponent } from './components/task-actions/task-actions.component';
 import { TaskDialogComponent } from './components/task-dialog/task-dialog.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
@@ -17,8 +18,9 @@ import { TaskListHeaderComponent } from './components/task-list-header/task-list
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     EmptyStateComponent,
+    FooterComponent,
+    ReactiveFormsModule,
     TaskActionsComponent,
     TaskDialogComponent,
     TaskFormComponent,
@@ -38,7 +40,6 @@ export class TaskListComponent implements OnInit {
   taskIdToDelete: string | null = null;
   tasks: Task[] = [];
 
-  private authService = inject(AuthService);
   private taskService = inject(TaskService);
 
   ngOnInit(): void {
