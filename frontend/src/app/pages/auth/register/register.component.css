@@ -1,6 +1,6 @@
 .register-container {
     max-width: 450px;
-    /* Slightly wider for confirm password */
+    /* Um pouco maior que o padrão */
     margin: 50px auto;
     padding: 30px;
     border: 1px solid #ccc;
