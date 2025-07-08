@@ -192,6 +192,23 @@ export class TaskListComponent implements OnInit {
     });
   }
 
+  onDeleteAllTasks(): void {
+    this.isLoading = true;
+    this.errorMessage = null;
+
+    this.taskService.deleteAllTasks().subscribe({
+      next: () => {
+        this.tasks = [];
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.errorMessage = 'Erro ao excluir todas as tarefas.';
+        console.error('Failed to delete all tasks:', err);
+        this.isLoading = false;
+      }
+    });
+  }
+
   closeTaskDialog(): void {
     this.isTaskDialogOpen = false;
     this.selectedTask = null;

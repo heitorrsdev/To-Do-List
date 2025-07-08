@@ -12,7 +12,8 @@
   <app-task-actions
     [hasCompletedTasks]="hasCompletedTasks()"
     [isLoading]="isLoading"
-    (deleteCompletedTasks)="onDeleteCompletedTasks()">
+    (deleteCompletedTasks)="onDeleteCompletedTasks()"
+    (deleteAllTasks)="onDeleteAllTasks()">
   </app-task-actions>
 
   <!-- Seção de lista de tarefas -->

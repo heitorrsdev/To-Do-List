@@ -13,6 +13,12 @@
           Excluir tarefas concluídas
         </button>
       </li>
+
+      <li>
+        <button (click)="onDeleteAllTasks()" [disabled]="isLoading" class="action-button">
+          Excluir todas as tarefas
+        </button>
+      </li>
     </ul>
   </div>
 </div>

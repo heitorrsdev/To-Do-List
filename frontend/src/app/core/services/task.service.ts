@@ -62,5 +62,10 @@ export class TaskService {
     const url = `${this.apiUrl}/completed`;
     return this.http.delete<{ message: string }>(url);
   }
-}
 
+  // Deletar todas as tarefas do usuário logado
+  deleteAllTasks(): Observable<{ message: string }> {
+    const url = `${this.apiUrl}/all`;
+    return this.http.delete<{ message: string }>(url);
+  }
+}
