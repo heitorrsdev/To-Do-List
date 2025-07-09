@@ -77,6 +77,7 @@ input.is-invalid:focus, textarea.is-invalid:focus {
 .char-counter {
   font-size: 0.85em;
   color: #555;
+  margin-left: auto; /* Alinha o contador à direita sempre */
   margin-top: 2px;
   text-align: right;
 }
@@ -84,4 +85,9 @@ input.is-invalid:focus, textarea.is-invalid:focus {
 .char-limit-exceeded {
   color: #dc3545;
   font-weight: bold;
+}
+
+.form-info {
+  display: flex;
+  align-items: center;
 }

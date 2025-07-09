@@ -13,13 +13,15 @@
         (click)="resizeTextarea(titleInput)" 
         required>
       </textarea>
-      <div 
-        *ngIf="taskForm.get('title')?.invalid && (taskForm.get('title')?.dirty || taskForm.get('title')?.touched)" 
+    <div class="form-info">
+      <div
+        *ngIf="taskForm.get('title')?.invalid && (taskForm.get('title')?.dirty || taskForm.get('title')?.touched)"
         class="error-message">
         <small *ngIf="taskForm.get('title')?.errors?.['required']">Campo obrigatório.</small>
       </div>
-      <div 
-        class="char-counter" 
+
+      <div
+        class="char-counter"
         [ngClass]="{'char-limit-exceeded': titleInput.value.length > TASK_TITLE_MAX_LENGTH}">
         {{ titleInput.value.length }}/{{ TASK_TITLE_MAX_LENGTH }}
       </div>
