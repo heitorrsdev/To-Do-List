@@ -54,6 +54,7 @@ button:disabled {
   font-size: 25px;
   height: 60px;
   justify-content: center;
+  margin-bottom: 10px;
   transition: background-color 0.3s ease;
   width: 60px;
 }
