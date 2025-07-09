@@ -18,7 +18,6 @@
 
   <!-- Seção de lista de tarefas -->
   <div class="task-items-section">
-    <h3>Lista de Tarefas</h3>
 
     <div *ngIf="isLoading && tasks.length === 0" class="loading-message">Carregando tarefas...</div>
     <div *ngIf="errorMessage" class="error-message api-error">{{ errorMessage }}</div>
