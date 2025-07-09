@@ -13,7 +13,7 @@ import {
 } from '@angular/forms';
 
 // Validador personalizado para correspondência de senhas
-export function passwordMatchValidator(): ValidatorFn {
+function passwordMatchValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const password = control.get('password');
     const confirmPassword = control.get('confirmPassword');
