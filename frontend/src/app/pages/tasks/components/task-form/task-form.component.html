@@ -3,6 +3,7 @@
 
   <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="form-group">
+      <label>
         <input
           [ngClass]="{ 'is-invalid': taskForm.get('title')?.invalid && (taskForm.get('title')?.dirty || taskForm.get('title')?.touched) }"
           #titleInput
@@ -13,6 +14,7 @@
           required
           type="text"
         />
+      </label>
 
       <button
         type="submit"
