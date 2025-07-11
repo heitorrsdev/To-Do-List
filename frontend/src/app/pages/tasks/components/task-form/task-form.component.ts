@@ -45,11 +45,4 @@ export class TaskFormComponent implements OnInit {
     this.taskSubmitted.emit(newTaskData);
     this.taskForm.reset();
   }
-
-  resizeTextarea(textarea: HTMLTextAreaElement, maxHeight: number = 170): void {
-    textarea.style.height = 'auto';
-    const newHeight = Math.min(textarea.scrollHeight, maxHeight);
-    textarea.style.height = `${newHeight}px`;
-    textarea.style.overflowY = textarea.scrollHeight > maxHeight ? 'auto' : 'hidden';
-  }
 }
