@@ -13,6 +13,23 @@
         (click)="resizeTextarea(titleInput)" 
         required>
       </textarea>
+
+      <button
+        type="submit"
+        [disabled]="taskForm.invalid || isLoading || titleInput.value.length > TASK_TITLE_MAX_LENGTH"
+        title="Adicionar Tarefa">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="#444">
+          <rect x="10" y="4" width="4" height="16" rx="2" ry="2" />
+          <rect x="4" y="10" width="16" height="4" rx="2" ry="2" />
+        </svg>
+
+      </button>
+
     <div class="form-info">
       <div
         *ngIf="taskForm.get('title')?.invalid && (taskForm.get('title')?.dirty || taskForm.get('title')?.touched)"
@@ -26,10 +43,5 @@
         {{ titleInput.value.length }}/{{ TASK_TITLE_MAX_LENGTH }}
       </div>
     </div>
-    <button 
-      type="submit" 
-      [disabled]="taskForm.invalid || isLoading || titleInput.value.length > TASK_TITLE_MAX_LENGTH">
-      Adicionar Tarefa
-    </button>
   </form>
 </div>
