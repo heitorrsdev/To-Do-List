@@ -58,7 +58,7 @@ input.is-invalid:focus, textarea.is-invalid:focus {
 button[type="submit"] {
   align-items: center;
   aspect-ratio: 1;
-  background-color: #007bff;
+  background-color: #59ca5d; /* Verde claro */
   border-radius: 50%;
   border: none;
   bottom: 10px;
@@ -83,7 +83,7 @@ button:disabled {
 }
 
 button:not(:disabled):hover {
-  background-color: #0056b3;
+  background-color: #62b160;
 }
 
 .char-counter {
