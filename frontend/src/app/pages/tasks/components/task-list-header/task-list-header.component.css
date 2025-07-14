@@ -1,7 +1,6 @@
 .task-header {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 25px;
   padding-bottom: 15px;
 }
 
