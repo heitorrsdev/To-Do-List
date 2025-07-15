@@ -60,7 +60,7 @@ button:disabled {
 }
 
 .hamburger-btn:hover {
-  background-color: #efeeee;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .action-button {
