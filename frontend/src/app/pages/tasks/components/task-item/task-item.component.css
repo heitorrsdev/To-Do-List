@@ -35,7 +35,7 @@
 
 .task-title {
   font-weight: 500;
-  color: #333;
+  color: #000;
   margin: 0;
   font-size: 0.9em;
   word-break: break-all; /* Quebrar palavras longas, para evitar overflow, protegendo o layout */

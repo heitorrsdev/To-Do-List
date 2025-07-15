@@ -7,7 +7,7 @@
 h3 {
   margin-top: 0;
   margin-bottom: 20px;
-  color: #444;
+  color: #222;
 }
 
 .form-group {
@@ -88,7 +88,7 @@ button:not(:disabled):hover {
 
 .char-counter {
   font-size: 0.85em;
-  color: #555;
+  color: #222;
   margin-left: auto; /* Alinha o contador à direita sempre */
   margin-top: 2px;
   text-align: right;
