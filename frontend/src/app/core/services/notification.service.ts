@@ -8,6 +8,7 @@ import { Notification, NotificationType } from '../models/notification.model';
 export class NotificationService {
   private notificationsSubject = new BehaviorSubject<Notification[]>([]);
   public notifications$: Observable<Notification[]> = this.notificationsSubject.asObservable();
+  private defaultErrorMessage = 'Ocorreu um erro inesperado. Atualize a página ou contate o suporte.';
 
   // Método genérico para adicionar notificações
   addNotification(type: NotificationType, message: string, duration: number = 5000): string {
@@ -26,7 +27,7 @@ export class NotificationService {
   }
 
   // Métodos específicos para cada tipo de notificação
-  showError(message: string, duration: number = 5000): string {
+  showError(message: string = this.defaultErrorMessage, duration: number = 5000): string {
     return this.addNotification('error', message, duration);
   }
 
