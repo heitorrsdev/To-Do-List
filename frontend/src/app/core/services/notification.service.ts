@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 import { Notification, NotificationType } from '../models/notification.model';
 
 @Injectable({
@@ -8,8 +8,6 @@ import { Notification, NotificationType } from '../models/notification.model';
 export class NotificationService {
   private notificationsSubject = new BehaviorSubject<Notification[]>([]);
   public notifications$: Observable<Notification[]> = this.notificationsSubject.asObservable();
-
-  constructor() {}
 
   // Método genérico para adicionar notificações
   addNotification(type: NotificationType, message: string, duration: number = 5000): string {

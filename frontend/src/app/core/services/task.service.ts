@@ -33,8 +33,6 @@ export class TaskService {
   // URL base para os endpoints da API de tarefas
   private apiUrl = `${environment.apiUrl}/tasks`;
 
-  constructor() { }
-
   // Buscar todas as tarefas do usuário logado
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(this.apiUrl);
