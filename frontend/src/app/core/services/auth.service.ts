@@ -1,9 +1,9 @@
 import { Credentials } from '../models/credentials.model';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 
 interface RegisterResponse {
@@ -21,7 +21,8 @@ interface LoginResponse {
 export class AuthService {
   private readonly apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  private http = inject(HttpClient);
+  private router = inject(Router);
 
   login(credentials: Credentials): Observable<LoginResponse> {
     const { email, password } = credentials;
