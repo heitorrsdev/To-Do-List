@@ -18,7 +18,6 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup; // o ! indica que o campo será inicializado posteriormente
-  errorMessage: string | null = null;
 
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
@@ -32,7 +31,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.errorMessage = null; // Reseta a messagem de erro
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched(); // Marca todos os campos como tocados para exibir erros de validação
       return;
@@ -44,11 +42,6 @@ export class LoginComponent implements OnInit {
       next: () => {
         // Navega para a página inicial após o login bem-sucedido
         this.router.navigate(['/']);
-      },
-      error: (err) => {
-        // Mostra a mensagem de erro
-        this.errorMessage = err.error?.message || 'Falha no login. Verifique suas credenciais.';
-        console.error('Login failed:', err);
       }
     });
   }

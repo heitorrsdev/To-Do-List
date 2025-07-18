@@ -45,15 +45,6 @@ input.is-invalid {
   margin-top: 5px;
 }
 
-.api-error {
-  margin-bottom: 15px;
-  padding: 10px;
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
-  color: #721c24;
-  border-radius: 4px;
-}
-
 button {
   width: 100%;
   padding: 12px;

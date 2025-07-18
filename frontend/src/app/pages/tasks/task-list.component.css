@@ -45,13 +45,3 @@ button:disabled:hover {
   padding: 0;
   margin: 0;
 }
-
-.api-error {
-  margin-top: 15px;
-  padding: 10px;
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
-  color: #721c24;
-  border-radius: 4px;
-  text-align: center;
-}

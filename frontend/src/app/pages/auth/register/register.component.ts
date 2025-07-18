@@ -38,7 +38,6 @@ function passwordMatchValidator(): ValidatorFn {
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
-  errorMessage: string | null = null;
   successMessage: string | null = null;
 
   private fb = inject(FormBuilder);
@@ -54,7 +53,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.errorMessage = null;
     this.successMessage = null;
 
     if (this.registerForm.invalid) {
@@ -74,7 +72,6 @@ export class RegisterComponent implements OnInit {
         }, 2000); // Redireciona após 2 segundos
       },
       error: (err) => {
-        this.errorMessage = err.error?.message || 'Falha no registro. Tente novamente.';
         console.error('Registration failed:', err);
       }
     });

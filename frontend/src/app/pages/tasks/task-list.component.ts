@@ -32,7 +32,6 @@ import { TaskListHeaderComponent } from './components/task-list-header/task-list
 })
 export class TaskListComponent implements OnInit {
   editTaskTitle: string = '';
-  errorMessage: string | null = null;
   isEditingTask: boolean = false;
   isLoading: boolean = false;
   isTaskDialogOpen = false;
@@ -49,16 +48,13 @@ export class TaskListComponent implements OnInit {
   // ===== CRUD de tarefas =====
   loadTasks(): void {
     this.isLoading = true;
-    this.errorMessage = null;
 
     this.taskService.getTasks().subscribe({
       next: (tasks) => {
         this.tasks = tasks;
         this.isLoading = false;
       },
-      error: (err) => {
-        this.errorMessage = 'Erro ao carregar tarefas.';
-        console.error('Failed to load tasks:', err);
+      error: () => {
         this.isLoading = false;
       }
     });
@@ -66,16 +62,13 @@ export class TaskListComponent implements OnInit {
 
   onTaskSubmitted(newTaskData: CreateTaskDto): void {
     this.isLoading = true;
-    this.errorMessage = null;
 
     this.taskService.createTask(newTaskData).subscribe({
       next: (newTask) => {
         this.tasks.push(newTask);
         this.isLoading = false;
       },
-      error: (err) => {
-        this.errorMessage = 'Erro ao adicionar tarefa.';
-        console.error('Failed to add task:', err);
+      error: () => {
         this.isLoading = false;
       }
     });
@@ -87,7 +80,6 @@ export class TaskListComponent implements OnInit {
     const nextStatus = statusOrder[(currentIdx + 1) % statusOrder.length];
 
     this.isLoading = true;
-    this.errorMessage = null;
 
     this.taskService.updateTask(task._id, { status: nextStatus }).subscribe({
       next: (updatedTask) => {
@@ -97,9 +89,7 @@ export class TaskListComponent implements OnInit {
         }
         this.isLoading = false;
       },
-      error: (err) => {
-        this.errorMessage = 'Erro ao atualizar status da tarefa.';
-        console.error('Failed to update task status:', err);
+      error: () => {
         this.isLoading = false;
       }
     });
@@ -128,7 +118,6 @@ export class TaskListComponent implements OnInit {
     }
 
     this.isLoading = true;
-    this.errorMessage = null;
 
     this.taskService.updateTask(this.selectedTask._id, { title: newTitle.trim() }).subscribe({
       next: (updatedTask) => {
@@ -139,10 +128,8 @@ export class TaskListComponent implements OnInit {
         this.closeTaskDialog();
         this.isLoading = false;
       },
-      error: (err) => {
-        this.errorMessage = 'Erro ao editar tarefa.';
+      error: () => {
         this.isLoading = false;
-        console.error('Failed to edit task:', err);
       }
     });
   }
@@ -163,10 +150,8 @@ export class TaskListComponent implements OnInit {
         this.closeTaskDialog();
         this.isLoading = false;
       },
-      error: (err) => {
-        this.errorMessage = 'Erro ao excluir tarefa.';
+      error: () => {
         this.isLoading = false;
-        console.error('Failed to delete task:', err);
       }
     });
   }
@@ -177,16 +162,13 @@ export class TaskListComponent implements OnInit {
 
   onDeleteCompletedTasks(): void {
     this.isLoading = true;
-    this.errorMessage = null;
 
     this.taskService.deleteCompletedTasks().subscribe({
       next: () => {
         this.tasks = this.tasks.filter(task => task.status !== 'completed');
         this.isLoading = false;
       },
-      error: (err) => {
-        this.errorMessage = 'Erro ao excluir tarefas concluídas.';
-        console.error('Failed to delete completed tasks:', err);
+      error: () => {
         this.isLoading = false;
       }
     });
@@ -194,16 +176,13 @@ export class TaskListComponent implements OnInit {
 
   onDeleteAllTasks(): void {
     this.isLoading = true;
-    this.errorMessage = null;
 
     this.taskService.deleteAllTasks().subscribe({
       next: () => {
         this.tasks = [];
         this.isLoading = false;
       },
-      error: (err) => {
-        this.errorMessage = 'Erro ao excluir todas as tarefas.';
-        console.error('Failed to delete all tasks:', err);
+      error: () => {
         this.isLoading = false;
       }
     });
