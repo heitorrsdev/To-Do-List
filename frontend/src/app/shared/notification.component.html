@@ -1,0 +1,18 @@
+<div class="notification-container">
+  <div
+    *ngFor="let notification of notifications"
+    class="notification"
+    [ngClass]="getNotificationClass(notification.type)"
+    [@notificationAnimation]>
+    <div class="notification-content">
+      <span class="notification-message">{{ notification.message }}</span>
+
+      <button
+        class="notification-close"
+        (click)="closeNotification(notification.id)"
+        aria-label="Fechar notificação">
+        &times;
+      </button>
+    </div>
+  </div>
+</div>
