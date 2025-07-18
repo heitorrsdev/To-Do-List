@@ -2,21 +2,22 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
+import { NotificationService } from '../services/notification.service';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const router: Router = inject(Router);
+  const notificationService = inject(NotificationService);
 
   return next(req).pipe(
-    catchError(errorRespnse => {
-      if (errorRespnse.status === 401) {
+    catchError(errorResponse => {
+      if (errorResponse.status === 401) {
         localStorage.removeItem('token');
         if (router.url !== '/login') { // router.url !== '/login' && router.navigate(['/login']) poderia ser usado, mas o ESLint não permite
           router.navigate(['/login']);
         }
-      } else {
-        console.error('HTTP Error:', errorRespnse);
       }
-      return throwError(() => errorRespnse);
+      notificationService.showError(errorResponse.error?.message);
+      return throwError(() => errorResponse);
     })
   );
 };
