@@ -52,11 +52,7 @@
       </div>
     </div>
 
-    <div *ngIf="successMessage" class="success-message api-success">
-      {{ successMessage }}
-    </div>
-
-    <button type="submit" [disabled]="registerForm.invalid || successMessage">Registrar</button>
+    <button type="submit" [disabled]="registerForm.invalid">Registrar</button>
   </form>
 
   <p class="login-link">

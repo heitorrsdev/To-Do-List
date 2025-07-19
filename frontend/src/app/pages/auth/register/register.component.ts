@@ -1,6 +1,7 @@
 import { AuthService } from '../../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
+import { NotificationService } from '../../../core/services/notification.service';
 import { Router, RouterModule } from '@angular/router';
 import {
   AbstractControl,
@@ -38,10 +39,10 @@ function passwordMatchValidator(): ValidatorFn {
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
-  successMessage: string | null = null;
 
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
+  private notificationService = inject(NotificationService);
   private router = inject(Router);
 
   ngOnInit(): void {
@@ -53,7 +54,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.successMessage = null;
 
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(userData).subscribe({
       next: () => {
-        this.successMessage = 'Registro realizado com sucesso! Você será redirecionado para o login.';
+        this.notificationService.showSuccess('Cadastro realizado com sucesso!');
         setTimeout(() => {
           this.router.navigate(['/login']);
         }, 2000); // Redireciona após 2 segundos
