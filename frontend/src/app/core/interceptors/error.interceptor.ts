@@ -1,7 +1,7 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, throwError } from 'rxjs';
+import { catchError, EMPTY } from 'rxjs';
 import { NotificationService } from '../services/notification.service';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
@@ -17,7 +17,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
         }
       }
       notificationService.showError(errorResponse.error?.message);
-      return throwError(() => errorResponse);
+      return EMPTY; // Retorna EMPTY para evitar log do erro
     })
   );
 };
