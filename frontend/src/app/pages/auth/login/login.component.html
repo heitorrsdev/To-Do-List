@@ -10,7 +10,9 @@
         placeholder="Digite seu email"
         [ngClass]="{ 'is-invalid': loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched) }"
       >
-      <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)" class="error-message">
+      <div
+        *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)"
+        class="error-message">
         <small *ngIf="loginForm.get('email')?.errors?.['required']">Email é obrigatório.</small>
         <small *ngIf="loginForm.get('email')?.errors?.['email']">Formato de email inválido.</small>
       </div>
@@ -25,7 +27,9 @@
         placeholder="Digite sua senha"
         [ngClass]="{ 'is-invalid': loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched) }"
       >
-       <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="error-message">
+      <div
+        *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)"
+        class="error-message">
         <small *ngIf="loginForm.get('password')?.errors?.['required']">Senha é obrigatória.</small>
       </div>
     </div>

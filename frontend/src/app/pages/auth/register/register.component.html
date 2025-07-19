@@ -10,7 +10,9 @@
         placeholder="Digite seu email"
         [ngClass]="{ 'is-invalid': registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched) }"
       >
-      <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)" class="error-message">
+      <div
+        *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)"
+        class="error-message">
         <small *ngIf="registerForm.get('email')?.errors?.['required']">Email é obrigatório.</small>
         <small *ngIf="registerForm.get('email')?.errors?.['email']">Formato de email inválido.</small>
       </div>
@@ -25,7 +27,9 @@
         placeholder="Crie uma senha (mín. 6 caracteres)"
         [ngClass]="{ 'is-invalid': registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched) }"
       >
-      <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)" class="error-message">
+      <div
+        *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)"
+        class="error-message">
         <small *ngIf="registerForm.get('password')?.errors?.['required']">Senha é obrigatória.</small>
         <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Senha deve ter no mínimo 6 caracteres.</small>
       </div>
@@ -40,7 +44,9 @@
         placeholder="Confirme sua senha"
         [ngClass]="{ 'is-invalid': (registerForm.get('confirmPassword')?.invalid || registerForm.errors?.['passwordMismatch']) && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched) }"
       >
-      <div *ngIf="(registerForm.get('confirmPassword')?.invalid || registerForm.errors?.['passwordMismatch']) && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)" class="error-message">
+      <div
+        *ngIf="(registerForm.get('confirmPassword')?.invalid || registerForm.errors?.['passwordMismatch']) && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)"
+        class="error-message">
         <small *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">Confirmação de senha é obrigatória.</small>
         <small *ngIf="registerForm.errors?.['passwordMismatch'] && !registerForm.get('confirmPassword')?.errors?.['required']">As senhas não conferem.</small>
       </div>
