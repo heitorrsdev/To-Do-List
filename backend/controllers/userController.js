@@ -19,10 +19,10 @@ export const register = async (req, res) => {
     const user = new User({ email, password: hashedPassword });
     await user.save();
 
-    res.status(201).json({ message: 'User created successfully' });
+    res.status(201).json({ message: 'Usuário criado com sucesso' });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Registration error' });
+    res.status(500).json({ error: 'Erro ao registrar usuário' });
   }
 };
 
@@ -31,17 +31,17 @@ export const login = async (req, res) => {
 
   try {
     const user = await User.findOne({ email });
-    if (!user) return res.status(401).json({ message: 'Invalid credentials' });
+    if (!user) return res.status(401).json({ message: 'Credenciais inválidas' });
 
     const match = await bcrypt.compare(password, user.password);
-    if (!match) return res.status(401).json({ message: 'Invalid credentials' });
+    if (!match) return res.status(401).json({ message: 'Credenciais inválidas' });
 
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' });
 
     res.json({ token });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Login error' });
+    res.status(500).json({ error: 'Erro ao fazer login' });
   }
 };
 
