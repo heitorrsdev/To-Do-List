@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
+import { NotificationService } from '../../core/services/notification.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TASK_TITLE_MAX_LENGTH } from '../../core/constants';
 import { Task, TaskService, CreateTaskDto } from '../../core/services/task.service';
@@ -39,6 +40,7 @@ export class TaskListComponent implements OnInit {
   taskIdToDelete: string | null = null;
   tasks: Task[] = [];
 
+  private notificationService = inject(NotificationService);
   private taskService = inject(TaskService);
 
   ngOnInit(): void {
@@ -149,6 +151,7 @@ export class TaskListComponent implements OnInit {
         this.tasks = this.tasks.filter(task => task._id !== this.taskIdToDelete);
         this.closeTaskDialog();
         this.isLoading = false;
+        this.notificationService.showSuccess('Tarefa deletada com sucesso!');
       },
       error: () => {
         this.isLoading = false;
