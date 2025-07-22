@@ -67,11 +67,14 @@ export class RegisterComponent implements OnInit {
     this.authService.register(userData).subscribe({
       next: () => {
         this.notificationService.showSuccess('Cadastro realizado com sucesso!');
-        setTimeout(() => {
-          this.router.navigate(['/login']);
-        }, 2000); // Redireciona após 2 segundos
+        this.authService.login(userData).subscribe({
+          next: () => {
+            setTimeout(() => {
+              this.router.navigate(['/']);
+            }, 2000); // Redireciona após 2 segundos
+          },
+        });
       }
     });
   }
 }
-
