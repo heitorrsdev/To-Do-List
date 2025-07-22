@@ -34,7 +34,7 @@ export class TaskDialogComponent {
 
   @ViewChild('editTaskInput') editTaskInput!: ElementRef<HTMLTextAreaElement>;
 
-  TASK_TITLE_MAX_LENGTH: number = TASK_TITLE_MAX_LENGTH;
+  TASK_TITLE_MAX_LENGTH: number = TASK_TITLE_MAX_LENGTH; // Usado apenas no template
 
   closeDialog(): void {
     this.closed.emit();
