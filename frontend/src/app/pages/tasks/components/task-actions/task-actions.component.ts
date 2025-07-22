@@ -8,6 +8,7 @@ import { Component, EventEmitter, HostListener, Input, Output } from '@angular/c
   styleUrls: ['./task-actions.component.css']
 })
 export class TaskActionsComponent {
+  @Input() hasTasks = false;
   @Input() hasCompletedTasks = false;
   @Input() isLoading = false;
 

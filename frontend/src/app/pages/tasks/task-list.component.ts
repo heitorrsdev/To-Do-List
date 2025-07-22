@@ -205,6 +205,10 @@ export class TaskListComponent implements OnInit {
     this.taskIdToDelete = null;
   }
 
+  hasTasks(): boolean {
+    return this.tasks.length > 0;
+  }
+
   hasCompletedTasks(): boolean {
     return this.tasks.some(task => task.status === 'completed');
   }

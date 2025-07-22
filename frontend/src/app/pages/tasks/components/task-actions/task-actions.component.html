@@ -15,7 +15,7 @@
       </li>
 
       <li>
-        <button (click)="onDeleteAllTasks()" [disabled]="isLoading" class="action-button">
+        <button (click)="onDeleteAllTasks()" [disabled]="isLoading || !hasTasks" class="action-button">
           Excluir todas as tarefas
         </button>
       </li>

@@ -10,6 +10,7 @@
 
   <!-- Ações em lote para tarefas -->
   <app-task-actions
+    [hasTasks]="hasTasks()"
     [hasCompletedTasks]="hasCompletedTasks()"
     [isLoading]="isLoading"
     (deleteCompletedTasks)="onDeleteCompletedTasks()"
