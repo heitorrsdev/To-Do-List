@@ -47,8 +47,15 @@
       <div
         *ngIf="(registerForm.get('confirmPassword')?.invalid || registerForm.errors?.['passwordMismatch']) && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)"
         class="error-message">
-        <small *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">Confirmação de senha é obrigatória.</small>
-        <small *ngIf="registerForm.errors?.['passwordMismatch'] && !registerForm.get('confirmPassword')?.errors?.['required']">As senhas não conferem.</small>
+        <small
+          *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">
+          Confirmação de senha é obrigatória.
+        </small>
+
+        <small
+          *ngIf="registerForm.errors?.['passwordMismatch'] && !registerForm.get('confirmPassword')?.errors?.['required']">
+          As senhas não conferem.
+        </small>
       </div>
     </div>
 
