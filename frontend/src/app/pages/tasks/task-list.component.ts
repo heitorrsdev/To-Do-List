@@ -192,10 +192,11 @@ export class TaskListComponent implements OnInit {
   }
 
   closeTaskDialog(): void {
-    this.isTaskDialogOpen = false;
-    this.selectedTask = null;
     this.editTaskTitle = '';
     this.isEditingTask = false;
+    this.isLoading = false;
+    this.isTaskDialogOpen = false;
+    this.selectedTask = null;
     this.taskIdToDelete = null;
   }
 
