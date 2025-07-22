@@ -8,11 +8,11 @@ export const register = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    if (!email || !password) return res.status(400).json({ message: 'Please fill in all fields' });
-    if (!isValidEmail(email)) return res.status(400).json({ message: 'Invalid email' });
+    if (!email || !password) return res.status(400).json({ message: 'Por favor, preencha todos os campos' });
+    if (!isValidEmail(email)) return res.status(400).json({ message: 'E-mail inválido' });
 
     const userAlreadyExists = await User.findOne({ email });
-    if (userAlreadyExists) return res.status(400).json({ message: 'User already exists' });
+    if (userAlreadyExists) return res.status(400).json({ message: 'Usuário já existe' });
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
