@@ -178,6 +178,11 @@ export class TaskListComponent implements OnInit {
   }
 
   onDeleteAllTasks(): void {
+    if (this.tasks.length === 0) {
+      this.notificationService.showWarning('Nenhuma tarefa para deletar.');
+      return;
+    }
+
     this.isLoading = true;
 
     this.taskService.deleteAllTasks().subscribe({
