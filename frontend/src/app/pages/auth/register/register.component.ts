@@ -75,12 +75,12 @@ export class RegisterComponent implements OnInit {
               this.isLoading = false;
               this.router.navigate(['/']);
             }, 2000); // Redireciona após 2 segundos
-          },
-          error: () => {
-            this.isLoading = false;
           }
         });
-      }
+      },
+        error: () => {
+          setTimeout(() => {this.isLoading = false;}, 2000);
+        }
     });
   }
 }
