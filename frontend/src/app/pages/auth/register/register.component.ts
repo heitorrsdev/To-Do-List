@@ -39,6 +39,7 @@ function passwordMatchValidator(): ValidatorFn {
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
+  isLoading: boolean = false;
 
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
@@ -54,11 +55,12 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
       return;
     }
+
+    this.isLoading = true;
 
     // Exclui confirmPassword antes de enviar para o backend
     const userData = { ...this.registerForm.value };
@@ -70,9 +72,13 @@ export class RegisterComponent implements OnInit {
         this.authService.login(userData).subscribe({
           next: () => {
             setTimeout(() => {
+              this.isLoading = false;
               this.router.navigate(['/']);
             }, 2000); // Redireciona após 2 segundos
           },
+          error: () => {
+            this.isLoading = false;
+          }
         });
       }
     });

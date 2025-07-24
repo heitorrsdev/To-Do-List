@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
+  isLoading: boolean = false;
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -31,19 +32,27 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.isLoading) return; // Previne múltiplos envios enquanto está carregando
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched(); // Marca todos os campos como tocados para exibir erros de validação
       return;
     }
+
+    this.isLoading = true;
 
     const credentials: Credentials = this.loginForm.getRawValue();
 
     this.authService.login(credentials).subscribe({
       next: () => {
         // Navega para a página inicial após o login bem-sucedido
-        this.router.navigate(['/']);
+        setTimeout(() => {
+          this.isLoading = false;
+          this.router.navigate(['/']);
+        }, 300);
+      },
+      error: () => {
+        setTimeout(() => {this.isLoading = false;}, 2000);
       }
     });
   }
 }
-

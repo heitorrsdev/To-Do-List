@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
+    <button type="submit" [disabled]="loginForm.invalid || isLoading">Entrar</button>
   </form>
 
   <p class="register-link">

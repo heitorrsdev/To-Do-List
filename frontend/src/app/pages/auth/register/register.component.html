@@ -59,7 +59,7 @@
       </div>
     </div>
 
-    <button type="submit" [disabled]="registerForm.invalid">Registrar</button>
+    <button type="submit" [disabled]="registerForm.invalid || isLoading">Registrar</button>
   </form>
 
   <p class="login-link">
