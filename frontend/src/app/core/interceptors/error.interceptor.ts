@@ -1,8 +1,8 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { catchError, EMPTY } from 'rxjs';
 import { NotificationService } from '../services/notification.service';
+import { Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
+import { inject } from '@angular/core';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const router: Router = inject(Router);
@@ -17,7 +17,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
         }
       }
       notificationService.showError(errorResponse.error?.message);
-      return EMPTY; // Retorna EMPTY para evitar log do erro
+      return throwError(() => errorResponse); // Retorna o erro para que possa ser tratado por outros interceptores ou componentes
     })
   );
 };
