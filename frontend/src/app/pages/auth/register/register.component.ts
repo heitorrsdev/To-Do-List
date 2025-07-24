@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit {
             setTimeout(() => {
               this.isLoading = false;
               this.router.navigate(['/']);
-            }, 2000); // Redireciona após 2 segundos
+            }, 300);
           }
         });
       },
