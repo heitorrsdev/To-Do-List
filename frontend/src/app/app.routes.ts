@@ -18,6 +18,11 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  // Redireciona para a rota inicial ao acessar uma rota desconhecida. Essa rota deve ser a última da lista.
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 
