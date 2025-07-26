@@ -25,8 +25,7 @@ export class AuthService {
   private router = inject(Router);
 
   login(credentials: Credentials): Observable<LoginResponse> {
-    const { email, password } = credentials;
-    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password }).pipe(
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, credentials).pipe(
       tap(response => { // tap é usado para executar efeitos colaterais
         if (response.token) {
           this.saveToken(response.token);
