@@ -7,7 +7,7 @@ import { Notification, NotificationType } from '../models/notification.model';
 })
 export class NotificationService {
   private notificationsSubject = new BehaviorSubject<Notification[]>([]);
-  public notifications$: Observable<Notification[]> = this.notificationsSubject.asObservable();
+  public notifications$: Observable<Notification[]> = this.notificationsSubject.asObservable(); // asObservable esconde os métodos de escrita, permitindo apenas a leitura de dados
   private defaultErrorMessage = 'Ocorreu um erro inesperado. Atualize a página ou contate o suporte.';
 
   // Método genérico para adicionar notificações
