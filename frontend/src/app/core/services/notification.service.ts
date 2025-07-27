@@ -11,7 +11,7 @@ export class NotificationService {
   private defaultErrorMessage = 'Ocorreu um erro inesperado. Atualize a página ou contate o suporte.';
 
   // Método genérico para adicionar notificações
-  addNotification(type: NotificationType, message: string, duration: number = 5000): string {
+  private addNotification(type: NotificationType, message: string, duration: number): string {
     const id = this.generateId();
     const notification: Notification = { id, type, message, duration };
 
