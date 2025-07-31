@@ -78,9 +78,9 @@ export class RegisterComponent implements OnInit {
           }
         });
       },
-        error: () => {
-          setTimeout(() => {this.isLoading = false;}, 2000);
-        }
+      error: () => {
+        setTimeout(() => { this.isLoading = false; }, 2000);
+      }
     });
   }
 }
