@@ -21,6 +21,8 @@ describe('LoginComponent', () => {
   let fixture: ComponentFixture<LoginComponent>;
 
   beforeEach(async () => {
+    mockAuthService.login.calls.reset();
+    mockAuthService.login.and.returnValue(of(true)); // Retorna sucesso por padrão, já que não é ele quem está sendo testado
     await TestBed.configureTestingModule({
       imports: [
         LoginComponent,
