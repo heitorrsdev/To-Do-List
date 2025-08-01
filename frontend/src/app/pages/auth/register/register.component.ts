@@ -71,15 +71,13 @@ export class RegisterComponent implements OnInit {
         this.notificationService.showSuccess('Cadastro realizado com sucesso!');
         this.authService.login(userData).subscribe({
           next: () => {
-            setTimeout(() => {
-              this.isLoading = false;
-              this.router.navigate(['/']);
-            }, 300);
+            this.isLoading = false;
+            this.router.navigate(['/']);
           }
         });
       },
       error: () => {
-        setTimeout(() => { this.isLoading = false; }, 2000);
+        this.isLoading = false;
       }
     });
   }

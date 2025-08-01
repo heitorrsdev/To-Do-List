@@ -45,13 +45,11 @@ export class LoginComponent implements OnInit {
     this.authService.login(credentials).subscribe({
       next: () => {
         // Navega para a página inicial após o login bem-sucedido
-        setTimeout(() => {
-          this.isLoading = false;
-          this.router.navigate(['/']);
-        }, 300);
+        this.isLoading = false;
+        this.router.navigate(['/']);
       },
       error: () => {
-        setTimeout(() => {this.isLoading = false;}, 2000);
+        this.isLoading = false;
       }
     });
   }
