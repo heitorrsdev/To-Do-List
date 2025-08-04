@@ -14,7 +14,7 @@
         *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)"
         class="error-message">
         <small *ngIf="registerForm.get('email')?.errors?.['required']">Email é obrigatório.</small>
-        <small *ngIf="registerForm.get('email')?.errors?.['email']">Formato de email inválido.</small>
+        <small *ngIf="registerForm.get('email')?.errors?.['pattern']">Formato de email inválido.</small>
       </div>
     </div>
 
