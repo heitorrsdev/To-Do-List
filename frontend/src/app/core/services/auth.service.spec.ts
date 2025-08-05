@@ -34,6 +34,10 @@ describe('AuthService', () => {
     httpMock.verify(); // verifica se não tem requisições sem resposta
   });
 
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
   it('should login and save token', () => {
     const credentials: Credentials = { email: 'teste@email.com', password: '123456' };
     const fakeToken = 'fake-jwt-token';
