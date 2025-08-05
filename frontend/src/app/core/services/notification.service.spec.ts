@@ -14,7 +14,7 @@ describe('NotificationService', () => {
     service.clearNotifications();
   });
 
-  it('should create ', () => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
