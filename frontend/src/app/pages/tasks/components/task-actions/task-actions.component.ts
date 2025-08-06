@@ -30,7 +30,7 @@ export class TaskActionsComponent {
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
-    const clickedInside = target.closest('.dropdown');
+    const clickedInside = target.closest('.task-menu');
     if (!clickedInside) {
       this.isMenuOpen = false;
     }

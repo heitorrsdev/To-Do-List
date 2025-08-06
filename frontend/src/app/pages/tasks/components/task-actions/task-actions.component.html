@@ -1,10 +1,10 @@
 <div class="task-actions">
-  <div class="dropdown">
+  <div class="task-menu">
     <div class="hamburger-btn" (click)="isMenuOpen = !isMenuOpen" aria-label="Abrir menu de ações">
       <p>☰</p>
     </div>
 
-    <ul class="dropdown-menu" *ngIf="isMenuOpen">
+    <ul class="dropdown" *ngIf="isMenuOpen">
       <li>
         <button
           (click)="onDeleteCompletedTasks()"

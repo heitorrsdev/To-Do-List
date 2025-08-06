@@ -25,11 +25,11 @@ button:disabled {
   opacity: 0.7;
 }
 
-.dropdown {
+.task-menu {
   position: relative;
 }
 
-.dropdown-menu {
+.dropdown {
   background: #fff;
   border-radius: 8px;
   border: 1px solid #ddd;
@@ -45,7 +45,7 @@ button:disabled {
   z-index: 10;
 }
 
-.dropdown-menu li {
+.dropdown li {
   padding: 0 16px;
 }
 
