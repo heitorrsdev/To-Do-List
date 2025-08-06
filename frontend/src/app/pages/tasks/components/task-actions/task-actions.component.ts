@@ -19,7 +19,7 @@ export class TaskActionsComponent {
 
   onDeleteCompletedTasks(): void {
     this.deleteCompletedTasks.emit();
-    this.isMenuOpen = false; // Fecha o menu após a ação
+    this.isMenuOpen = false;
   }
 
   onDeleteAllTasks(): void {
