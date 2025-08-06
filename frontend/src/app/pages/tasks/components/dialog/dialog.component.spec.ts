@@ -13,6 +13,7 @@ describe('DialogComponent', () => {
 
     fixture = TestBed.createComponent(DialogComponent);
     component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('create the component', () => {
