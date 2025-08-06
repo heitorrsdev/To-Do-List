@@ -33,6 +33,9 @@ button:disabled {
   background: #fff;
   border-radius: 8px;
   border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   list-style: none;
   min-width: 200px;
   padding: 8px 0;
