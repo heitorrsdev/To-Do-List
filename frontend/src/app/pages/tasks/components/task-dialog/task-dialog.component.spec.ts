@@ -72,8 +72,7 @@ describe('TaskDialogComponent', () => {
 
   it('should resize the textarea when resizeTextarea is called', () => {
     const textarea = document.createElement('textarea');
-    textarea.style.height = '100px';
-    textarea.style.height = '\nMeu Deus\nQuantas\nLinhas\nAAAA';
+    textarea.value = '\nQue a Força\nesteja\ncom você.';
     document.body.appendChild(textarea);
 
     Object.defineProperty(textarea, 'scrollHeight', {value: 200, configurable: true});
