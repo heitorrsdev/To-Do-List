@@ -78,7 +78,6 @@ describe('TaskDialogComponent', () => {
     Object.defineProperty(textarea, 'scrollHeight', {value: 200, configurable: true});
     component.resizeTextarea(textarea, 150);
 
-
     expect(textarea.style.height).toBe('150px');
     expect(textarea.style.overflowY).toBe('auto');
 
