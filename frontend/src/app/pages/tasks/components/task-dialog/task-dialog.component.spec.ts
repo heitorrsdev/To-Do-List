@@ -71,7 +71,7 @@ describe('TaskDialogComponent', () => {
   });
 
   it('should resize the textarea when resizeTextarea is called', () => {
-    const textarea = document.createElement('textarea');
+    const textarea: HTMLTextAreaElement = document.createElement('textarea');
     textarea.value = '\nQue a Força\nesteja\ncom você.';
     document.body.appendChild(textarea);
 

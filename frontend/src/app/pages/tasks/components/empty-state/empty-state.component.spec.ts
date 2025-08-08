@@ -28,7 +28,7 @@ describe('EmptyStateComponent', () => {
   });
 
   it('should display the input message', () => {
-    const message = 'Mensagem muito explicativa';
+    const message: string = 'Mensagem muito explicativa';
     component.message = message;
     fixture.detectChanges();
 

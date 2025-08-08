@@ -19,7 +19,7 @@ describe('NotificationService', () => {
   });
 
   it('should create error notification', (done) => {
-    const message = 'Ocorreu um erro :(';
+    const message: string = 'Ocorreu um erro :(';
     service.showError(message, 0); // duração 0 para não sumir
 
     service.notifications$.pipe(take(1)).subscribe(notifications => {
@@ -43,7 +43,7 @@ describe('NotificationService', () => {
   });
 
   it('should create a warning notification', (done) => {
-    const message = 'Não é possível realizar essa ação.';
+    const message: string = 'Não é possível realizar essa ação.';
     service.showWarning(message, 0);
 
     service.notifications$.pipe(take(1)).subscribe(notifications => {
@@ -55,7 +55,7 @@ describe('NotificationService', () => {
   });
 
   it('should create a info notification', (done) => {
-    const message = 'Informação muito útil e necessária';
+    const message: string = 'Informação muito útil e necessária';
     service.showInfo(message, 0);
 
     service.notifications$.pipe(take(1)).subscribe(notifications => {
@@ -67,7 +67,7 @@ describe('NotificationService', () => {
   });
 
   it('should remove one notification', (done) => {
-    const id = service.showInfo('Isto deve ser excluído');
+    const id: string = service.showInfo('Isto deve ser excluído');
 
     service.removeNotification(id);
 
@@ -91,7 +91,7 @@ describe('NotificationService', () => {
 
   it('should remove a notification after a delay', (done) => {
     jasmine.clock().install();
-    const id = service.showError('Erro muito errado mesmo', 3000);
+    const id: string = service.showError('Erro muito errado mesmo', 3000);
 
     jasmine.clock().tick(2999);
 

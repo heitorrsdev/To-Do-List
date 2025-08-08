@@ -10,7 +10,7 @@ describe('AuthService', () => {
   let httpMock: HttpTestingController;
   let mockRouter: jasmine.SpyObj<Router>;
 
-  const apiUrl = environment.apiUrl;
+  const apiUrl: string = environment.apiUrl;
 
   beforeEach(() => {
     mockRouter = jasmine.createSpyObj('Router', ['navigate']);
@@ -40,7 +40,7 @@ describe('AuthService', () => {
 
   it('should login and save token', () => {
     const credentials: Credentials = { email: 'teste@email.com', password: '123456' };
-    const fakeToken = 'fake-jwt-token';
+    const fakeToken: string = 'fake-jwt-token';
 
     service.login(credentials).subscribe(response => {
       expect(response.token).toBe(fakeToken);

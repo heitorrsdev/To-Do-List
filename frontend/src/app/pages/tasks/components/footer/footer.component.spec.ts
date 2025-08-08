@@ -21,7 +21,7 @@ describe('FooterComponent', () => {
   });
 
   it('should render the correct texts', () => {
-    const text = fixture.nativeElement.textContent;
+    const text: string = fixture.nativeElement.textContent;
     expect(text).toContain('Suporte');
     expect(text).toContain('Projeto To-Do List');
     expect(text).toContain('GitHub');
