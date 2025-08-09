@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { CreateTaskDto } from '../../../../core/services/task.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TASK_TITLE_MAX_LENGTH } from '../../../../core/constants';
@@ -17,8 +17,6 @@ import { TASK_TITLE_MAX_LENGTH } from '../../../../core/constants';
 export class TaskFormComponent implements OnInit {
   @Input() isLoading = false;
   @Output() taskSubmitted = new EventEmitter<CreateTaskDto>();
-
-  @ViewChild('titleInput') titleInput!: ElementRef<HTMLTextAreaElement>;
 
   TASK_TITLE_MAX_LENGTH: number = TASK_TITLE_MAX_LENGTH;
   taskForm!: FormGroup;
