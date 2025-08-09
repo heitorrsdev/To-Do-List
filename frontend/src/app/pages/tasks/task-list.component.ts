@@ -3,9 +3,10 @@ import { Component, OnInit, inject } from '@angular/core';
 import { NotificationService } from '../../core/services/notification.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TASK_TITLE_MAX_LENGTH } from '../../core/constants';
-import { Task, TaskService, CreateTaskDto } from '../../core/services/task.service';
+import { TaskService } from '../../core/services/task.service';
 
 // Componentes modulares
+import { CreateTaskDto, Task } from '../../core/models/task.model';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TaskActionsComponent } from './components/task-actions/task-actions.component';

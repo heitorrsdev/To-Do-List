@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output, ViewChild, ElementRef } from '@
 import { DialogComponent } from '../dialog/dialog.component';
 import { FormsModule } from '@angular/forms';
 import { TASK_TITLE_MAX_LENGTH } from '../../../../core/constants';
-import { Task } from '../../../../core/services/task.service';
+import { Task } from '../../../../core/models/task.model';
 
 @Component({
   selector: 'app-task-dialog',

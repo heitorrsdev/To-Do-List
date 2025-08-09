@@ -1,5 +1,6 @@
+import { CreateTaskDto, Task, UpdateTaskDto } from '../models/task.model';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { TaskService, Task, CreateTaskDto, UpdateTaskDto } from './task.service';
+import { TaskService } from './task.service';
 import { TestBed } from '@angular/core/testing';
 import { environment } from '../../../environments/environment';
 import { importProvidersFrom } from '@angular/core';

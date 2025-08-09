@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
-import { CreateTaskDto } from '../../../../core/services/task.service';
+import { CreateTaskDto } from '../../../../core/models/task.model';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TASK_TITLE_MAX_LENGTH } from '../../../../core/constants';
 

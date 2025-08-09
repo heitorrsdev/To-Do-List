@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CreateTaskDto } from '../../../../core/services/task.service';
+import { CreateTaskDto } from '../../../../core/models/task.model';
 import { TASK_TITLE_MAX_LENGTH } from '../../../../core/constants';
 import { TaskFormComponent } from './task-form.component';
 
