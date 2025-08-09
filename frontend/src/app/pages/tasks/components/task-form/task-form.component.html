@@ -18,7 +18,7 @@
 
       <button
         type="submit"
-        [disabled]="taskForm.invalid || isLoading || titleInput.value.length > TASK_TITLE_MAX_LENGTH"
+        [disabled]="taskForm.invalid || isLoading"
         title="Adicionar Tarefa">
         <svg
           xmlns="http://www.w3.org/2000/svg"

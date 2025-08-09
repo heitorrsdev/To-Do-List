@@ -25,12 +25,15 @@ export class TaskFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.taskForm = this.fb.group({
-      title: ['', Validators.required]
+      title: ['', [
+        Validators.required,
+        Validators.maxLength(TASK_TITLE_MAX_LENGTH)
+      ]]
     });
   }
 
   onSubmit(): void {
-    if (this.taskForm.invalid || this.taskForm.value.title.trim().length > this.TASK_TITLE_MAX_LENGTH) {
+    if (this.taskForm.invalid) {
       this.taskForm.markAllAsTouched();
       return;
     }
