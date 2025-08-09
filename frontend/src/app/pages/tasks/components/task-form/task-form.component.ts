@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef, inject } from '@angular/core';
 import { CreateTaskDto } from '../../../../core/services/task.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TASK_TITLE_MAX_LENGTH } from '../../../../core/constants';
 
 @Component({
