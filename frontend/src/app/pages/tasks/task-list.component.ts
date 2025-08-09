@@ -79,7 +79,7 @@ export class TaskListComponent implements OnInit {
 
   onTaskStatusChange(task: Task): void {
     const statusOrder: Array<TaskStatusType> = ['pending', 'in-progress', 'completed'];
-    const currentIdx = statusOrder.indexOf(task.status);
+    const currentIdx: number = statusOrder.indexOf(task.status);
     const nextStatus: TaskStatusType = statusOrder[(currentIdx + 1) % statusOrder.length];
 
     this.isLoading = true;
