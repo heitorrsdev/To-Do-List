@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TaskStatusType } from '../../../../core/models/task.model';
 
-type TaskStatus = 'pending' | 'in-progress' | 'completed';
 
 @Component({
   selector: 'app-task-status-badge',
@@ -11,7 +11,7 @@ type TaskStatus = 'pending' | 'in-progress' | 'completed';
   styleUrls: ['./task-status-badge.component.css']
 })
 export class TaskStatusBadgeComponent {
-  @Input() status: TaskStatus = 'pending';
+  @Input() status: TaskStatusType = 'pending';
   @Output() statusChange = new EventEmitter<void>();
 
   onStatusClick(): void {

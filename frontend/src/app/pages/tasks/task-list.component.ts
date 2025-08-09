@@ -6,7 +6,7 @@ import { TASK_TITLE_MAX_LENGTH } from '../../core/constants';
 import { TaskService } from '../../core/services/task.service';
 
 // Componentes modulares
-import { CreateTaskDto, Task } from '../../core/models/task.model';
+import { CreateTaskDto, Task, TaskStatusType } from '../../core/models/task.model';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TaskActionsComponent } from './components/task-actions/task-actions.component';
@@ -78,9 +78,9 @@ export class TaskListComponent implements OnInit {
   }
 
   onTaskStatusChange(task: Task): void {
-    const statusOrder: Array<'pending' | 'in-progress' | 'completed'> = ['pending', 'in-progress', 'completed'];
+    const statusOrder: Array<TaskStatusType> = ['pending', 'in-progress', 'completed'];
     const currentIdx = statusOrder.indexOf(task.status);
-    const nextStatus = statusOrder[(currentIdx + 1) % statusOrder.length];
+    const nextStatus: TaskStatusType = statusOrder[(currentIdx + 1) % statusOrder.length];
 
     this.isLoading = true;
 

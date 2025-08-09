@@ -1,7 +1,9 @@
+export type TaskStatusType = 'pending' | 'in-progress' | 'completed';
+
 export interface Task {
   _id: string;
   title: string;
-  status: 'pending' | 'in-progress' | 'completed';
+  status: TaskStatusType;
   userId: string; // ID do usuário que possui a tarefa
   createdAt: Date;
   updatedAt: Date;
@@ -16,5 +18,5 @@ export interface CreateTaskDto {
 // Definindo a estrutura para atualizar uma tarefa (permitindo atualizações parciais)
 export interface UpdateTaskDto {
   title?: string;
-  status?: 'pending' | 'in-progress' | 'completed';
+  status?: TaskStatusType;
 }
