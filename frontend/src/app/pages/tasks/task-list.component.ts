@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { NotificationService } from '../../core/services/notification.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TASK_TITLE_MAX_LENGTH } from '../../core/constants';
 import { TaskService } from '../../core/services/task.service';
 
 // Componentes modulares
@@ -116,7 +115,7 @@ export class TaskListComponent implements OnInit {
   }
 
   onEditSaved(newTitle: string): void {
-    if (!this.selectedTask || !newTitle.trim() || newTitle.trim() === this.selectedTask.title || newTitle.length > TASK_TITLE_MAX_LENGTH) {
+    if (!this.selectedTask || !newTitle.trim() || newTitle.trim() === this.selectedTask.title) {
       return;
     }
 
