@@ -1,0 +1,17 @@
+# Configurações de Build para o Netlify
+[build]
+  # Comando para construir o projeto
+  command = "ng build"
+  
+  # Pasta onde o código do frontend está localizado
+  base = "frontend/"
+  
+  # Pasta de saída do build (relativa à pasta 'base')
+  publish = "dist/frontend/"
+
+# Regra de reescrita para SPAs (Angular)
+# Isso garante que o app funcione mesmo ao recarregar a página
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
