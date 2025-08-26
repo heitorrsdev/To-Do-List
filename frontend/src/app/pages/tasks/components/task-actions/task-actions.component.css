@@ -60,10 +60,20 @@ button:disabled {
   margin-bottom: 10px;
   transition: background-color 0.3s ease;
   width: 60px;
+
+  @media screen and (max-width: 600px) {
+    font-size: 12px;
+    height: 30px;
+    justify-content: center;
+    lign-items: center;
+    width: 30px;
+  }
 }
 
 .hamburger-btn:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  @media screen and (min-width: 601px) {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 }
 
 .action-button {
