@@ -53,7 +53,7 @@ export const updateTask = async (req, res) => {
       return res.status(404).json({ message: 'Tarefa não encontrada ou não autorizada' });
     }
 
-    if (task.title === title || task.status === status) {
+    if (task.title === title && task.status === status) {
       return res.status(400).json({ message: 'Nenhuma alteração detectada' });
     }
 
