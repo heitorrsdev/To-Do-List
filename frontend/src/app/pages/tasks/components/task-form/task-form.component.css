@@ -75,6 +75,10 @@ button[type="submit"] {
   transform: translateY(-50%);
   transition: background-color 0.2s ease;
   width: 40px;
+
+  @media screen and (max-width: 600px) {
+    right: -5px;
+  }
 }
 
 button:disabled {
