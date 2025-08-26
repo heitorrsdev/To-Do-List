@@ -62,11 +62,11 @@ button:disabled {
   width: 60px;
 
   @media screen and (max-width: 600px) {
-    font-size: 12px;
-    height: 30px;
+    font-size: 20px;
+    height: 35px;
     justify-content: center;
-    lign-items: center;
-    width: 30px;
+    align-items: center;
+    width: 35px;
   }
 }
 
