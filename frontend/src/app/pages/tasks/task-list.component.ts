@@ -81,17 +81,18 @@ export class TaskListComponent implements OnInit {
     const currentIdx: number = statusOrder.indexOf(task.status);
     const nextStatus: TaskStatusType = statusOrder[(currentIdx + 1) % statusOrder.length];
 
+    // Atualização otimista: altera localmente antes da resposta
+    const originalStatus = task.status;
+    task.status = nextStatus;
+
     this.isLoading = true;
 
     this.taskService.updateTask(task._id, { status: nextStatus }).subscribe({
-      next: (updatedTask) => {
-        const index = this.tasks.findIndex(t => t._id === updatedTask._id);
-        if (index !== -1) {
-          this.tasks[index] = updatedTask;
-        }
+      next: () => {
         this.isLoading = false;
       },
       error: () => {
+        task.status = originalStatus;
         this.isLoading = false;
       }
     });
