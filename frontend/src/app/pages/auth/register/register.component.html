@@ -59,11 +59,10 @@
       </div>
     </div>
 
-    <button type="submit" [disabled]="registerForm.invalid || isLoading">Criar conta</button>
+    <button type="submit" [disabled]="registerForm.invalid || isLoading">{{ isLoading ? 'Carregando...' : 'Criar conta' }}</button>
   </form>
 
   <p class="login-link">
     Já tem uma conta? <a routerLink="/login">Faça login</a>
   </p>
 </div>
-

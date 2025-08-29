@@ -34,11 +34,10 @@
       </div>
     </div>
 
-    <button type="submit" [disabled]="loginForm.invalid || isLoading">Entrar</button>
+    <button type="submit" [disabled]="loginForm.invalid || isLoading">{{ isLoading ? 'Carregando...' : 'Entrar' }}</button>
   </form>
 
   <p class="register-link">
     Não tem uma conta? <a routerLink="/register">Registre-se</a>
   </p>
 </div>
-
