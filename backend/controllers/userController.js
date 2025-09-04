@@ -12,7 +12,7 @@ export const register = async (req, res) => {
     if (!isValidEmail(email)) return res.status(400).json({ message: 'E-mail inválido' });
 
     const userAlreadyExists = await User.findOne({ email });
-    if (userAlreadyExists) return res.status(400).json({ message: 'Usuário já existe' });
+    if (userAlreadyExists) return res.status(400).json({ message: 'Não foi possível concluir o registro. Tente novamente ou use outro e-mail.' });
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
