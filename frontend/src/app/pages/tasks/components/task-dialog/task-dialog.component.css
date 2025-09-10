@@ -13,8 +13,8 @@
 }
 
 .editTitleText {
-  border: 1px solid #ddd;
   border-radius: 4px;
+  border: 1px solid #ddd;
   box-sizing: border-box;
   font-family: inherit;
   font-size: 1rem;
@@ -45,8 +45,8 @@
 
 .dialog-footer {
   display: flex;
-  justify-content: flex-end;
   gap: 10px;
+  justify-content: flex-end;
   margin-top: 20px;
 }
 
@@ -66,12 +66,12 @@
 }
 
 .danger-button, .confirm-button, .default-button {
-  padding: 7px 15px;
-  color: white;
-  border: none;
   border-radius: 15px;
+  border: none;
+  color: white;
   cursor: pointer;
   font-size: 0.9em;
+  padding: 7px 15px;
   transition: background-color 0.3s ease;
 }
 
