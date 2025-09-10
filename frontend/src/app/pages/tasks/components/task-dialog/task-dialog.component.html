@@ -22,7 +22,7 @@
 
   <div content>
     <div class="dialog-content">
-      <span *ngIf="!isEditing && !taskIdToDelete" class="task-title">{{ task?.title }}</span>
+      <span *ngIf="!isEditing && !taskIdToDelete" class="task-title" (click)="enableEditTask()">{{ task?.title }}</span>
       <div *ngIf="isEditing">
         <textarea
           [(ngModel)]="editTaskTitle"
