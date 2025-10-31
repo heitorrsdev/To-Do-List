@@ -5,8 +5,12 @@ import { TASK_TITLE_MAX_LENGTH } from '../constants.js';
 export const createTask = async (req, res) => {
   try {
     const { title, status } = req.body;
-    if (!title || !status) {
-      return res.status(400).json({ message: 'Título e status são obrigatórios' });
+
+    if (!title) {
+      return res.status(400).json({ message: 'O título é obrigatórios' });
+    }
+    if (!status) {
+      return res.status(400).json({ message: 'O status é obrigatório' });
     }
     if (title.length > TASK_TITLE_MAX_LENGTH) {
       return res.status(400).json({ message: `O título deve ter menos de ${TASK_TITLE_MAX_LENGTH} caracteres` });
