@@ -93,6 +93,7 @@ O projeto está atualmente em produção e pode ser acessado através do seguint
 ![Página de Login](/images/login_page.png)
 ![Página de Registro](/images/register_page.png)
 ![Página da Lista de Tarefas](/images/task_list_page.png)
+![Dialog de Tarefas](/images/task_dialog.png)
 
 
 
