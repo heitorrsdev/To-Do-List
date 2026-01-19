@@ -29,8 +29,6 @@ export class AuthService {
       tap(response => { // tap é usado para executar efeitos colaterais
         if (response.token) {
           this.saveToken(response.token);
-          /* response.token && this.saveToken(response.token);
-          isso poderia ser usado ao invés do if, mas o ESLint não permite */
         }
       })
     );

@@ -4,7 +4,6 @@ import { NotificationService } from '../../core/services/notification.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TaskService } from '../../core/services/task.service';
 
-// Componentes modulares
 import { CreateTaskDto, Task, TaskStatusType } from '../../core/models/task.model';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -47,7 +46,6 @@ export class TaskListComponent implements OnInit {
     this.loadTasks();
   }
 
-  // ===== CRUD de tarefas =====
   loadTasks(): void {
     this.isLoading = true;
 

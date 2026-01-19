@@ -18,7 +18,6 @@ export class DialogComponent {
   }
 
   onBackdropClick(event: MouseEvent): void {
-    // Verifica se o evento é um clique no backdrop e se o backdrop deve fechar o diálogo
     if (this.closeOnBackdropClick && event.target === event.currentTarget) {
       this.close();
     }

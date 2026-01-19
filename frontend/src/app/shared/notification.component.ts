@@ -28,7 +28,6 @@ export class NotificationComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
 
   private notificationService = inject(NotificationService);
-  // usar inject ao invés de injetar no construtor se o construtor for usado só pra injetar dependências
 
   ngOnInit(): void {
     this.subscription = this.notificationService.notifications$.subscribe(
@@ -46,7 +45,6 @@ export class NotificationComponent implements OnInit, OnDestroy {
     this.notificationService.removeNotification(id);
   }
 
-  // Método auxiliar para obter a classe CSS com base no tipo de notificação
   getNotificationClass(type: string): string {
     return `notification-${type}`;
   }

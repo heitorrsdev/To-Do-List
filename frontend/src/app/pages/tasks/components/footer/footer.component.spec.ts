@@ -29,12 +29,12 @@ describe('FooterComponent', () => {
   });
 
   it('should have the GitHub link with _blank', () => {
-    const githubLink = fixture.debugElement.query(By.css('a[href*="github"]')).nativeElement; // link q contém github
+    const githubLink = fixture.debugElement.query(By.css('a[href*="github"]')).nativeElement;
     expect(githubLink.target).toBe('_blank');
   });
 
   it('should contain support e-mail', () => {
-    const emailLink = fixture.debugElement.query(By.css('a[href^="mailto:"]')).nativeElement; // link q começa com mailto
+    const emailLink = fixture.debugElement.query(By.css('a[href^="mailto:"]')).nativeElement;
     expect(emailLink.textContent).toContain('heitorrs.dev@gmail.com');
   });
 });

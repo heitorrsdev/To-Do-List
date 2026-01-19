@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, throwError } from 'rxjs';
 
-// Mocks
 const mockAuthService = {
   register: jasmine.createSpy().and.returnValue(of(true)),
   login: jasmine.createSpy().and.returnValue(of(true))

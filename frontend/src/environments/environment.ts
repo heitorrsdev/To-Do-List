@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  apiUrl: 'https://to-do-list-express-api.onrender.com/api'
+  production: false,
+  apiUrl: 'http://localhost:3000/api'
 };

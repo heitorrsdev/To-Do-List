@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.isLoading) return; // Previne múltiplos envios enquanto está carregando
+    if (this.isLoading) return;
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched(); // Marca todos os campos como tocados para exibir erros de validação
       return;
@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(credentials).subscribe({
       next: () => {
-        // Navega para a página inicial após o login bem-sucedido
         this.isLoading = false;
         this.router.navigate(['/']);
       },

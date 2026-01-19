@@ -8,7 +8,6 @@ import { LoginComponent } from './login.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, throwError } from 'rxjs';
 
-// Mock dos serviços
 const mockAuthService = {
   login: jasmine.createSpy().and.returnValue(of(true))
 };

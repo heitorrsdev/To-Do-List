@@ -29,7 +29,6 @@ describe('TaskActionsComponent', () => {
     const dropdown = fixture.debugElement.query(By.css('.dropdown'));
     expect(dropdown).toBeTruthy();
 
-    // Fechar o menu
     hamburguerButton.triggerEventHandler('click');
     fixture.detectChanges();
     expect(component.isMenuOpen).toBeFalsy();
@@ -82,7 +81,7 @@ describe('TaskActionsComponent', () => {
 
     const clickEvent = new MouseEvent('click', { bubbles: true });
     Object.defineProperty(clickEvent, 'target', {
-      value: document.createElement('div'), // fora do dropdown
+      value: document.createElement('div'),
       writable: false
     });
 

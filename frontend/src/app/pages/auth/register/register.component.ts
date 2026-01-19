@@ -13,7 +13,6 @@ import {
   Validators
 } from '@angular/forms';
 
-// Validador personalizado para correspondência de senhas
 function passwordMatchValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const password = control.get('password');
@@ -65,7 +64,6 @@ export class RegisterComponent implements OnInit {
 
     this.isLoading = true;
 
-    // Exclui confirmPassword antes de enviar para o backend
     const userData = { ...this.registerForm.value };
     delete userData.confirmPassword;
 

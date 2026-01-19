@@ -108,7 +108,7 @@ describe('TaskListComponent', () => {
   it('should not save invalid edit', () => {
     component.selectedTask = { ...mockTasks[0] };
 
-    component.onEditSaved(''); // título vazio
+    component.onEditSaved('');
     expect(taskServiceSpy.updateTask).not.toHaveBeenCalled();
   });
 
