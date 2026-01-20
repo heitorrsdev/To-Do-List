@@ -42,7 +42,7 @@ Para configurar o projeto localmente, siga os passos abaixo:
 ### Pré-requisitos
 
 *   [Node.js](https://nodejs.org/) (versão 20 ou superior)
-*   npm (gerenciador de pacotes do Node.js)
+*   [pnpm](https://pnpm.io/) (gerenciador de pacotes recomendado)
 *   MongoDB (local ou [MongoDB Atlas](https://www.mongodb.com/atlas/database))
 
 ### 1. Backend (API)
@@ -54,16 +54,16 @@ Para configurar o projeto localmente, siga os passos abaixo:
     ```
 2.  Instale as dependências:
     ```shell
-    npm install
+    pnpm install
     ```
 3.  Crie um arquivo `.env` na raiz do diretório `backend` com as seguintes variáveis de ambiente:
-    ```
+    ```env
     MONGO_URI=sua_string_de_conexao_mongodb
     JWT_SECRET=sua_chave_secreta_jwt_forte
     ```
 4.  Inicie o servidor:
     ```shell
-    npm start
+    pnpm start
     ```
     O servidor estará rodando em `http://localhost:3000`.
 
@@ -75,12 +75,11 @@ Para configurar o projeto localmente, siga os passos abaixo:
     ```
 2.  Instale as dependências:
     ```shell
-    npm install
+    pnpm install
     ```
-3.  **Configuração da API:** Certifique-se de que a URL da API no código Angular aponte para o seu servidor local (`http://localhost:3000`) ou para o deploy da API, se preferir.
-4.  Inicie a aplicação Angular:
+3.  Inicie a aplicação Angular:
     ```shell
-    ng serve
+    pnpm start
     ```
     A aplicação estará disponível em `http://localhost:4200`.
 
