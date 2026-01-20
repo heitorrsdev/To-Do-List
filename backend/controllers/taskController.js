@@ -1,132 +1,128 @@
 import Task from '../models/Task.js';
 import { TASK_TITLE_MAX_LENGTH, TASK_STATUS } from '../constants.js';
 
-// Create a new task
+const validateTaskPayload = ({ title, status }) => {
+  if (!title) return 'O título é obrigatório';
+  if (!status) return 'O status é obrigatório';
+
+  if (title?.length > TASK_TITLE_MAX_LENGTH) {
+    return `O título deve ter no máximo ${TASK_TITLE_MAX_LENGTH} caracteres`;
+  }
+
+  if (!TASK_STATUS.includes(status)) {
+    return 'Status inválido';
+  }
+
+  return null;
+};
+
+// CREATE
 export const createTask = async (req, res) => {
   try {
-    const { title, status } = req.body;
+    const error = validateTaskPayload(req.body);
+    if (error) return res.status(400).json({ message: error });
 
-    if (!title) {
-      return res.status(400).json({ message: 'O título é obrigatórios' });
-    }
-    if (!status) {
-      return res.status(400).json({ message: 'O status é obrigatório' });
-    }
-    if (title.length > TASK_TITLE_MAX_LENGTH) {
-      return res.status(400).json({ message: `O título deve ter menos de ${TASK_TITLE_MAX_LENGTH} caracteres` });
-    }
-    if (!TASK_STATUS.includes(status)) {
-      return res.status(400).json({ message: `Status inválido. Valores permitidos: ${TASK_STATUS.join(', ')}` });
-    }
-
-    const userId = req.user.id; // definido no middleware de autenticação
-
-    const newTask = new Task({
-      title,
-      status,
-      user: userId
+    const task = await Task.create({
+      title: req.body.title,
+      status: req.body.status,
+      user: req.user.id
     });
 
-    await newTask.save();
-    res.status(201).json(newTask);
+    return res.status(201).json(task);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Erro ao criar tarefa' });
+    return res.status(500).json({ message: 'Erro ao criar tarefa' });
   }
 };
 
-// Get all tasks for a user
+// READ
 export const getTasks = async (req, res) => {
   try {
-    const userId = req.user.id;
-    const tasks = await Task.find({ user: userId });
-    res.status(200).json(tasks);
+    const tasks = await Task.find({ user: req.user.id });
+    return res.status(200).json(tasks);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Erro ao buscar tarefas' });
+    return res.status(500).json({ message: 'Erro ao buscar tarefas' });
   }
 };
 
-// Update a task
+// UPDATE
 export const updateTask = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { title, status } = req.body;
-    const userId = req.user.id;
+    const error = validateTaskPayload(req.body);
+    if (error) return res.status(400).json({ message: error });
 
-    // Busca a tarefa e verifica se pertence ao usuário
-    const task = await Task.findOne({ _id: id, user: userId });
+    const task = await Task.findOneAndUpdate(
+      { _id: req.params.id, user: req.user.id },
+      { $set: req.body },
+      { new: true }
+    );
+
     if (!task) {
       return res.status(404).json({ message: 'Tarefa não encontrada ou não autorizada' });
     }
 
-    if (task.title === title && task.status === status) {
-      return res.status(400).json({ message: 'Nenhuma alteração detectada' });
-    }
-
-    // Atualiza apenas os campos enviados
-    if (title) task.title = title;
-    if (status) task.status = status;
-
-    await task.save();
-    res.status(200).json(task);
+    return res.status(200).json(task);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Erro ao atualizar tarefa' });
+    return res.status(500).json({ message: 'Erro ao atualizar tarefa' });
   }
 };
 
-// Delete a task
+// DELETE ONE
 export const deleteTask = async (req, res) => {
   try {
-    const { id } = req.params;
-    const userId = req.user.id;
+    const deleted = await Task.findOneAndDelete({
+      _id: req.params.id,
+      user: req.user.id
+    });
 
-    const deletedTask = await Task.findOneAndDelete({ _id: id, user: userId });
-
-    if (!deletedTask) {
+    if (!deleted) {
       return res.status(404).json({ message: 'Tarefa não encontrada ou não autorizada' });
     }
 
-    res.status(200).json({ message: 'Tarefa excluída com sucesso' });
+    return res.status(200).json({ message: 'Tarefa excluída com sucesso' });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Erro ao excluir tarefa' });
+    return res.status(500).json({ message: 'Erro ao excluir tarefa' });
   }
 };
 
-// Delete all completed tasks for a user
+// DELETE COMPLETED
 export const deleteCompletedTasks = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const { deletedCount } = await Task.deleteMany({
+      user: req.user.id,
+      status: 'completed'
+    });
 
-    const result = await Task.deleteMany({ status: 'completed', user: userId });
-
-    if (result.deletedCount === 0) {
+    if (!deletedCount) {
       return res.status(404).json({ message: 'Nenhuma tarefa concluída encontrada' });
     }
 
-    res.status(200).json({ message: `${result.deletedCount} tarefas concluídas excluídas com sucesso` });
+    return res
+      .status(200)
+      .json({ message: `${deletedCount} tarefas concluídas excluídas` });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Erro ao excluir tarefas concluídas' });
+    return res.status(500).json({ message: 'Erro ao excluir tarefas concluídas' });
   }
 };
 
-// Delete all tasks for a user
+// DELETE ALL
 export const deleteAllTasks = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const { deletedCount } = await Task.deleteMany({ user: req.user.id });
 
-    const result = await Task.deleteMany({ user: userId });
-
-    if (result.deletedCount === 0) {
+    if (!deletedCount) {
       return res.status(404).json({ message: 'Nenhuma tarefa encontrada' });
     }
 
-    res.status(200).json({ message: `${result.deletedCount} tarefas excluídas com sucesso` });
+    return res
+      .status(200)
+      .json({ message: `${deletedCount} tarefas excluídas` });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Erro ao excluir todas as tarefas' });
+    return res.status(500).json({ message: 'Erro ao excluir todas as tarefas' });
   }
 };
