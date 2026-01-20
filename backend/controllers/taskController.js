@@ -54,10 +54,24 @@ export const updateTask = async (req, res) => {
     const error = validateTaskPayload(req.body, false);
     if (error) return res.status(400).json({ message: error });
 
+    const updates = {};
+
+    if (req.body.title !== undefined) {
+      updates.title = req.body.title;
+    }
+
+    if (req.body.status !== undefined) {
+      updates.status = req.body.status;
+    }
+
+    if (Object.keys(updates).length === 0) {
+      return res.status(400).json({ message: 'Nenhum campo válido para atualização' });
+    }
+
     const task = await Task.findOneAndUpdate(
       { _id: req.params.id, user: req.user.id },
-      { $set: req.body },
-      { new: true }
+      { $set: updates },
+      { new: true, runValidators: true }
     );
 
     if (!task) {
@@ -67,9 +81,15 @@ export const updateTask = async (req, res) => {
     return res.status(200).json(task);
   } catch (err) {
     console.error(err);
+
+    if (err.name === 'CastError') {
+      return res.status(400).json({ message: 'Dados inválidos' });
+    }
+
     return res.status(500).json({ message: 'Erro ao atualizar tarefa' });
   }
 };
+
 
 // DELETE ONE
 export const deleteTask = async (req, res) => {
