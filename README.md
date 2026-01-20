@@ -41,16 +41,23 @@ Para configurar o projeto localmente, siga os passos abaixo:
 
 ### Pré-requisitos
 
-*   [Node.js](https://nodejs.org/) (versão 20 ou superior)
+*   [nvm](https://github.com/nvm-sh/nvm) (Node Version Manager)
 *   [pnpm](https://pnpm.io/) (gerenciador de pacotes recomendado)
 *   MongoDB (local ou [MongoDB Atlas](https://www.mongodb.com/atlas/database))
 
-### 1. Backend (API)
+### 1. Configuração do Ambiente
 
-1.  Clone o repositório:
+Antes de iniciar os serviços, garanta que está usando a versão correta do Node.js definida no arquivo `.nvmrc`:
+
+```shell
+nvm install && nvm use
+```
+
+### 2. Backend (API)
+
+1.  Navegue até o diretório do backend:
     ```shell
-    git clone https://github.com/heitorrsdev/To-Do-List.git
-    cd To-Do-List/backend
+    cd backend
     ```
 2.  Instale as dependências:
     ```shell
@@ -67,7 +74,7 @@ Para configurar o projeto localmente, siga os passos abaixo:
     ```
     O servidor estará rodando em `http://localhost:3000`.
 
-### 2. Frontend (Aplicação Angular)
+### 3. Frontend (Aplicação Angular)
 
 1.  Navegue até o diretório do frontend:
     ```shell
