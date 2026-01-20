@@ -1,15 +1,17 @@
 import Task from '../models/Task.js';
 import { TASK_TITLE_MAX_LENGTH, TASK_STATUS } from '../constants.js';
 
-const validateTaskPayload = ({ title, status }) => {
-  if (!title) return 'O título é obrigatório';
-  if (!status) return 'O status é obrigatório';
+const validateTaskPayload = ({ title, status } = {}, requiredFields = true) => {
+  if (requiredFields) {
+    if (!title) return 'O título é obrigatório';
+    if (!status) return 'O status é obrigatório';
+  }
 
   if (title?.length > TASK_TITLE_MAX_LENGTH) {
     return `O título deve ter no máximo ${TASK_TITLE_MAX_LENGTH} caracteres`;
   }
 
-  if (!TASK_STATUS.includes(status)) {
+  if (status && !TASK_STATUS.includes(status)) {
     return 'Status inválido';
   }
 
@@ -49,7 +51,7 @@ export const getTasks = async (req, res) => {
 // UPDATE
 export const updateTask = async (req, res) => {
   try {
-    const error = validateTaskPayload(req.body);
+    const error = validateTaskPayload(req.body, false);
     if (error) return res.status(400).json({ message: error });
 
     const task = await Task.findOneAndUpdate(
