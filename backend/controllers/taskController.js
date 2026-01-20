@@ -3,8 +3,8 @@ import { TASK_TITLE_MAX_LENGTH, TASK_STATUS } from '../constants.js';
 
 const validateTaskPayload = ({ title, status } = {}, requiredFields = true) => {
   if (requiredFields) {
-    if (!title) return 'O título é obrigatório';
-    if (!status) return 'O status é obrigatório';
+    if (!title?.trim()) return 'O título é obrigatório';
+    if (!status?.trim()) return 'O status é obrigatório';
   }
 
   if (title?.length > TASK_TITLE_MAX_LENGTH) {
