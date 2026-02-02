@@ -4,7 +4,7 @@
 [![Status do Projeto](https://img.shields.io/badge/Status-Finalizado-brightgreen)](https://github.com/heitorrsdev/To-Do-List)
 [![Licença](https://img.shields.io/github/license/heitorrsdev/To-Do-List)](LICENSE)
 [![Frontend Deploy](https://img.shields.io/badge/Acessar%20App-Vercel-blue)](https://to-do-list-heitorrsdev.vercel.app/)
-[![Backend API](https://img.shields.io/badge/API-Express.js-red)](https://to-do-list-api-heitorrsdev.vercel.app/)
+[![Backend API](https://img.shields.io/badge/API-Express.js-red)](https://to-do-list-express-api.onrender.com/api)
 
 Este é um aplicativo de lista de tarefas completo, desenvolvido para ajudar usuários a organizar suas atividades diárias de forma eficiente. O projeto é composto por um **Frontend em Angular** e um **Backend em Express.js**, oferecendo uma solução robusta e escalável para gerenciamento de tarefas.
 
@@ -33,7 +33,7 @@ Este é um aplicativo de lista de tarefas completo, desenvolvido para ajudar usu
 O projeto está em produção e pode ser acessado diretamente:
 
 *   **Aplicação Web (Frontend):** [https://to-do-list-heitorrsdev.vercel.app/](https://to-do-list-heitorrsdev.vercel.app/)
-*   **API (Backend):** [https://to-do-list-api-heitorrsdev.vercel.app/](https://to-do-list-api-heitorrsdev.vercel.app/) (A API está funcional, mas não possui uma interface de usuário direta, apenas endpoints).
+*   **API (Backend):** [https://to-do-list-express-api.onrender.com/api](https://to-do-list-express-api.onrender.com/api) (A API está funcional, mas não possui uma interface de usuário direta, apenas endpoints).
 
 ## 🛠️ Instalação e Configuração Local
 
