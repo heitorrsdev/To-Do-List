@@ -1,53 +1,53 @@
 # To-Do List Application
 
 <!-- BADGES SECTION -->
-[![Status do Projeto](https://img.shields.io/badge/Status-Finalizado-brightgreen)](https://github.com/heitorrsdev/To-Do-List)
-[![Licença](https://img.shields.io/github/license/heitorrsdev/To-Do-List)](LICENSE)
-[![Frontend Deploy](https://img.shields.io/badge/Acessar%20App-Vercel-blue)](https://to-do-list-heitorrsdev.vercel.app/)
+[![Project Status](https://img.shields.io/badge/Status-Finished-brightgreen)](https://github.com/heitorrsdev/To-Do-List)
+[![License](https://img.shields.io/github/license/heitorrsdev/To-Do-List)](LICENSE)
+[![Frontend Deploy](https://img.shields.io/badge/Access%20App-Vercel-blue)](https://to-do-list-heitorrsdev.vercel.app/)
 [![Backend API](https://img.shields.io/badge/API-Express.js-red)](https://to-do-list-express-api.onrender.com/api)
 
-Este é um aplicativo de lista de tarefas completo, desenvolvido para ajudar usuários a organizar suas atividades diárias de forma eficiente. O projeto é composto por um **Frontend em Angular** e um **Backend em Express.js**, oferecendo uma solução robusta e escalável para gerenciamento de tarefas.
+This is a complete to-do list application developed to help users organize their daily activities efficiently. The project consists of an **Angular Frontend** and an **Express.js Backend**, offering a robust and scalable solution for task management.
 
-## 🚀 Funcionalidades Principais
+## 🚀 Key Features
 
-*   **Autenticação de Usuário:** Registro e login seguros com **JWT** para gerenciar tarefas pessoais.
-*   **Gerenciamento de Tarefas (CRUD):** Adicione, edite, marque como concluída e exclua tarefas.
-*   **Interface Intuitiva:** Design limpo e responsivo, desenvolvido com **Angular**.
-*   **Persistência de Dados:** Suas tarefas são salvas e acessíveis a qualquer momento no **MongoDB**.
+*   **User Authentication:** Secure registration and login with **JWT** to manage personal tasks.
+*   **Task Management (CRUD):** Add, edit, mark as completed, and delete tasks.
+*   **Intuitive Interface:** Clean and responsive design, developed with **Angular**.
+*   **Data Persistence:** Your tasks are saved and accessible at any time in **MongoDB**.
 
-## 💻 Tecnologias Utilizadas
+## 💻 Technologies Used
 
-| Categoria | Tecnologia | Descrição |
+| Category | Technology | Description |
 | :--- | :--- | :--- |
-| **Frontend** | Angular | Framework para construção da interface do usuário. |
-| | TypeScript | Linguagem de programação principal. |
-| **Backend** | Express.js | Framework web para Node.js, utilizado para construir a API RESTful. |
-| | Node.js | Ambiente de execução JavaScript para o backend. |
-| **Banco de Dados** | MongoDB | Banco de dados NoSQL para armazenamento de dados. |
-| | Mongoose | ODM (Object Data Modeling) para interação com o MongoDB. |
-| **Segurança** | JWT (JSON Web Tokens) | Para autenticação e autorização seguras. |
-| | Bcrypt | Para hash de senhas. |
+| **Frontend** | Angular | Framework for building the user interface. |
+| | TypeScript | Primary programming language. |
+| **Backend** | Express.js | Web framework for Node.js, used to build the RESTful API. |
+| | Node.js | JavaScript runtime environment for the backend. |
+| **Database** | MongoDB | NoSQL database for data storage. |
+| | Mongoose | ODM (Object Data Modeling) for interacting with MongoDB. |
+| **Security** | JWT (JSON Web Tokens) | For secure authentication and authorization. |
+| | Bcrypt | For password hashing. |
 
-## 🌐 Acesso ao Projeto
+## 🌐 Project Access
 
-O projeto está em produção e pode ser acessado diretamente:
+The project is in production and can be accessed directly:
 
-*   **Aplicação Web (Frontend):** [https://to-do-list-heitorrsdev.vercel.app/](https://to-do-list-heitorrsdev.vercel.app/)
-*   **API (Backend):** [https://to-do-list-express-api.onrender.com/api](https://to-do-list-express-api.onrender.com/api) (A API está funcional, mas não possui uma interface de usuário direta, apenas endpoints).
+*   **Web Application (Frontend):** [https://to-do-list-heitorrsdev.vercel.app/](https://to-do-list-heitorrsdev.vercel.app/)
+*   **API (Backend):** [https://to-do-list-express-api.onrender.com/api](https://to-do-list-express-api.onrender.com/api) (The API is functional but does not have a direct user interface, only endpoints).
 
-## 🛠️ Instalação e Configuração Local
+## 🛠️ Local Installation and Configuration
 
-Para configurar o projeto localmente, siga os passos abaixo:
+To configure the project locally, follow the steps below:
 
-### Pré-requisitos
+### Prerequisites
 
 *   [nvm](https://github.com/nvm-sh/nvm) (Node Version Manager)
-*   [pnpm](https://pnpm.io/) (gerenciador de pacotes recomendado)
-*   MongoDB (local ou [MongoDB Atlas](https://www.mongodb.com/atlas/database))
+*   [pnpm](https://pnpm.io/) (recommended package manager)
+*   MongoDB (local or [MongoDB Atlas](https://www.mongodb.com/atlas/database))
 
-### 1. Configuração do Ambiente
+### 1. Environment Configuration
 
-Antes de iniciar os serviços, garanta que está usando a versão correta do Node.js definida no arquivo `.nvmrc`:
+Before starting the services, ensure you are using the correct Node.js version defined in the `.nvmrc` file:
 
 ```shell
 nvm install && nvm use
@@ -55,64 +55,64 @@ nvm install && nvm use
 
 ### 2. Backend (API)
 
-1.  Navegue até o diretório do backend:
+1.  Navigate to the backend directory:
     ```shell
     cd backend
     ```
-2.  Instale as dependências:
+2.  Install dependencies:
     ```shell
     pnpm install
     ```
-3.  Crie um arquivo `.env` na raiz do diretório `backend` com as seguintes variáveis de ambiente:
+3.  Create a `.env` file in the root of the `backend` directory with the following environment variables:
     ```env
-    MONGO_URI=sua_string_de_conexao_mongodb
-    JWT_SECRET=sua_chave_secreta_jwt_forte
+    MONGO_URI=your_mongodb_connection_string
+    JWT_SECRET=your_strong_jwt_secret_key
     ```
-4.  Inicie o servidor:
+4.  Start the server:
     ```shell
     pnpm start
     ```
-    O servidor estará rodando em `http://localhost:3000`.
+    The server will be running at `http://localhost:3000`.
 
-### 3. Frontend (Aplicação Angular)
+### 3. Frontend (Angular Application)
 
-1.  Navegue até o diretório do frontend:
+1.  Navigate to the frontend directory:
     ```shell
     cd ../frontend
     ```
-2.  Instale as dependências:
+2.  Install dependencies:
     ```shell
     pnpm install
     ```
-3.  Inicie a aplicação Angular:
+3.  Start the Angular application:
     ```shell
     pnpm start
     ```
-    A aplicação estará disponível em `http://localhost:4200`.
+    The application will be available at `http://localhost:4200`.
 
 ## 📸 Screenshots
 
-![Página de Login](/images/login_page.png)
-![Página de Registro](/images/register_page.png)
-![Página da Lista de Tarefas](/images/task_list_page.png)
-![Dialog de Tarefas](/images/task_dialog.png)
+![Login Page](/images/login_page.png)
+![Registration Page](/images/register_page.png)
+![Task List Page](/images/task_list_page.png)
+![Task Dialog](/images/task_dialog.png)
 
-## 🤝 Como Contribuir
+## 🤝 How to Contribute
 
-Contribuições são bem-vindas! Se você deseja contribuir para este projeto, por favor, siga estas etapas:
+Contributions are welcome! If you wish to contribute to this project, please follow these steps:
 
-1.  Faça um fork do repositório.
-2.  Crie uma nova branch (`git checkout -b feature/sua-feature`).
-3.  Faça suas alterações e commit-as (`git commit -m 'feat: adicione sua feature'`).
-4.  Envie para a branch original (`git push origin feature/sua-feature`).
-5.  Abra um Pull Request.
+1.  Fork the repository.
+2.  Create a new branch (`git checkout -b feature/your-feature`).
+3.  Make your changes and commit them (`git commit -m 'feat: add your feature'`).
+4.  Push to the original branch (`git push origin feature/your-feature`).
+5.  Open a Pull Request.
 
-## ✉️ Contato
+## ✉️ Contact
 
-Se você tiver alguma dúvida ou sugestão, sinta-se à vontade para entrar em contato com o desenvolvedor via e-mail:
+If you have any questions or suggestions, feel free to contact the developer via email:
 
 *   **heitorrs.dev@gmail.com**
 
-## 📄 Licença
+## 📄 License
 
-Este projeto está licenciado sob a [Licença MIT](LICENSE). Veja o arquivo `LICENSE` para mais detalhes.
+This project is licensed under the [MIT License](LICENSE). See the `LICENSE` file for more details.
